@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="26915f03-eb27-45bc-8c86-7e8bd2c06122" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="scd" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IgnoredFileRootStore">
+    <option name="generatedRoots">
+      <set>
+        <option value="D:\Dev\Proyectos\Django\scd\.idea" />
+      </set>
+    </option>
+  </component>
+  <component name="ProjectId" id="21SyyUuiVHYBD3QCR1LF58U27lU" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="settings.github" />
+  </component>
+  <component name="RunManager">
+    <configuration name="scd" type="Python.DjangoServer" factoryName="Django server">
+      <module name="scd" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="DJANGO_SETTINGS_MODULE" value="scd.settings" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="8000" />
+      <option name="host" value="" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration>C:\Users\Duver\AppData\Roaming\Subversion</configuration>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="26915f03-eb27-45bc-8c86-7e8bd2c06122" name="Default Changelist" comment="" />
+      <created>1637949038084</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1637949038084</updated>
+      <workItem from="1637949041110" duration="435000" />
+      <workItem from="1637949517403" duration="322000" />
+      <workItem from="1637949857822" duration="221000" />
+      <workItem from="1637950095777" duration="210000" />
+      <workItem from="1637950324256" duration="53000" />
+      <workItem from="1637950396939" duration="189000" />
+      <workItem from="1638285440597" duration="13000" />
+      <workItem from="1641826382931" duration="98000" />
+      <workItem from="1642627009461" duration="95000" />
+      <workItem from="1644271273032" duration="5000" />
+      <workItem from="1644605571485" duration="5000" />
+      <workItem from="1644612385252" duration="9000" />
+      <workItem from="1645550578100" duration="13863000" />
+    </task>
+    <task id="LOCAL-00001" summary="all files">
+      <created>1645634960889</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1645634960889</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="all files" />
+    <option name="LAST_COMMIT_MESSAGE" value="all files" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="255" y="0" key="CommitChangelistDialog2" timestamp="1645634603390">
+      <screen x="0" y="0" width="1260" height="768" />
+    </state>
+    <state x="255" y="0" key="CommitChangelistDialog2/0.0.1260.768@0.0.1260.768" timestamp="1645634603390" />
+    <state x="20" y="61" key="FileChooserDialogImpl" timestamp="1645634035217">
+      <screen x="0" y="0" width="1260" height="768" />
+    </state>
+    <state x="20" y="61" key="FileChooserDialogImpl/0.0.1260.768@0.0.1260.768" timestamp="1645634035217" />
+    <state width="1217" height="192" key="GridCell.Tab.0.bottom" timestamp="1645551349246">
+      <screen x="0" y="0" width="1260" height="768" />
+    </state>
+    <state width="1197" height="192" key="GridCell.Tab.0.bottom/0.0.1240.768@0.0.1240.768" timestamp="1642627293524" />
+    <state width="1217" height="192" key="GridCell.Tab.0.bottom/0.0.1260.768@0.0.1260.768" timestamp="1645551349246" />
+    <state width="1223" height="192" key="GridCell.Tab.0.bottom/0.0.1266.768@0.0.1266.768" timestamp="1641826495757" />
+    <state width="1217" height="192" key="GridCell.Tab.0.center" timestamp="1645551349245">
+      <screen x="0" y="0" width="1260" height="768" />
+    </state>
+    <state width="1197" height="192" key="GridCell.Tab.0.center/0.0.1240.768@0.0.1240.768" timestamp="1642627293524" />
+    <state width="1217" height="192" key="GridCell.Tab.0.center/0.0.1260.768@0.0.1260.768" timestamp="1645551349245" />
+    <state width="1223" height="192" key="GridCell.Tab.0.center/0.0.1266.768@0.0.1266.768" timestamp="1641826495757" />
+    <state width="1217" height="192" key="GridCell.Tab.0.left" timestamp="1645551349244">
+      <screen x="0" y="0" width="1260" height="768" />
+    </state>
+    <state width="1197" height="192" key="GridCell.Tab.0.left/0.0.1240.768@0.0.1240.768" timestamp="1642627293524" />
+    <state width="1217" height="192" key="GridCell.Tab.0.left/0.0.1260.768@0.0.1260.768" timestamp="1645551349244" />
+    <state width="1223" height="192" key="GridCell.Tab.0.left/0.0.1266.768@0.0.1266.768" timestamp="1641826495757" />
+    <state width="1217" height="192" key="GridCell.Tab.0.right" timestamp="1645551349245">
+      <screen x="0" y="0" width="1260" height="768" />
+    </state>
+    <state width="1197" height="192" key="GridCell.Tab.0.right/0.0.1240.768@0.0.1240.768" timestamp="1642627293524" />
+    <state width="1217" height="192" key="GridCell.Tab.0.right/0.0.1260.768@0.0.1260.768" timestamp="1645551349245" />
+    <state width="1223" height="192" key="GridCell.Tab.0.right/0.0.1266.768@0.0.1266.768" timestamp="1641826495757" />
+    <state x="131" y="26" key="SettingsEditor" timestamp="1645635945318">
+      <screen x="0" y="0" width="1260" height="768" />
+    </state>
+    <state x="131" y="26" key="SettingsEditor/0.0.1260.768@0.0.1260.768" timestamp="1645635945318" />
+    <state x="222" y="117" key="Vcs.Push.Dialog.v2" timestamp="1645636789068">
+      <screen x="0" y="0" width="1260" height="768" />
+    </state>
+    <state x="222" y="117" key="Vcs.Push.Dialog.v2/0.0.1260.768@0.0.1260.768" timestamp="1645636789068" />
+    <state x="418" y="259" key="com.intellij.ide.util.TipDialog" timestamp="1645550925317">
+      <screen x="0" y="0" width="1260" height="768" />
+    </state>
+    <state x="411" y="259" key="com.intellij.ide.util.TipDialog/0.0.1239.768@0.0.1239.768" timestamp="1644271276398" />
+    <state x="418" y="259" key="com.intellij.ide.util.TipDialog/0.0.1260.768@0.0.1260.768" timestamp="1645550925317" />
+    <state x="599" y="364" key="com.intellij.ide.util.TipDialog/0.0.1806.1080@0.0.1806.1080" timestamp="1638285441878" />
+    <state x="480" y="118" key="com.intellij.openapi.vcs.changes.SpecificFilesViewDialog" timestamp="1645634156844">
+      <screen x="0" y="0" width="1260" height="768" />
+    </state>
+    <state x="480" y="118" key="com.intellij.openapi.vcs.changes.SpecificFilesViewDialog/0.0.1260.768@0.0.1260.768" timestamp="1645634156844" />
+  </component>
+</project>
