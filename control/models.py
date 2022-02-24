@@ -8,6 +8,13 @@ class Direcciones(models.Model):
     nombre = models.CharField(max_length=50, null=False, blank=False)
     correo = models.EmailField(null=False, blank=False)
 
+    class Meta:
+        verbose_name = 'Direccion'
+        verbose_name_plural = 'Direcciones'
+
+    def __str__(self):
+        return  self.nombre
+
 
 class Organismo(models.Model):
     nombre = models.CharField(max_length=25, null=False, blank=False)
@@ -15,6 +22,9 @@ class Organismo(models.Model):
     class Meta:
         verbose_name = 'Organismo'
         verbose_name_plural = 'Organismo'
+
+    def __str__(self):
+        return  self.nombre
 
 
 class Entidad(models.Model):
@@ -24,6 +34,9 @@ class Entidad(models.Model):
         verbose_name = 'Entidad'
         verbose_name_plural = 'Entidades'
 
+    def __str__(self):
+        return  self.nombre
+
 
 class TipoDocumento(models.Model):
     tipo = models.CharField(max_length=255,null=False, blank=False)
@@ -31,6 +44,9 @@ class TipoDocumento(models.Model):
     class Meta:
         verbose_name = 'Tipo de Documento'
         verbose_name_plural = 'Tipos de Documentos'
+
+    def __str__(self):
+        return  self.tipo
 
 
 class Documento(models.Model):
@@ -46,5 +62,8 @@ class Documento(models.Model):
     class Meta:
         verbose_name = 'Documento'
         verbose_name_plural = 'Documentos'
+
+    def __str__(self):
+        return  self.titulo
 
 
