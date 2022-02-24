@@ -45,6 +45,10 @@ pyvenv.cfg
 instance/
 .webassets-cache
 
+Lib/
+Scripts/
+
+
 
 
 # pyenv
