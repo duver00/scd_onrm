@@ -55,6 +55,7 @@ class Documento(models.Model):
     f_entrada_doc = models.DateField(null=False, blank=False)
     f_salida_doc = models.DateField(null=True, blank=True)
     titulo = models.CharField(max_length=255)
+    dirigido = models.ForeignKey("Direcciones",on_delete=models.CASCADE)
     organismo = models.ForeignKey('Organismo', on_delete=models.CASCADE)
     entidad = models.ForeignKey('Entidad', on_delete=models.CASCADE)
     t_documento = models.ForeignKey('TipoDocumento', on_delete=models.CASCADE)
