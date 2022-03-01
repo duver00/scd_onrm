@@ -223,11 +223,13 @@
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
                                 <a href="{% url 'entradas' %}" class="nav-link">
+                                    <i class="fa fa-arrow-right green"></i>
                                     <p>Entradas de documentos</p>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="./index2.html" class="nav-link">
+                                     <i class="fa fa-arrow-left green"></i>
                                     <p>Salidas de documentos</p>
                                 </a>
                             </li>
@@ -244,11 +246,13 @@
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
                                 <a href="./index.html" class="nav-link">
+                                     <i class="fa fa-arrow-right green"></i>
                                     <p>Entradas de documentos</p>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="./index2.html" class="nav-link">
+                                     <i class="fa fa-arrow-right green"></i>
                                     <p>Salidas de documentos</p>
                                 </a>
                             </li>
@@ -258,7 +262,7 @@
                         <a href="#" class="nav-link ">
                             <i class="fas fa-copy"></i>
                             <p>
-                                DDIRECCIÓN TÉCNICA
+                                DIRECCIÓN TÉCNICA
                                 <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
@@ -266,11 +270,13 @@
                             <li class="nav-item">
                                 <a href="./index.html" class="nav-link">
                                     <i class="fa-"></i>
+                                    <i class="fa fa-arrow-right green"></i>
                                     <p>Entradas de documentos</p>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="./index2.html" class="nav-link">
+                                    <i class="fa fa-arrow-right green"></i>
                                     <p>Salidas de documentos</p>
                                 </a>
                             </li>
@@ -346,6 +352,11 @@
 <script src="dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="dist/js/pages/dashboard3.js"></script>
+<script>
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+</script>
 {% block script %}
 {% endblock %}
 </body>

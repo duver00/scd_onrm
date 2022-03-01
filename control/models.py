@@ -21,7 +21,7 @@ class Organismo(models.Model):
 
     class Meta:
         verbose_name = 'Organismo'
-        verbose_name_plural = 'Organismo'
+        verbose_name_plural = 'Organismos'
 
     def __str__(self):
         return self.nombre
@@ -59,6 +59,7 @@ class Documento(models.Model):
     organismo = models.ForeignKey('Organismo', on_delete=models.CASCADE)
     entidad = models.ForeignKey('Entidad', on_delete=models.CASCADE)
     t_documento = models.ForeignKey('TipoDocumento', on_delete=models.CASCADE)
+    observaciones = models.CharField(max_length=500, null=True, default=True)
 
     class Meta:
         verbose_name = 'Documento'
