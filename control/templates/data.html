@@ -12,6 +12,8 @@
               href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
         <!-- Font Awesome -->
         <link rel="stylesheet" href="{% static 'css/fontawesome-free/css/all.min.css' %}">
+         <!-- Tempusdominus Bootstrap 4 -->
+
         <!-- DataTables -->
         <link rel="stylesheet" href="{% static 'css/datatables-bs4/css/dataTables.bootstrap4.min.css' %}">
         <link rel="stylesheet" href="{% static 'css/datatables-responsive/css/responsive.bootstrap4.min.css' %}">
@@ -52,8 +54,7 @@
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">
-                                <button class="button" id="agregar">Agregar Documento</button>
-                                  <button id="btnExc" class="btn btn-lg btn-danger glyphicon glyphicon-trash" accesskey="x" hidden><br>E<u>x</u>cluir</button>
+                                <button class="button" data-toggle="modal" data-target="#modal-default" id="agregar">Agregar Documento</button>
                                     <table id="tabla_entradas" class="table table-bordered table-striped">
                                         <thead>
                                         <tr>
@@ -67,7 +68,7 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                       {% for entradas in doc_entradas %}
+                                       {% for entradas in  list_entradas %}
                                         <tr>
                                             <td >{{entradas.no_entrada_doc}}</td>
                                             <td>{{entradas.titulo}}</td>
@@ -90,9 +91,7 @@
                                                   <i class="fa fa-trash"></i>
                                                 </button>
                                                 </div>
-
                                             </td>
-
                                         </tr>
                                         {% endfor %}
                                         </tfoot>
@@ -110,6 +109,38 @@
           </section>
 
     </div>
+       <div class="modal fade" id="modal-default">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Agregar Documento</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+
+             <form method="post" name="cderecho" id="agregrar" action="">
+               {% csrf_token %}
+              <div class="form-group">
+              <h6 class="font-weight-bold">{{form_entradas.no_entrada_doc.label }}</h6>
+              {{form_entradas.no_entrada_doc}}
+              <h6 class="font-weight-bold mt-2">{{form_entradas.titulo.label }}</h6>
+              {{form_entradas.titulo}}
+             <h6 class="font-weight-bold mt-2">{{form_entradas.f_entrada_doc.label }}</h6>
+              {{form_entradas.f_entrada_doc.as_ul}}
+            </div>
+            <div class="modal-footer justify-content-between">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+             </div>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      <!-- /.modal -->
   <!-- /.content -->
  {% endblock %}
     <!-- /.content-wrapper -->
@@ -132,6 +163,7 @@
     <script src="{% static 'css/datatables-responsive/js/responsive.bootstrap4.min.js' %}"></script>
     <script src="{% static 'css/datatables-buttons/js/dataTables.buttons.min.js' %}"></script>
     <script src="{% static 'css/datatables-buttons/js/buttons.bootstrap4.min.js' %}"></script>
+    <script src="{% static 'js/tempusdominus-bootstrap-4/tempusdominus-bootstrap-4.min.js' %}"></script>
     <script src="{% static 'js/jszip/jszip.min.js' %}"></script>
     <script src="{% static 'js/pdfmake/pdfmake.min.js' %}"></script>
     <script src="{% static 'js/pdfmake/vfs_fonts.js' %}"></script>
@@ -151,6 +183,7 @@
                 "responsive": true, "lengthChange": false, "autoWidth": false,
             }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
         });
+
     </script>
 {% endblock %}
 </body>
