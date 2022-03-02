@@ -50,10 +50,10 @@ class TipoDocumento(models.Model):
 
 
 class Documento(models.Model):
-    no_entrada_doc = models.IntegerField(null=False, blank=False)
-    no_salida_doc = models.IntegerField(null=True, blank=True)
-    f_entrada_doc = models.DateField(null=False, blank=False)
-    f_salida_doc = models.DateField(null=True, blank=True)
+    no_entrada_doc = models.IntegerField(verbose_name="# de entrada", null=False, blank=False)
+    no_salida_doc = models.IntegerField(verbose_name="# de salida", null=True, blank=True)
+    f_entrada_doc = models.DateField(verbose_name="fecha entrada", null=False, blank=False)
+    f_salida_doc = models.DateField(verbose_name="fecha salida", null=True, blank=True)
     titulo = models.CharField(max_length=255)
     dirigido = models.ForeignKey("Direcciones", on_delete=models.CASCADE)
     organismo = models.ForeignKey('Organismo', on_delete=models.CASCADE)

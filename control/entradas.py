@@ -1,9 +1,15 @@
 from django.shortcuts import render
 from .models import Documento
+from django.views.generic import  ListView
 
 
 # Create your views here.
+class DocumentosListView(ListView):
+    template_name = 'data.html'
+    context_object_name = 'doc_entradas'
 
-def DocumentosEntrada(request):
-    doc_entradas = Documento.objects.all()
-    return render(request, "data.html", {"doc_entradas": doc_entradas})
+
+    def get_queryset(self):
+        return Documento.objects.all()
+
+
