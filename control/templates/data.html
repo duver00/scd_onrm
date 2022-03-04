@@ -198,7 +198,21 @@
                 "responsive": true, "lengthChange": false, "autoWidth": false,
             }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
         });
-
+       function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
        const alertBox = document.getElementById('alert-box');
        const $form = document.getElementById('agregar');
        const handleAlerts = (type, text) =>{
@@ -215,49 +229,54 @@
        const entidad = d.getElementById("id_entidad");
        const tipo_documento = d.getElementById("id_t_documento");
        const observaciones = d.getElementById("id_observaciones");
-       const csrf = document.querySelector('[name=csrfmiddlewaretoken]').value
+       const csrf = getCookie('csrftoken');
        $btnAceptar = d.getElementById("btnAceptar");
 
+        const form = document.getElementById("myFormId");
 
-        url = {% url 'crear_entradas' %}
-        window.addEventListener("load", function () {
-            const form = document.getElementById("myFormId");
+        const handleSubmit = ($form) =>{
+             d.addEventListener("submit", (e)=>{
+0
+                e.preventDefault();
+                const fd = new FormData;
+                fd.append('ccsrfmiddlewaretoken', csrf[0].value);
+                fd.append('no_entrada_doc', no_entrada_doc.value);
+                fd.append('f_entrada_doc', f_entrada_doc.value);
+                fd.append('dirigido', dirigido.value);
+                fd.append('organismo',organismo.value);
+                fd.append('entidad', entidad.value);
+                fd.append('tipo_documento',tipo_documento.value);
+                fd.append('observaciones',observaciones.value);
+                const msg = 'Documento agregado';
 
-           $btnAceptar.addEventListener("click",e=>{
-            e.preventDefault()
-            const fd = new FormData;
-            fd.append('ccsrfmiddlewaretoken', csrf[0].value)
-            fd.append('no_entrada_doc', no_entrada_doc.value)
-            fd.append('f_entrada_doc', f_entrada_doc.value)
-            fd.append('dirigido', dirigido.value)
-            fd.append('organismo',organismo.value)
-            fd.append('entidad', entidad.value)
-            fd.append('tipo_documento',tipo_documento.value)
-            fd.append('observaciones',observaciones.value)
+                const request = new Request(
+                    {% url 'crear_entradas' %},
+                    {headers: {'X-CSRFToken': csrf}},
+                );
+                fetch(request,{
+                    method:'POST',
+                    mode: 'same-origin',
+                    body: fd,
+                })
+                   .then(response => response.json())
+                   .then(data => {
+                       console.log(data)
+                       handleAlerts('success', msg)
 
-            $.ajax({
-                type: 'POST',
-                url: url,
-                data: fd,
-                dataType:'json',
-                csrfmiddlewaretoken:csrf,
-                 success: function(response) {
-                     console.log(response)
-                     const msg = `Documento agregado ${response.status}`
-                     handleAlerts('success', sText)
-                 },
-                 error: function(error) {
-                     console.log(error)
-                     handleAlerts('danger', "upsss..Existe un error en el formulario")
-                 },
-                cache: false,
-                contentType: false,
-                processData: false,
+                    })
+                   .catch((error) => {
+                       console.log(error)
+                       handleAlerts('danger', "upsss..Existe un error en el formulario")
+                     });
 
                 });
-            console.log(fd)
-     });
-   });
+
+        };
+
+        d.addEventListener("DOMContentLoaded", () => {
+                   handleSubmit(form)
+        });
+
 
 
     </script>
