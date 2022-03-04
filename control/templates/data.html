@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -50,7 +50,7 @@
 
                             <div class="card">
                                 <div class="card-header">
-                                    <h3 class="card-title">Listado de <docume></docume>ntos en entrada</h3>
+                                    <h3 class="card-title">Listado de documentos en entrada</h3>
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">
@@ -110,31 +110,46 @@
 
     </div>
        <div class="modal fade" id="modal-default">
+        <div id="alert-box"></div>
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title">Agregar Documento</h4>
+                <h4 class="modal-title mx-auto">Agregar Documento</h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
 
-             <form method="post" name="cderecho" id="agregrar" action="">
-               {% csrf_token %}
+             <form method="post" name="agrega_documento" id="agregrar">
+              {% csrf_token %}
               <div class="form-group">
-              <h6 class="font-weight-bold">{{form_entradas.no_entrada_doc.label }}</h6>
+              <label class="form-label" >{{form_entradas.no_entrada_doc.label }}:</label>
+              <h6 class="text-blue">*El número tiene ser el consecutivo de {{no_entrada.no_entrada_doc}}</h6>
+              {{ form_entradas.no_entrada_doc.errors }}
               {{form_entradas.no_entrada_doc}}
-              <h6 class="font-weight-bold mt-2">{{form_entradas.titulo.label }}</h6>
+              <h6 class="font-weight-bold mt-3">{{form_entradas.titulo.label }}</h6>
               {{form_entradas.titulo}}
-             <h6 class="font-weight-bold mt-2">{{form_entradas.f_entrada_doc.label }}</h6>
-              {{form_entradas.f_entrada_doc.as_ul}}
+             <h6 class="font-weight-bold mt-3">{{form_entradas.f_entrada_doc.label }}</h6>
+              {{form_entradas.f_entrada_doc}}
+             <h6 class="font-weight-bold mt-3">{{form_entradas.dirigido.label }}</h6>
+              {{form_entradas.dirigido}}
+             <h6 class="font-weight-bold mt-3">{{form_entradas.organismo.label }}</h6>
+              {{form_entradas.organismo}}
+             <h6 class="font-weight-bold mt-3">{{form_entradas.entidad.label }}</h6>
+              {{form_entradas.entidad}}
+              <label class="form-label mt-3">{{form_entradas.t_documento.label }}</label>
+              {{form_entradas.t_documento}}
+            <h6 class="font-weight-bold mt-3">{{form_entradas.observaciones.label }}</h6>
+              {{form_entradas.observaciones}}
             </div>
-            <div class="modal-footer justify-content-between">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary">Save changes</button>
+            <div class="modal-footer mx-auto">
+
+               <button type="submit" id= "btnAceptar" class="btn btn-primary">Agregar</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
             </div>
-             </div>
+             </form>
+           </div>
           </div>
           <!-- /.modal-content -->
         </div>
@@ -183,6 +198,67 @@
                 "responsive": true, "lengthChange": false, "autoWidth": false,
             }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
         });
+
+       const alertBox = document.getElementById('alert-box');
+       const $form = document.getElementById('agregar');
+       const handleAlerts = (type, text) =>{
+           alertBox.innerHTML = `<div class="alert alert-${type}" role="alert">
+                            ${text}
+                                </div>`
+           };
+       d = document;
+       const no_entrada_doc = d.getElementById("id_no_entrada_doc");
+       const titulo = d.getElementById("id_titulo");
+       const f_entrada_doc = d.getElementById("id_f_entrada_doc");
+       const dirigido = d.getElementById("id_dirigido");
+       const organismo = d.getElementById("id_organismo");
+       const entidad = d.getElementById("id_entidad");
+       const tipo_documento = d.getElementById("id_t_documento");
+       const observaciones = d.getElementById("id_observaciones");
+       const csrf = document.querySelector('[name=csrfmiddlewaretoken]').value
+       $btnAceptar = d.getElementById("btnAceptar");
+
+
+        url = {% url 'crear_entradas' %}
+        window.addEventListener("load", function () {
+            const form = document.getElementById("myFormId");
+
+           $btnAceptar.addEventListener("click",e=>{
+            e.preventDefault()
+            const fd = new FormData;
+            fd.append('ccsrfmiddlewaretoken', csrf[0].value)
+            fd.append('no_entrada_doc', no_entrada_doc.value)
+            fd.append('f_entrada_doc', f_entrada_doc.value)
+            fd.append('dirigido', dirigido.value)
+            fd.append('organismo',organismo.value)
+            fd.append('entidad', entidad.value)
+            fd.append('tipo_documento',tipo_documento.value)
+            fd.append('observaciones',observaciones.value)
+
+            $.ajax({
+                type: 'POST',
+                url: url,
+                data: fd,
+                dataType:'json',
+                csrfmiddlewaretoken:csrf,
+                 success: function(response) {
+                     console.log(response)
+                     const msg = `Documento agregado ${response.status}`
+                     handleAlerts('success', sText)
+                 },
+                 error: function(error) {
+                     console.log(error)
+                     handleAlerts('danger', "upsss..Existe un error en el formulario")
+                 },
+                cache: false,
+                contentType: false,
+                processData: false,
+
+                });
+            console.log(fd)
+     });
+   });
+
 
     </script>
 {% endblock %}

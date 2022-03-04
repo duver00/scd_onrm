@@ -16,9 +16,10 @@ Including another URLconf
 
 from django.urls import path
 from .views import inicio
-from .entradas import DocumentosListView
+from .entradas import DocumentosListView, NuevoDocumentoView
 
 urlpatterns = [
     path('', inicio, name="home"),
     path('entradas/', DocumentosListView.as_view(), name="entradas"),
+    path('2entradas/', NuevoDocumentoView.as_view(), name="crear_entradas"),
 ]

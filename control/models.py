@@ -50,16 +50,16 @@ class TipoDocumento(models.Model):
 
 
 class Documento(models.Model):
-    no_entrada_doc = models.IntegerField(verbose_name="# de entrada", null=False, blank=False)
-    no_salida_doc = models.IntegerField(verbose_name="# de salida", null=True, blank=True)
+    no_entrada_doc = models.IntegerField(verbose_name="Número de entrada", null=False, blank=False,unique=True)
+    no_salida_doc = models.IntegerField(verbose_name="Número de salida", null=True, blank=True, unique=True)
     f_entrada_doc = models.DateField(verbose_name="fecha entrada", null=False, blank=False)
     f_salida_doc = models.DateField(verbose_name="fecha salida", null=True, blank=True)
     titulo = models.CharField(max_length=255)
-    dirigido = models.ForeignKey("Direcciones", on_delete=models.CASCADE)
+    dirigido = models.ForeignKey("Direcciones", on_delete=models.CASCADE, verbose_name="Dirigido a:")
     organismo = models.ForeignKey('Organismo', on_delete=models.CASCADE)
     entidad = models.ForeignKey('Entidad', on_delete=models.CASCADE)
-    t_documento = models.ForeignKey('TipoDocumento', on_delete=models.CASCADE)
-    observaciones = models.CharField(max_length=500, null=True, default=True)
+    t_documento = models.ForeignKey('TipoDocumento', on_delete=models.CASCADE, verbose_name="Tipo de documento")
+    observaciones = models.CharField(max_length=500, null=True,blank=True)
 
     class Meta:
         verbose_name = 'Documento'
@@ -67,3 +67,7 @@ class Documento(models.Model):
 
     def __str__(self):
         return self.titulo
+
+    def last_no_doc(self):
+        last = Documento.objects.all().last()
+        return last

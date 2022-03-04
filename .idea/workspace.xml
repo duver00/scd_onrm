@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="26915f03-eb27-45bc-8c86-7e8bd2c06122" name="Default Changelist" comment="agregado template&#10;terminado base html, inicio html">
-      <change afterPath="$PROJECT_DIR$/control/forms.py" afterDir="false" />
+    <list default="true" id="1156d56f-941b-4fe5-9536-ef94c5ed457b" name="Changes" comment="">
       <change afterPath="$PROJECT_DIR$/control/migrations/0001_initial.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/control/entradas.py" beforeDir="false" afterPath="$PROJECT_DIR$/control/entradas.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/control/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/control/forms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/control/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/control/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/control/templates/data.html" beforeDir="false" afterPath="$PROJECT_DIR$/control/templates/data.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/control/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/control/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pyvenv.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/pyvenv.cfg" afterDir="false" />
     </list>
@@ -56,6 +57,9 @@
       </set>
     </option>
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectId" id="21SyyUuiVHYBD3QCR1LF58U27lU" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -63,7 +67,9 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="postgresql" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="TODO_SCOPE" value="All Places" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
@@ -120,12 +126,13 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration>C:\Users\Duver\AppData\Roaming\Subversion</configuration>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="26915f03-eb27-45bc-8c86-7e8bd2c06122" name="Default Changelist" comment="" />
+      <changelist id="1156d56f-941b-4fe5-9536-ef94c5ed457b" name="Changes" comment="" />
       <created>1637949038084</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -147,6 +154,8 @@
       <workItem from="1646153632568" duration="544000" />
       <workItem from="1646154310898" duration="714000" />
       <workItem from="1646155235862" duration="13569000" />
+      <workItem from="1646313871822" duration="9157000" />
+      <workItem from="1646328793143" duration="24263000" />
     </task>
     <task id="LOCAL-00001" summary="all files">
       <created>1645634960889</created>
@@ -176,15 +185,26 @@
       <option name="project" value="LOCAL" />
       <updated>1645738655505</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="actualizado 2/03 creado form">
+      <created>1646197668776</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1646197668776</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="all files" />
     <MESSAGE value="requirements updated" />
     <MESSAGE value="models updated 24/02" />
     <MESSAGE value="models y admin updated 24/02 lap dev" />
-    <option name="LAST_COMMIT_MESSAGE" value="models y admin updated 24/02 lap dev" />
+    <MESSAGE value="actualizado 2/03 creado form" />
+    <option name="LAST_COMMIT_MESSAGE" value="actualizado 2/03 creado form" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/scd$Test__templates.coverage" NAME="Test: templates Coverage Results" MODIFIED="1646164855190" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
