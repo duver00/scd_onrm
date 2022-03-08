@@ -251,12 +251,16 @@
 
                 const request = new Request(
                     {% url 'crear_entradas' %},
-                    {headers: {'X-CSRFToken': csrf}},
+                    {headers: {'X-CSRFToken': csrf},
+                       'Accept': 'application/json, application/xml, text/plain, text/html, *.*',
+                       'Content-Type': 'text/html'
+                    }
                 );
                 fetch(request,{
                     method:'POST',
                     mode: 'same-origin',
                     body: fd,
+
                 })
                    .then(response => response.json())
                    .then(data => {
@@ -283,3 +287,4 @@
 {% endblock %}
 </body>
 </html>
+

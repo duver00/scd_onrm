@@ -5,7 +5,9 @@ from .models import Documento
 from django.views.generic import ListView, CreateView
 from django.core.exceptions import ValidationError
 from .forms import DocumentoForm
-from django.forms import model_to_dict
+import json
+
+
 
 
 # Create your views here.
@@ -33,15 +35,37 @@ class NuevoDocumentoView(CreateView):
     context_object_name = "list_entradas"
 
     def post(self, request, *args, **kwargs):
-        if request.method == "POST":
-            form = DocumentoForm(request.POST)
-            if form.is_valid():
-                form.save()
-                instance = form
-                return JsonResponse(model_to_dict(instance, fields=['titulo']), status=201)
-            else:
-                return JsonResponse(form.errors, safe=False)
-        return render(request, "data.html")
+        data={}
+        info={}
+        try:
+            if request.method == "POST":
+                data = request.POST
+                form = DocumentoForm()
+                print(data)
+                form.no_entrada_doc = data['no_entrada_doc']
+                form.titulo = data['tiulo']
+                form.f_entrada_doc = data['f_entrada_doc']
+                form.dirigido = data['dirigido']
+                form.organismo = data['organismo']
+                form.entidad = data['entidad']
+                form.t_documento = data['tipo_documento']
+                form.observaciones = data['observaciones']
+                if form.is_valid():
+                    form.save()
+                else:
+                    info['error'] = 'Existe un error '
+        except Exception as e:
+            info['error'] = e
+        return JsonResponse(data, safe='false')
+
+
+
+
+
+
+
+
+
 
 
 

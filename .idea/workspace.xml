@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e2c777aa-d78f-4306-b5f2-6039cf1414a5" name="Default Changelist" comment="lap dev 02+/03">
+    <list default="true" id="1156d56f-941b-4fe5-9536-ef94c5ed457b" name="Changes" comment="">
       <change afterPath="$PROJECT_DIR$/control/migrations/0001_initial.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/control/entradas.py" beforeDir="false" afterPath="$PROJECT_DIR$/control/entradas.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/control/templates/data.html" beforeDir="false" afterPath="$PROJECT_DIR$/control/templates/data.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyvenv.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/pyvenv.cfg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scd/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/scd/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -28,41 +29,6 @@
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
         <item name="scd bd" type="feb32156:DbDataSourceImpl" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="scd bd" type="feb32156:DbDataSourceImpl" />
-        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="scd bd" type="feb32156:DbDataSourceImpl" />
-        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="control: database" type="162271b6:PgImplModel$Database" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="scd bd" type="feb32156:DbDataSourceImpl" />
-        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="control: database" type="162271b6:PgImplModel$Database" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="scd bd" type="feb32156:DbDataSourceImpl" />
-        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="control: database" type="162271b6:PgImplModel$Database" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="public: schema" type="983ebcf7:PgImplModel$Schema" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="scd bd" type="feb32156:DbDataSourceImpl" />
-        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="control: database" type="162271b6:PgImplModel$Database" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="public: schema" type="983ebcf7:PgImplModel$Schema" />
-        <item name="tables" type="d4e8921:DatabaseStructure$FamilyGroup" />
       </path>
     </expand>
     <select />
@@ -89,6 +55,9 @@
       </set>
     </option>
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectId" id="21SyyUuiVHYBD3QCR1LF58U27lU" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -96,13 +65,15 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="postgresql" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="TODO_SCOPE" value="All Places" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="settings.editor.selected.configurable" value="http.proxy" />
   </component>
-  <component name="RunManager" selected="Django server.scd">
+  <component name="RunManager" selected="Django Server.scd">
     <configuration name="Test: templates" type="DjangoTestsConfigurationType" temporary="true">
       <module name="scd" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -147,22 +118,19 @@
       <option name="customRunCommand" value="" />
       <method v="2" />
     </configuration>
-    <list>
-      <item itemvalue="Django server.scd" />
-      <item itemvalue="Django tests.Test: templates" />
-    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Django tests.Test: templates" />
       </list>
     </recent_temporary>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration>C:\Users\Duver\AppData\Roaming\Subversion</configuration>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="26915f03-eb27-45bc-8c86-7e8bd2c06122" name="Default Changelist" comment="" />
+      <changelist id="1156d56f-941b-4fe5-9536-ef94c5ed457b" name="Changes" comment="" />
       <created>1637949038084</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -184,6 +152,8 @@
       <workItem from="1646153632568" duration="544000" />
       <workItem from="1646154310898" duration="714000" />
       <workItem from="1646155235862" duration="13569000" />
+      <workItem from="1646313871822" duration="9157000" />
+      <workItem from="1646328793143" duration="24263000" />
     </task>
     <task id="LOCAL-00001" summary="all files">
       <created>1645634960889</created>
@@ -213,59 +183,28 @@
       <option name="project" value="LOCAL" />
       <updated>1645738655505</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="actualizado 2/03 creado form">
+      <created>1646197668776</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1646197668776</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="all files" />
     <MESSAGE value="requirements updated" />
     <MESSAGE value="models updated 24/02" />
     <MESSAGE value="models y admin updated 24/02 lap dev" />
-    <option name="LAST_COMMIT_MESSAGE" value="models y admin updated 24/02 lap dev" />
+    <MESSAGE value="actualizado 2/03 creado form" />
+    <option name="LAST_COMMIT_MESSAGE" value="actualizado 2/03 creado form" />
   </component>
-  <component name="WindowStateProjectService">
-    <state x="84" y="39" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1646241319150">
-      <screen x="0" y="0" width="1260" height="768" />
-    </state>
-    <state x="84" y="39" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1260.768@0.0.1260.768" timestamp="1646241319150" />
-    <state x="255" y="0" key="CommitChangelistDialog2" timestamp="1646258556767">
-      <screen x="0" y="0" width="1260" height="768" />
-    </state>
-    <state x="255" y="0" key="CommitChangelistDialog2/0.0.1260.768@0.0.1260.768" timestamp="1646258556767" />
-    <state width="1217" height="192" key="GridCell.Tab.0.bottom" timestamp="1646423187957">
-      <screen x="0" y="0" width="1260" height="768" />
-    </state>
-    <state width="1217" height="192" key="GridCell.Tab.0.bottom/0.0.1260.768@0.0.1260.768" timestamp="1646423187957" />
-    <state width="1217" height="192" key="GridCell.Tab.0.center" timestamp="1646423187957">
-      <screen x="0" y="0" width="1260" height="768" />
-    </state>
-    <state width="1217" height="192" key="GridCell.Tab.0.center/0.0.1260.768@0.0.1260.768" timestamp="1646423187957" />
-    <state width="1217" height="192" key="GridCell.Tab.0.left" timestamp="1646423187957">
-      <screen x="0" y="0" width="1260" height="768" />
-    </state>
-    <state width="1217" height="192" key="GridCell.Tab.0.left/0.0.1260.768@0.0.1260.768" timestamp="1646423187957" />
-    <state width="1217" height="192" key="GridCell.Tab.0.right" timestamp="1646423187957">
-      <screen x="0" y="0" width="1260" height="768" />
-    </state>
-    <state width="1217" height="192" key="GridCell.Tab.0.right/0.0.1260.768@0.0.1260.768" timestamp="1646423187957" />
-    <state x="342" y="100" key="MultipleFileMergeDialog" timestamp="1646410251791">
-      <screen x="0" y="0" width="1260" height="768" />
-    </state>
-    <state x="342" y="100" key="MultipleFileMergeDialog/0.0.1260.768@0.0.1260.768" timestamp="1646410251791" />
-    <state x="477" y="300" key="VCS.ChangelistChooser" timestamp="1646258478537">
-      <screen x="0" y="0" width="1260" height="768" />
-    </state>
-    <state x="477" y="300" key="VCS.ChangelistChooser/0.0.1260.768@0.0.1260.768" timestamp="1646258478537" />
-    <state x="222" y="117" key="Vcs.Push.Dialog.v2" timestamp="1646258579047">
-      <screen x="0" y="0" width="1260" height="768" />
-    </state>
-    <state x="222" y="117" key="Vcs.Push.Dialog.v2/0.0.1260.768@0.0.1260.768" timestamp="1646258579047" />
-    <state x="439" y="301" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1646410173699">
-      <screen x="0" y="0" width="1260" height="768" />
-    </state>
-    <state x="439" y="301" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1260.768@0.0.1260.768" timestamp="1646410173699" />
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/scd$Test__templates.coverage" NAME="Test: templates Coverage Results" MODIFIED="1646164855190" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>
