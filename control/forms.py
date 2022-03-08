@@ -10,9 +10,6 @@ class DocumentoForm(forms.ModelForm):
         model = Documento
         fields = ['no_entrada_doc', 'titulo', 'f_entrada_doc', 'dirigido', 'organismo', 'entidad', 't_documento',
                   'observaciones']
-        dirigido = forms.ForeignKey("Direcciones")
-        organismo = forms.ForeignKey('Organismo')
-        entidad = forms.ForeignKey('Entidad')
 
         widgets = {
             'titulo': TextInput(attrs={

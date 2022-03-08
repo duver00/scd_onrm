@@ -50,7 +50,7 @@ class TipoDocumento(models.Model):
 
 
 class Documento(models.Model):
-    no_entrada_doc = models.IntegerField(verbose_name="Número de entrada", null=False, blank=False,unique=True)
+    no_entrada_doc = models.IntegerField(verbose_name="Número de entrada", null=False, blank=False, unique=True)
     no_salida_doc = models.IntegerField(verbose_name="Número de salida", null=True, blank=True, unique=True)
     f_entrada_doc = models.DateField(verbose_name="fecha entrada", null=False, blank=False)
     f_salida_doc = models.DateField(verbose_name="fecha salida", null=True, blank=True)
