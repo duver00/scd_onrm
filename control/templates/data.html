@@ -229,8 +229,8 @@
        const entidad = d.getElementById("id_entidad");
        const tipo_documento = d.getElementById("id_t_documento");
        const observaciones = d.getElementById("id_observaciones");
-       const csrf = getCookie('csrftoken');
-       $btnAceptar = d.getElementById("btnAceptar");
+      $btnAceptar = d.getElementById("btnAceptar");
+
 
         const form = document.getElementById("myFormId");
 
@@ -239,7 +239,8 @@
 0
                 e.preventDefault();
                 const fd = new FormData;
-                fd.append('ccsrfmiddlewaretoken', csrf[0].value);
+                fd.append('ccsrfmiddlewaretoken', getCookie("csrftoken"));
+                fd.append('titulo', titulo.value);
                 fd.append('no_entrada_doc', no_entrada_doc.value);
                 fd.append('f_entrada_doc', f_entrada_doc.value);
                 fd.append('dirigido', dirigido.value);
@@ -251,9 +252,9 @@
 
                 const request = new Request(
                     {% url 'crear_entradas' %},
-                    {headers: {'X-CSRFToken': csrf},
+                    {headers: {'X-CSRFToken': getCookie("csrftoken")},
                        'Accept': 'application/json, application/xml, text/plain, text/html, *.*',
-                       'Content-Type': 'text/html'
+                       'Content-Type': 'x-www-form-urlencoded'
                     }
                 );
                 fetch(request,{

@@ -1,15 +1,18 @@
-from django.forms import ModelForm, TextInput, Textarea, NumberInput, DateField, Select, SelectDateWidget,DateInput
+from django import forms
+from django.forms import ModelForm, TextInput, Textarea, NumberInput, DateField, Select, SelectDateWidget, DateInput
 from control.models import Documento
-
 
 
 # tirala aq
 
-class DocumentoForm(ModelForm):
+class DocumentoForm(forms.ModelForm):
     class Meta:
         model = Documento
         fields = ['no_entrada_doc', 'titulo', 'f_entrada_doc', 'dirigido', 'organismo', 'entidad', 't_documento',
                   'observaciones']
+        dirigido = forms.ForeignKey("Direcciones")
+        organismo = forms.ForeignKey('Organismo')
+        entidad = forms.ForeignKey('Entidad')
 
         widgets = {
             'titulo': TextInput(attrs={
@@ -19,15 +22,15 @@ class DocumentoForm(ModelForm):
                 'style': 'max-width: 500px;'
             }),
             'no_entrada_doc': NumberInput(attrs={
-               'class': "form-control",
-               'label' : "Número de entrada",
+                'class': "form-control",
+                'label': "Número de entrada",
                 'placeholder': 'Número consecutivo',
                 'style': 'max-width: 200px;',
                 'required': '',
             }),
             'f_entrada_doc': DateInput(attrs={
                 'class': "form-control",
-                'type' : 'date',
+                'type': 'date',
                 'label': 'Fecha de entrada',
                 'style': 'max-width: 200px;'
             }),
@@ -57,7 +60,4 @@ class DocumentoForm(ModelForm):
                 'style': 'max-width: 500px;'
             }),
 
-
         }
-
-
