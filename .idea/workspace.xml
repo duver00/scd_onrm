@@ -4,7 +4,6 @@
     <list default="true" id="e2c777aa-d78f-4306-b5f2-6039cf1414a5" name="Default Changelist" comment="lap dev 08+/03">
       <change afterPath="$PROJECT_DIR$/control/migrations/0002_alter_documento_options_alter_documento_dirigido_and_more.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/control/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/control/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/control/templates/data.html" beforeDir="false" afterPath="$PROJECT_DIR$/control/templates/data.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -208,7 +207,7 @@
       <workItem from="1646154310898" duration="714000" />
       <workItem from="1646155235862" duration="13569000" />
       <workItem from="1646886204445" duration="349000" />
-      <workItem from="1646926009815" duration="8142000" />
+      <workItem from="1646926009815" duration="10689000" />
     </task>
     <task id="LOCAL-00001" summary="all files">
       <created>1645634960889</created>
@@ -252,7 +251,14 @@
       <option name="project" value="LOCAL" />
       <updated>1646767904707</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="lap dev 10+/03 lap terminadas validaciones de agregar entradas">
+      <created>1646945007021</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1646945007021</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -265,37 +271,38 @@
     <MESSAGE value="models y admin updated 24/02 lap dev" />
     <MESSAGE value="lap dev 08+/03" />
     <MESSAGE value="lap dev 08+/03 last laptop" />
-    <option name="LAST_COMMIT_MESSAGE" value="lap dev 08+/03 last laptop" />
+    <MESSAGE value="lap dev 10+/03 lap terminadas validaciones de agregar entradas" />
+    <option name="LAST_COMMIT_MESSAGE" value="lap dev 10+/03 lap terminadas validaciones de agregar entradas" />
   </component>
   <component name="WindowStateProjectService">
     <state x="84" y="39" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1646241319150">
       <screen x="0" y="0" width="1260" height="768" />
     </state>
     <state x="84" y="39" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1260.768@0.0.1260.768" timestamp="1646241319150" />
-    <state x="255" y="0" key="CommitChangelistDialog2" timestamp="1646767896946">
+    <state x="255" y="0" key="CommitChangelistDialog2" timestamp="1646945003878">
       <screen x="0" y="0" width="1260" height="768" />
     </state>
-    <state x="255" y="0" key="CommitChangelistDialog2/0.0.1260.768@0.0.1260.768" timestamp="1646767896946" />
+    <state x="255" y="0" key="CommitChangelistDialog2/0.0.1260.768@0.0.1260.768" timestamp="1646945003878" />
     <state x="118" y="59" key="DiffContextDialog" timestamp="1646763830170">
       <screen x="0" y="0" width="1260" height="768" />
     </state>
     <state x="118" y="59" key="DiffContextDialog/0.0.1260.768@0.0.1260.768" timestamp="1646763830170" />
-    <state width="1217" height="192" key="GridCell.Tab.0.bottom" timestamp="1646944432137">
+    <state width="1217" height="192" key="GridCell.Tab.0.bottom" timestamp="1646945261055">
       <screen x="0" y="0" width="1260" height="768" />
     </state>
-    <state width="1217" height="192" key="GridCell.Tab.0.bottom/0.0.1260.768@0.0.1260.768" timestamp="1646944432137" />
-    <state width="1217" height="192" key="GridCell.Tab.0.center" timestamp="1646944432137">
+    <state width="1217" height="192" key="GridCell.Tab.0.bottom/0.0.1260.768@0.0.1260.768" timestamp="1646945261055" />
+    <state width="1217" height="192" key="GridCell.Tab.0.center" timestamp="1646945261055">
       <screen x="0" y="0" width="1260" height="768" />
     </state>
-    <state width="1217" height="192" key="GridCell.Tab.0.center/0.0.1260.768@0.0.1260.768" timestamp="1646944432137" />
-    <state width="1217" height="192" key="GridCell.Tab.0.left" timestamp="1646944432137">
+    <state width="1217" height="192" key="GridCell.Tab.0.center/0.0.1260.768@0.0.1260.768" timestamp="1646945261055" />
+    <state width="1217" height="192" key="GridCell.Tab.0.left" timestamp="1646945261055">
       <screen x="0" y="0" width="1260" height="768" />
     </state>
-    <state width="1217" height="192" key="GridCell.Tab.0.left/0.0.1260.768@0.0.1260.768" timestamp="1646944432137" />
-    <state width="1217" height="192" key="GridCell.Tab.0.right" timestamp="1646944432137">
+    <state width="1217" height="192" key="GridCell.Tab.0.left/0.0.1260.768@0.0.1260.768" timestamp="1646945261055" />
+    <state width="1217" height="192" key="GridCell.Tab.0.right" timestamp="1646945261055">
       <screen x="0" y="0" width="1260" height="768" />
     </state>
-    <state width="1217" height="192" key="GridCell.Tab.0.right/0.0.1260.768@0.0.1260.768" timestamp="1646944432137" />
+    <state width="1217" height="192" key="GridCell.Tab.0.right/0.0.1260.768@0.0.1260.768" timestamp="1646945261055" />
     <state width="1217" height="239" key="GridCell.Tab.1.bottom" timestamp="1646757598932">
       <screen x="0" y="0" width="1260" height="768" />
     </state>
@@ -324,10 +331,10 @@
       <screen x="0" y="0" width="1260" height="768" />
     </state>
     <state x="477" y="300" key="VCS.ChangelistChooser/0.0.1260.768@0.0.1260.768" timestamp="1646258478537" />
-    <state x="222" y="117" key="Vcs.Push.Dialog.v2" timestamp="1646767932875">
+    <state x="222" y="117" key="Vcs.Push.Dialog.v2" timestamp="1646945277166">
       <screen x="0" y="0" width="1260" height="768" />
     </state>
-    <state x="222" y="117" key="Vcs.Push.Dialog.v2/0.0.1260.768@0.0.1260.768" timestamp="1646767932875" />
+    <state x="222" y="117" key="Vcs.Push.Dialog.v2/0.0.1260.768@0.0.1260.768" timestamp="1646945277166" />
     <state x="326" y="208" key="com.intellij.ide.util.TipDialog" timestamp="1646926062069">
       <screen x="0" y="0" width="1260" height="768" />
     </state>

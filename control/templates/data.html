@@ -78,15 +78,15 @@
                                             <td> {{entradas.dirigido}}</td>
                                             <td>
                                                 <div class="button btn-group inline-group">
-                                                 <button type="button" class="btn-sm btn-outline-info btn-floating " data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                                 <button type="button"  data-toggle="modal" data-target="#{{entradas.pk}}" id= "{{ entradas.pk }}" class="btn-sm btn-outline-info btn-floating " data-bs-toggle="tooltip" data-bs-placement="bottom"
                                                  title="Mostrar documento">
                                                   <i class="fa fa-eye"></i>
                                                 </button>
-                                                <button type="button" class="btn btn-outline-dark btn-floating" data-bs-toggle="tooltip" data-bs-placement="top"
+                                                <button type="button" id= "{{ entradas.pk }}" class="btn btn-outline-dark btn-floating" data-bs-toggle="tooltip" data-bs-placement="top"
                                                 title="Editar documento">
                                                   <i class="fa fa-edit"></i>
                                                 </button>
-                                                <button type="button" class="btn btn-outline-danger btn-floating" data-bs-toggle="tooltip" data-bs-placement="top"
+                                                <button type="button"  id= "{{ entradas.pk }}" class="btn btn-outline-danger btn-floating" data-bs-toggle="tooltip" data-bs-placement="top"
                                                 title="Eliminar documento">
                                                   <i class="fa fa-trash"></i>
                                                 </button>
@@ -109,6 +109,7 @@
           </section>
 
     </div>
+     <!-- Modal de agregar documentos junto son su alert -->
        <div class="modal fade" id="modal-default">
         <div id="alert-box"></div>
         <div class="modal-dialog">
@@ -156,6 +157,8 @@
         <!-- /.modal-dialog -->
       </div>
       <!-- /.modal -->
+      <!-- Modal de detalles -->
+
   <!-- /.content -->
  {% endblock %}
     <!-- /.content-wrapper -->
