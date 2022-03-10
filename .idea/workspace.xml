@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e2c777aa-d78f-4306-b5f2-6039cf1414a5" name="Default Changelist" comment="lap dev 02+/03">
-      <change afterPath="$PROJECT_DIR$/control/migrations/0001_initial.py" afterDir="false" />
+    <list default="true" id="e2c777aa-d78f-4306-b5f2-6039cf1414a5" name="Default Changelist" comment="lap dev 08+/03">
+      <change afterPath="$PROJECT_DIR$/control/migrations/0002_alter_documento_options_alter_documento_dirigido_and_more.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/control/entradas.py" beforeDir="false" afterPath="$PROJECT_DIR$/control/entradas.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/control/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/control/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/control/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/control/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/control/templates/data.html" beforeDir="false" afterPath="$PROJECT_DIR$/control/templates/data.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -186,7 +185,7 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="26915f03-eb27-45bc-8c86-7e8bd2c06122" name="Default Changelist" comment="" />
+      <changelist id="e2c777aa-d78f-4306-b5f2-6039cf1414a5" name="Default Changelist" comment="lap dev 08+/03" />
       <created>1637949038084</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -208,6 +207,8 @@
       <workItem from="1646153632568" duration="544000" />
       <workItem from="1646154310898" duration="714000" />
       <workItem from="1646155235862" duration="13569000" />
+      <workItem from="1646886204445" duration="349000" />
+      <workItem from="1646926009815" duration="8142000" />
     </task>
     <task id="LOCAL-00001" summary="all files">
       <created>1645634960889</created>
@@ -237,7 +238,21 @@
       <option name="project" value="LOCAL" />
       <updated>1645738655505</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="lap dev 08+/03">
+      <created>1646763701486</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1646763701486</updated>
+    </task>
+    <task id="LOCAL-00006" summary="lap dev 08+/03 last laptop">
+      <created>1646767904707</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1646767904707</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -248,33 +263,39 @@
     <MESSAGE value="requirements updated" />
     <MESSAGE value="models updated 24/02" />
     <MESSAGE value="models y admin updated 24/02 lap dev" />
-    <option name="LAST_COMMIT_MESSAGE" value="models y admin updated 24/02 lap dev" />
+    <MESSAGE value="lap dev 08+/03" />
+    <MESSAGE value="lap dev 08+/03 last laptop" />
+    <option name="LAST_COMMIT_MESSAGE" value="lap dev 08+/03 last laptop" />
   </component>
   <component name="WindowStateProjectService">
     <state x="84" y="39" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1646241319150">
       <screen x="0" y="0" width="1260" height="768" />
     </state>
     <state x="84" y="39" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1260.768@0.0.1260.768" timestamp="1646241319150" />
-    <state x="255" y="0" key="CommitChangelistDialog2" timestamp="1646258556767">
+    <state x="255" y="0" key="CommitChangelistDialog2" timestamp="1646767896946">
       <screen x="0" y="0" width="1260" height="768" />
     </state>
-    <state x="255" y="0" key="CommitChangelistDialog2/0.0.1260.768@0.0.1260.768" timestamp="1646258556767" />
-    <state width="1217" height="192" key="GridCell.Tab.0.bottom" timestamp="1646763227485">
+    <state x="255" y="0" key="CommitChangelistDialog2/0.0.1260.768@0.0.1260.768" timestamp="1646767896946" />
+    <state x="118" y="59" key="DiffContextDialog" timestamp="1646763830170">
       <screen x="0" y="0" width="1260" height="768" />
     </state>
-    <state width="1217" height="192" key="GridCell.Tab.0.bottom/0.0.1260.768@0.0.1260.768" timestamp="1646763227485" />
-    <state width="1217" height="192" key="GridCell.Tab.0.center" timestamp="1646763227484">
+    <state x="118" y="59" key="DiffContextDialog/0.0.1260.768@0.0.1260.768" timestamp="1646763830170" />
+    <state width="1217" height="192" key="GridCell.Tab.0.bottom" timestamp="1646944432137">
       <screen x="0" y="0" width="1260" height="768" />
     </state>
-    <state width="1217" height="192" key="GridCell.Tab.0.center/0.0.1260.768@0.0.1260.768" timestamp="1646763227484" />
-    <state width="1217" height="192" key="GridCell.Tab.0.left" timestamp="1646763227484">
+    <state width="1217" height="192" key="GridCell.Tab.0.bottom/0.0.1260.768@0.0.1260.768" timestamp="1646944432137" />
+    <state width="1217" height="192" key="GridCell.Tab.0.center" timestamp="1646944432137">
       <screen x="0" y="0" width="1260" height="768" />
     </state>
-    <state width="1217" height="192" key="GridCell.Tab.0.left/0.0.1260.768@0.0.1260.768" timestamp="1646763227484" />
-    <state width="1217" height="192" key="GridCell.Tab.0.right" timestamp="1646763227484">
+    <state width="1217" height="192" key="GridCell.Tab.0.center/0.0.1260.768@0.0.1260.768" timestamp="1646944432137" />
+    <state width="1217" height="192" key="GridCell.Tab.0.left" timestamp="1646944432137">
       <screen x="0" y="0" width="1260" height="768" />
     </state>
-    <state width="1217" height="192" key="GridCell.Tab.0.right/0.0.1260.768@0.0.1260.768" timestamp="1646763227484" />
+    <state width="1217" height="192" key="GridCell.Tab.0.left/0.0.1260.768@0.0.1260.768" timestamp="1646944432137" />
+    <state width="1217" height="192" key="GridCell.Tab.0.right" timestamp="1646944432137">
+      <screen x="0" y="0" width="1260" height="768" />
+    </state>
+    <state width="1217" height="192" key="GridCell.Tab.0.right/0.0.1260.768@0.0.1260.768" timestamp="1646944432137" />
     <state width="1217" height="239" key="GridCell.Tab.1.bottom" timestamp="1646757598932">
       <screen x="0" y="0" width="1260" height="768" />
     </state>
@@ -295,14 +316,22 @@
       <screen x="0" y="0" width="1260" height="768" />
     </state>
     <state x="342" y="100" key="MultipleFileMergeDialog/0.0.1260.768@0.0.1260.768" timestamp="1646410251791" />
+    <state x="459" y="95" key="RollbackChangesDialog" timestamp="1646763727158">
+      <screen x="0" y="0" width="1260" height="768" />
+    </state>
+    <state x="459" y="95" key="RollbackChangesDialog/0.0.1260.768@0.0.1260.768" timestamp="1646763727158" />
     <state x="477" y="300" key="VCS.ChangelistChooser" timestamp="1646258478537">
       <screen x="0" y="0" width="1260" height="768" />
     </state>
     <state x="477" y="300" key="VCS.ChangelistChooser/0.0.1260.768@0.0.1260.768" timestamp="1646258478537" />
-    <state x="222" y="117" key="Vcs.Push.Dialog.v2" timestamp="1646258579047">
+    <state x="222" y="117" key="Vcs.Push.Dialog.v2" timestamp="1646767932875">
       <screen x="0" y="0" width="1260" height="768" />
     </state>
-    <state x="222" y="117" key="Vcs.Push.Dialog.v2/0.0.1260.768@0.0.1260.768" timestamp="1646258579047" />
+    <state x="222" y="117" key="Vcs.Push.Dialog.v2/0.0.1260.768@0.0.1260.768" timestamp="1646767932875" />
+    <state x="326" y="208" key="com.intellij.ide.util.TipDialog" timestamp="1646926062069">
+      <screen x="0" y="0" width="1260" height="768" />
+    </state>
+    <state x="326" y="208" key="com.intellij.ide.util.TipDialog/0.0.1260.768@0.0.1260.768" timestamp="1646926062069" />
     <state x="439" y="301" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1646410173699">
       <screen x="0" y="0" width="1260" height="768" />
     </state>

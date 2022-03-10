@@ -229,7 +229,10 @@
        const entidad = d.getElementById("id_entidad");
        const tipo_documento = d.getElementById("id_t_documento");
        const observaciones = d.getElementById("id_observaciones");
-      $btnAceptar = d.getElementById("btnAceptar");
+       $btnAceptar = d.getElementById("btnAceptar");
+       const no_entrada = no_entrada_doc.value;
+       const tabla = d.getElementById("tabla_entradas");
+       let  last = {{ no_entrada.no_entrada_doc}};
 
 
         const form = document.getElementById("myFormId");
@@ -249,31 +252,39 @@
                 fd.append('tipo_documento',tipo_documento.value);
                 fd.append('observaciones',observaciones.value);
                 const msg = 'Documento agregado';
-                if {{  }}
+                if(last >= no_entrada_doc.value){
+                     handleAlerts('danger',"Upssssss número de entrada debe ser mayor")
+                }else if (last + 1 < no_entrada_doc.value){
+                     handleAlerts('danger',"Entre el número consecutivo correspondiente")
+                }else{
 
-                const request = new Request(
-                    {% url 'crear_entradas' %},
-                    {headers: {'X-CSRFToken': getCookie("csrftoken")},
-                       'Accept': 'application/json, application/xml, text/plain, text/html, *.*',
-                       'Content-Type': 'x-www-form-urlencoded'
-                    }
-                );
-                fetch(request,{
-                    method:'POST',
-                    mode: 'same-origin',
-                    body: fd,
-
-                })
-                   .then(response => response.json())
-                   .then(data => {
-                       console.log(data)
-                       handleAlerts('success', msg)
+                    const request = new Request(
+                        {% url 'crear_entradas' %},
+                        {headers: {'X-CSRFToken': getCookie("csrftoken")},
+                           'Accept': 'application/json, application/xml, text/plain, text/html, *.*',
+                           'Content-Type': 'x-www-form-urlencoded'
+                        }
+                    );
+                    fetch(request,{
+                        method:'POST',
+                        mode: 'same-origin',
+                        body: fd,
 
                     })
-                   .catch((error) => {
-                       console.log(error)
-                       handleAlerts('danger', "upsss..Existe un error en el formulario")
-                     });
+                       .then(response => response.json())
+                       .then(data => {
+                           console.log(data)
+                           handleAlerts('success', msg)
+                           d.location.reload()
+
+                        })
+                       .catch((error) => {
+                           console.log(error)
+                           handleAlerts('danger', "upsss..Existe un error en el formulario")
+                         });
+
+                    }
+
 
                 });
 
