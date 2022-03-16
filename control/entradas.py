@@ -2,9 +2,9 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy, reverse
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from control.models import Documento, Direcciones, Organismo, Entidad, TipoDocumento
-from django.views.generic import ListView, CreateView
-from django.core.exceptions import ValidationError
+from django.views.generic import ListView, CreateView, UpdateView
 from control.forms import DocumentoForm
+from django.core import serializers
 
 
 # Create your views here.
@@ -30,13 +30,10 @@ class NuevoDocumentoView(CreateView):
     context_object_name = "list_entradas"
 
     def post(self, request, *args, **kwargs):
-        data = {}
         info = {}
-
         try:
             if request.method == "POST":
                 data = request.POST
-                nodoc = int(data['no_entrada_doc'])
                 doc = Documento()
                 org = Organismo()
                 ent = Entidad()
@@ -57,7 +54,26 @@ class NuevoDocumentoView(CreateView):
                 doc.save()
                 return JsonResponse(data)
             else:
-                    info['error'] = 'Existe un error '
+                info['error'] = 'Existe un error '
+        except Exception as e:
+            info['error'] = str(e)
+            return JsonResponse(info)
+
+
+class EditarDocumento(UpdateView):
+    form_class = DocumentoForm
+    model = Documento
+
+    def post(self, request, *args, **kwargs):
+        info = {}
+        fn = {}
+        try:
+            if request.method == "POST":
+                data = request.POST
+                no_entrada = data['entrada']
+                if Documento.objects.get_or_create(no_entrada_doc=int(no_entrada)):
+                    doc = serializers.serialize('json', Documento.objects.filter(no_entrada_doc=no_entrada))
+                return JsonResponse(doc,safe=False)
         except Exception as e:
             info['error'] = str(e)
             return JsonResponse(info)

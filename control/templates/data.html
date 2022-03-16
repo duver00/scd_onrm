@@ -12,7 +12,7 @@
               href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
         <!-- Font Awesome -->
         <link rel="stylesheet" href="{% static 'css/fontawesome-free/css/all.min.css' %}">
-         <!-- Tempusdominus Bootstrap 4 -->
+        <!-- Tempusdominus Bootstrap 4 -->
 
         <!-- DataTables -->
         <link rel="stylesheet" href="{% static 'css/datatables-bs4/css/dataTables.bootstrap4.min.css' %}">
@@ -46,121 +46,311 @@
                         <div class="col-12">
                             <div class="card">
 
-                            <!-- /.card -->
+                                <!-- /.card -->
 
-                            <div class="card">
-                                <div class="card-header">
-                                    <h3 class="card-title">Listado de documentos en entrada</h3>
-                                </div>
-                                <!-- /.card-header -->
-                                <div class="card-body">
-                                <button class="button" data-toggle="modal" data-target="#modal-default" id="agregar">Agregar Documento</button>
-                                    <table id="tabla_entradas" class="table table-bordered table-striped">
-                                        <thead>
-                                        <tr>
-                                            <th>No. Entrada</th>
-                                            <th>Título</th>
-                                            <th>Fecha entrada(s)</th>
-                                            <th>Organismo</th>
-                                            <th>Entidad</th>
-                                            <th>Dirigido a:</th>
-                                            <th>Acciones</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                       {% for entradas in  list_entradas %}
-                                        <tr>
-                                            <td >{{entradas.no_entrada_doc}}</td>
-                                            <td>{{entradas.titulo}}</td>
-                                            <td>{{ entradas.f_entrada_doc }}</td>
-                                            <td> {{entradas.organismo}}</td>
-                                            <td> {{entradas.entidad}}</td>
-                                            <td> {{entradas.dirigido}}</td>
-                                            <td>
-                                                <div class="button btn-group inline-group">
-                                                 <button type="button"  data-toggle="modal" data-target="#{{entradas.pk}}" id= "{{ entradas.pk }}" class="btn-sm btn-outline-info btn-floating " data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                                 title="Mostrar documento">
-                                                  <i class="fa fa-eye"></i>
-                                                </button>
-                                                <button type="button" id= "{{ entradas.pk }}" class="btn btn-outline-dark btn-floating" data-bs-toggle="tooltip" data-bs-placement="top"
-                                                title="Editar documento">
-                                                  <i class="fa fa-edit"></i>
-                                                </button>
-                                                <button type="button"  id= "{{ entradas.pk }}" class="btn btn-outline-danger btn-floating" data-bs-toggle="tooltip" data-bs-placement="top"
-                                                title="Eliminar documento">
-                                                  <i class="fa fa-trash"></i>
-                                                </button>
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h3 class="card-title">Listado de documentos en entrada</h3>
+                                    </div>
+                                    <!-- /.card-header -->
+                                    <div class="card-body">
+                                        <button class="button" data-toggle="modal" data-target="#modal-default"
+                                                id="agregar">Agregar Documento
+                                        </button>
+                                        <table id="tabla_entradas" class="table table-bordered table-striped">
+                                            <thead>
+                                            <tr>
+                                                <th>No. Entrada</th>
+                                                <th>Título</th>
+                                                <th>Fecha entrada(s)</th>
+                                                <th>Organismo</th>
+                                                <th>Entidad</th>
+                                                <th>Dirigido a:</th>
+                                                <th>Acciones</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            {% for entradas in  list_entradas %}
+                                                <tr>
+                                                    <td>{{ entradas.no_entrada_doc }}</td>
+                                                    <td>{{ entradas.titulo }}</td>
+                                                    <td>{{ entradas.f_entrada_doc }}</td>
+                                                    <td> {{ entradas.organismo }}</td>
+                                                    <td> {{ entradas.entidad }}</td>
+                                                    <td> {{ entradas.dirigido }}</td>
+                                                    <td>
+                                                        <div class="button btn-group inline-group">
+                                                            <button type="button" data-toggle="modal"
+                                                                    data-target="#detalles{{ entradas.pk }}"
+                                                                    id="{{ entradas.pk }}"
+                                                                    class="btn-sm btn-outline-info btn-floating "
+                                                                    data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                                                    title="Mostrar documento">
+                                                                <i class="fa fa-eye"></i>
+                                                            </button>
+                                                            <button type="button" id="editar_button" data-toggle="modal"
+                                                                    data-target="#editar"
+                                                                    class="btn btn-outline-dark btn-floating"
+                                                                    data-bs-toggle="tooltip" data-bs-placement="top"
+                                                                    title="Editar documento">
+                                                                <i class="fa fa-edit"></i>
+                                                            </button>
+                                                            <button type="button" id="{{ entradas.pk }}"
+                                                                    class="btn btn-outline-danger btn-floating"
+                                                                    data-bs-toggle="tooltip" data-bs-placement="top"
+                                                                    title="Eliminar documento">
+                                                                <i class="fa fa-trash"></i>
+                                                            </button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <!-- /.modal-Detalles -->
+                                                <div class="modal fade" id="detalles{{ entradas.pk }}">
+                                                    <div id="alert-box"></div>
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h4 class="modal-title mx-auto">Detalles de
+                                                                    Documento</h4>
+                                                                <button type="button" class="close" data-dismiss="modal"
+                                                                        aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="form-group">
+                                                                    <label class="form-label h5">Número de
+                                                                        entrada:</label>
+                                                                    {{ entradas.no_entrada_doc }}
+                                                                    <h5 class="font-weight-bold mt-3">Título</h5>
+                                                                    {{ entradas.titulo }}
+                                                                    <h5 class="font-weight-bold mt-3">Fecha de
+                                                                        entrada</h5>
+                                                                    {{ entradas.f_entrada_doc }}
+                                                                    <h5 class="font-weight-bold mt-3"></h5>
+                                                                    <h5 class="font-weight-bold mt-3">Dirigido a:</h5>
+                                                                    {{ entradas.dirigido }}
+                                                                    <h5 class="font-weight-bold mt-3">Organismo</h5>
+                                                                    {{ entradas.organismo }}
+                                                                    <h5 class="font-weight-bold mt-3">Entidad</h5>
+                                                                    {{ entradas.entidad }}
+                                                                    <label class="form-label mt-3">Tipo de
+                                                                        documento</label>
+                                                                    {{ entradas.t_documento }}
+                                                                    <h5 class="font-weight-bold mt-3">Observaciones</h5>
+                                                                    {{ entradas.observaciones }}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- /.modal-content -->
+                                                    </div>
+                                                    <!-- /.modal-dialog -->
                                                 </div>
-                                            </td>
-                                        </tr>
-                                        {% endfor %}
-                                        </tfoot>
-                                    </table>
+                                                <!-- /.modal-editar -->
+                                                <div class="modal fade" id="editar">
+                                                    <div id="alert-box"></div>
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h4 class="modal-title mx-auto">Agregar Documento</h4>
+                                                                <button type="button" class="close" data-dismiss="modal"
+                                                                        aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <form method="post" name="agrega_documento"
+                                                                      id="agregrar">
+                                                                    {% csrf_token %}
+                                                                    <div class="form-group">
+                                                                        <label class="form-label">Número de
+                                                                            entrada:</label>
+                                                                        <h6 class="text-blue">*El número tiene ser el
+                                                                            consecutivo de 1</h6>
+                                                                        <input type="number" name="no_entrada_doc"
+                                                                               class="form-control"
+                                                                               label="Número de entrada"
+                                                                               placeholder="Número consecutivo"
+                                                                               style="max-width: 200px;" required
+                                                                               id="id_no_entrada_doc">
+                                                                        <h6 class="font-weight-bold mt-3">Titulo</h6>
+                                                                        <input type="text" name="titulo"
+                                                                               class="form-control" label="Título"
+                                                                               placeholder="Titulo documento"
+                                                                               style="max-width: 500px;" maxlength="255"
+                                                                               required="True" id="id_titulo">
+                                                                        <h6 class="font-weight-bold mt-3">Fecha
+                                                                            entrada</h6>
+                                                                        <input type="date" name="f_entrada_doc"
+                                                                               class="form-control"
+                                                                               label="Fecha de entrada"
+                                                                               style="max-width: 200px;" required
+                                                                               id="id_f_entrada_doc">
+                                                                        <h6 class="font-weight-bold mt-3">Dirigido
+                                                                            a:</h6>
+                                                                        <select name="dirigido" class="form-control"
+                                                                                label="Dirigido a:"
+                                                                                style="max-width: 300px;" required
+                                                                                id="id_dirigido">
+                                                                            <option value="" selected="">---------
+                                                                            </option>
+
+                                                                            <option value="1">Dirección Documentación
+                                                                            </option>
+
+                                                                            <option value="2">Dirección de Registro
+                                                                            </option>
+
+                                                                            <option value="3">Dirección Técnica</option>
+
+                                                                            <option value="4">Dirección General</option>
+
+                                                                            <option value="6">Dirección Hidrocarburos
+                                                                            </option>
+
+                                                                            <option value="5">Dirección de Inspección
+                                                                            </option>
+
+                                                                        </select>
+                                                                        <h6 class="font-weight-bold mt-3">Organismo</h6>
+                                                                        <select name="organismo" class="form-control"
+                                                                                label="Organismo:"
+                                                                                style="max-width: 300px;" required=""
+                                                                                id="id_organismo">
+                                                                            <option value="" selected="">---------
+                                                                            </option>
+
+                                                                            <option value="1">MINEM</option>
+
+                                                                            <option value="2">MICONS</option>
+
+                                                                            <option value="3">INRH</option>
+
+                                                                            <option value="4">MINTUR</option>
+
+                                                                        </select>
+                                                                        <h6 class="font-weight-bold mt-3">Entidad</h6>
+                                                                        <select name="entidad" class="form-control"
+                                                                                label="Entidad:"
+                                                                                style="max-width: 300px;" required=""
+                                                                                id="id_entidad">
+                                                                            <option value="" selected="">---------
+                                                                            </option>
+
+                                                                            <option value="1">Empresa de materiales de
+                                                                                la construccion Habana
+                                                                            </option>
+
+                                                                            <option value="2">MOA NICKEL</option>
+
+                                                                            <option value="3">Empresa de la sal
+                                                                                Caimanera
+                                                                            </option>
+
+                                                                        </select>
+                                                                        <label class="form-label mt-3">Tipo de
+                                                                            documento</label>
+                                                                        <select name="t_documento" class="form-control"
+                                                                                label="Dirigido a:"
+                                                                                style="max-width: 300px;" required=""
+                                                                                id="id_t_documento">
+
+
+                                                                        </select>
+                                                                        <h6 class="font-weight-bold mt-3">
+                                                                            Observaciones</h6>
+                                                                        <textarea name="observaciones" cols="40"
+                                                                                  rows="10" class="form-control"
+                                                                                  placeholder="Observaciones al documento"
+                                                                                  style="max-width: 500px;"
+                                                                                  maxlength="500"
+                                                                                  id="id_observaciones"></textarea>
+                                                                    </div>
+                                                                    <div class="modal-footer mx-auto">
+
+                                                                        <button type="submit" id="btnAceptar"
+                                                                                class="btn btn-primary">Agregar
+                                                                        </button>
+                                                                        <button type="button" class="btn btn-default"
+                                                                                data-dismiss="modal">Cerrar
+                                                                        </button>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                        <!-- /.modal-content -->
+                                                    </div>
+                                                    <!-- /.modal-dialog -->
+                                                </div>
+                                            {% endfor %}
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                    <!-- /.card-body -->
                                 </div>
-                                <!-- /.card-body -->
+                                <!-- /.card -->
                             </div>
-                            <!-- /.card -->
+                            <!-- /.col -->
                         </div>
-                        <!-- /.col -->
+                        <!-- /.row -->
                     </div>
-                    <!-- /.row -->
+                    <!-- /.container-fluid -->
+                </section>
+
                 </div>
-                <!-- /.container-fluid -->
-          </section>
+                <!-- Modal de agregar documentos junto son su alert -->
+                <div class="modal fade" id="modal-default">
+                    <div id="alert-box"></div>
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title mx-auto">Agregar Documento</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form method="post" name="agrega_documento" id="agregrar">
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                        <label class="form-label">{{ form_entradas.no_entrada_doc.label }}:</label>
+                                        <h6 class="text-blue">*El número tiene ser el consecutivo
+                                            de {{ no_entrada.no_entrada_doc }}</h6>
+                                        {{ form_entradas.no_entrada_doc.errors }}
+                                        {{ form_entradas.no_entrada_doc }}
+                                        <h6 class="font-weight-bold mt-3">{{ form_entradas.titulo.label }}</h6>
+                                        {{ form_entradas.titulo }}
+                                        <h6 class="font-weight-bold mt-3">{{ form_entradas.f_entrada_doc.label }}</h6>
+                                        {{ form_entradas.f_entrada_doc }}
+                                        <h6 class="font-weight-bold mt-3">{{ form_entradas.dirigido.label }}</h6>
+                                        {{ form_entradas.dirigido }}
+                                        <h6 class="font-weight-bold mt-3">{{ form_entradas.organismo.label }}</h6>
+                                        {{ form_entradas.organismo }}
+                                        <h6 class="font-weight-bold mt-3">{{ form_entradas.entidad.label }}</h6>
+                                        {{ form_entradas.entidad }}
+                                        <label class="form-label mt-3">{{ form_entradas.t_documento.label }}</label>
+                                        {{ form_entradas.t_documento }}
+                                        <h6 class="font-weight-bold mt-3">{{ form_entradas.observaciones.label }}</h6>
+                                        {{ form_entradas.observaciones }}
+                                    </div>
+                                    <div class="modal-footer mx-auto">
 
-    </div>
-     <!-- Modal de agregar documentos junto son su alert -->
-       <div class="modal fade" id="modal-default">
-        <div id="alert-box"></div>
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title mx-auto">Agregar Documento</h4>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
+                                        <button type="submit" id="btnAceptar" class="btn btn-primary">Agregar</button>
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal -->
+                <!-- Modal de detalles -->
 
-             <form method="post" name="agrega_documento" id="agregrar">
-              {% csrf_token %}
-              <div class="form-group">
-              <label class="form-label" >{{form_entradas.no_entrada_doc.label }}:</label>
-              <h6 class="text-blue">*El número tiene ser el consecutivo de {{no_entrada.no_entrada_doc}}</h6>
-              {{ form_entradas.no_entrada_doc.errors }}
-              {{form_entradas.no_entrada_doc}}
-              <h6 class="font-weight-bold mt-3">{{form_entradas.titulo.label }}</h6>
-              {{form_entradas.titulo}}
-             <h6 class="font-weight-bold mt-3">{{form_entradas.f_entrada_doc.label }}</h6>
-              {{form_entradas.f_entrada_doc}}
-             <h6 class="font-weight-bold mt-3">{{form_entradas.dirigido.label }}</h6>
-              {{form_entradas.dirigido}}
-             <h6 class="font-weight-bold mt-3">{{form_entradas.organismo.label }}</h6>
-              {{form_entradas.organismo}}
-             <h6 class="font-weight-bold mt-3">{{form_entradas.entidad.label }}</h6>
-              {{form_entradas.entidad}}
-              <label class="form-label mt-3">{{form_entradas.t_documento.label }}</label>
-              {{form_entradas.t_documento}}
-            <h6 class="font-weight-bold mt-3">{{form_entradas.observaciones.label }}</h6>
-              {{form_entradas.observaciones}}
-            </div>
-            <div class="modal-footer mx-auto">
-
-               <button type="submit" id= "btnAceptar" class="btn btn-primary">Agregar</button>
-              <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-            </div>
-             </form>
-           </div>
-          </div>
-          <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-      </div>
-      <!-- /.modal -->
-      <!-- Modal de detalles -->
-
-  <!-- /.content -->
- {% endblock %}
+                <!-- /.content -->
+            {% endblock %}
     <!-- /.content-wrapper -->
     <!-- Control Sidebar -->
     <aside class="control-sidebar control-sidebar-dark">
@@ -174,6 +364,7 @@
     <script src="{% static 'js/jquery/jquery.min.js' %}"></script>
     <!-- Bootstrap 4 -->
     <script src="{% static 'js/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/entradas.js' %}"></script>
     <!-- DataTables  & Plugins -->
     <script src="{% static 'js/datatables/jquery.dataTables.min.js' %}"></script>
     <script src="{% static 'css/datatables-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
@@ -196,53 +387,91 @@
         $(function () {
             $("#tabla_entradas").DataTable({
                 language: {
-                  url: '{% static "fonts/spanish.json" %}'
-                 },
+                    url: '{% static "fonts/spanish.json" %}'
+                },
                 "responsive": true, "lengthChange": false, "autoWidth": false,
             }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
         });
-       function getCookie(name) {
-        let cookieValue = null;
-        if (document.cookie && document.cookie !== '') {
-            const cookies = document.cookie.split(';');
-            for (let i = 0; i < cookies.length; i++) {
-                const cookie = cookies[i].trim();
-                // Does this cookie string begin with the name we want?
-                if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                    break;
+
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
                 }
             }
+            return cookieValue;
         }
-        return cookieValue;
-    }
-       const alertBox = document.getElementById('alert-box');
-       const $form = document.getElementById('agregar');
-       const handleAlerts = (type, text) =>{
-           alertBox.innerHTML = `<div class="alert alert-${type}" role="alert">
+
+        d = document;
+        const no_entrada_doc = d.getElementById("id_no_entrada_doc");
+        const titulo = d.getElementById("id_titulo");
+        const f_entrada_doc = d.getElementById("id_f_entrada_doc");
+        const dirigido = d.getElementById("id_dirigido");
+        const organismo = d.getElementById("id_organismo");
+        const entidad = d.getElementById("id_entidad");
+        const tipo_documento = d.getElementById("id_t_documento");
+        const observaciones = d.getElementById("id_observaciones");
+        $btnAceptar = d.getElementById("btnAceptar");
+        const no_entrada = no_entrada_doc.value;
+        const tabla = d.getElementById("tabla_entradas");
+        let last = {{ no_entrada.no_entrada_doc}};
+        const form = d.getElementById("myFormId");
+        const alertBox = d.getElementById('alert-box');
+        const $form = d.getElementById('agregar');
+        const input_no_entrada = d.getElementById("id_no_entrada_doc");
+        const input_titulo = d.getElementById("id_titulo");
+        const input_f_entrada = d.getElementById("id_f_entrada_doc");
+        const input_dirigido = d.getElementById("id_dirigido");
+        const input_organismo = d.getElementById("id_organismo");
+        const input_entidad = d.getElementById("id_entidad");
+        const input_t_documento = d.getElementById("id_t_documento");
+        const input_observaciones = d.getElementById("id_observaciones");
+        const handleAlerts = (type, text) => {
+            alertBox.innerHTML = `<div class="alert alert-${type}" role="alert">
                             ${text}
                                 </div>`
-           };
-       d = document;
-       const no_entrada_doc = d.getElementById("id_no_entrada_doc");
-       const titulo = d.getElementById("id_titulo");
-       const f_entrada_doc = d.getElementById("id_f_entrada_doc");
-       const dirigido = d.getElementById("id_dirigido");
-       const organismo = d.getElementById("id_organismo");
-       const entidad = d.getElementById("id_entidad");
-       const tipo_documento = d.getElementById("id_t_documento");
-       const observaciones = d.getElementById("id_observaciones");
-       $btnAceptar = d.getElementById("btnAceptar");
-       const no_entrada = no_entrada_doc.value;
-       const tabla = d.getElementById("tabla_entradas");
-       let  last = {{ no_entrada.no_entrada_doc}};
+        };
+
+        /* d.addEventListener('click', ev => {
+             if (ev.target.matches(".btn-floating .fa-edit ")) {
+                 const $btn_edit = ev.target;
+                 const $alltr = $btn_edit.closest('tr');
+                 const todos = $alltr.querySelectorAll('td');
+                 console.log(todos);
+                 const input_no_entrada = d.getElementById("id_no_entrada_doc");
+                 const input_titulo = d.getElementById("id_titulo");
+                 const input_f_entrada = d.getElementById("id_f_entrada_doc");
+                 const input_dirigido = d.getElementById("id_dirigido");
+                 const input_organismo = d.getElementById("id_organismo");
+                 const input_entidad = d.getElementById("id_entidad");
+                 const input_t_documento = d.getElementById("id_t_documento");
+                 const input_observaciones = d.getElementById("id_observaciones");
+                 input_no_entrada.value = todos[0].innerText;
+                 input_titulo.value = todos[1].innerText;
+                 input_f_entrada.dataset = todos[2].innerHTML;
+                 input_dirigido.value = todos[5].innerHTML;
+                 input_organismo.value = 4;
+                 input_entidad.value = todos[4].innerText;
+                 input_t_documento.value = todos[6].innerText;
+                 input_observaciones.value = todos[7].innerText;
 
 
-        const form = document.getElementById("myFormId");
+                 console.log(input_no_entrada.value)
 
-        const handleSubmit = ($form) =>{
-             d.addEventListener("submit", (e)=>{
-0
+
+             }
+         })*/
+
+
+        const handleSubmit = ($form) => {
+            d.addEventListener("submit", (e) => {
                 e.preventDefault();
                 const fd = new FormData;
                 fd.append('ccsrfmiddlewaretoken', getCookie("csrftoken"));
@@ -250,53 +479,100 @@
                 fd.append('no_entrada_doc', no_entrada_doc.value);
                 fd.append('f_entrada_doc', f_entrada_doc.value);
                 fd.append('dirigido', dirigido.value);
-                fd.append('organismo',organismo.value);
+                fd.append('organismo', organismo.value);
                 fd.append('entidad', entidad.value);
-                fd.append('tipo_documento',tipo_documento.value);
-                fd.append('observaciones',observaciones.value);
+                fd.append('tipo_documento', tipo_documento.value);
+                fd.append('observaciones', observaciones.value);
                 const msg = 'Documento agregado';
-                if(last >= no_entrada_doc.value){
-                     handleAlerts('danger',"Upssssss número de entrada debe ser mayor")
-                }else if (last + 1 < no_entrada_doc.value){
-                     handleAlerts('danger',"Entre el número consecutivo correspondiente")
-                }else{
+                if (last >= no_entrada_doc.value) {
+                    handleAlerts('danger', "Upssssss número de entrada debe ser mayor")
+                } else if (last + 1 < no_entrada_doc.value) {
+                    handleAlerts('danger', "Introduzca el número consecutivo correspondiente")
+                } else {
 
                     const request = new Request(
                         {% url 'crear_entradas' %},
-                        {headers: {'X-CSRFToken': getCookie("csrftoken")},
-                           'Accept': 'application/json, application/xml, text/plain, text/html, *.*',
-                           'Content-Type': 'x-www-form-urlencoded'
+                        {
+                            headers: {'X-CSRFToken': getCookie("csrftoken")},
+                            'Accept': 'application/json, application/xml, text/plain, text/html, *.*',
+                            'Content-Type': 'x-www-form-urlencoded'
                         }
                     );
-                    fetch(request,{
-                        method:'POST',
+                    fetch(request, {
+                        method: 'POST',
                         mode: 'same-origin',
                         body: fd,
 
                     })
-                       .then(response => response.json())
-                       .then(data => {
-                           console.log(data)
-                           handleAlerts('success', msg)
-                           d.location.reload()
+                        .then(response => response.json())
+                        .then(data => {
+                            console.log(data)
+                            handleAlerts('success', msg)
+                            d.location.reload()
 
                         })
-                       .catch((error) => {
-                           console.log(error)
-                           handleAlerts('danger', "upsss..Existe un error en el formulario")
-                         });
+                        .catch((error) => {
+                            console.log(error)
+                            handleAlerts('danger', "upsss..Existe un error en el formulario")
+                        });
 
-                    }
+                }
 
 
-                });
+            });
 
         };
 
-        d.addEventListener("DOMContentLoaded", () => {
-                   handleSubmit(form)
-        });
+        const handleEdit = () => {
+            d.addEventListener("click", ev => {
+                var fn;
+                if (ev.target.matches(".btn-floating .fa-edit ")) {
+                    const $btn_edit = ev.target,
+                        $alltr = $btn_edit.closest('tr'),
+                        todos = $alltr.querySelectorAll('td');
+                    fn = new FormData;
+                    fn.append('ccsrfmiddlewaretoken', getCookie("csrftoken"));
+                    fn.append('entrada', todos[0].innerText);
+                    console.log(fn);
+                    const request = new Request(
+                        {% url 'editar_entradas' %},
+                        {
+                            headers: {'X-CSRFToken': getCookie("csrftoken")},
+                            'Accept': 'application/json, application/xml, text/plain, text/html, *.*',
+                            'Content-Type': 'x-www-form-urlencoded'
+                        }
+                    );
+                    fetch(request, {
+                        method: 'POST',
+                        mode: 'same-origin',
+                        body: fn,
 
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            input_no_entrada.value = 5;
+                            console.log(data['fields'])
+                            input_titulo.value = data['titulo'];
+                            input_f_entrada.value = data['f_entrada_doc'];
+                            input_dirigido.value = data['dirigido'];
+                            input_organismo.value = data['organismo'];
+                            input_entidad.value = data['entidad'];
+                            input_t_documento.value = data['t_documento'];
+                            input_observaciones.value = data['observaciones'];
+                            console.log(typeof(data))
+
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                        });
+                }
+            });
+        };
+        d.addEventListener("DOMContentLoaded", () => {
+            handleSubmit(form);
+            handleEdit();
+
+        });
 
 
     </script>
