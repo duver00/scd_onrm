@@ -4,7 +4,6 @@ from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from control.models import Documento, Direcciones, Organismo, Entidad, TipoDocumento
 from django.views.generic import ListView, CreateView, UpdateView
 from control.forms import DocumentoForm
-from django.core import serializers
 
 
 # Create your views here.
@@ -70,10 +69,30 @@ class EditarDocumento(UpdateView):
         try:
             if request.method == "POST":
                 data = request.POST
-                no_entrada = data['entrada']
-                if Documento.objects.get_or_create(no_entrada_doc=int(no_entrada)):
-                    doc = serializers.serialize('json', Documento.objects.filter(no_entrada_doc=no_entrada))
-                return JsonResponse(doc,safe=False)
+                if len(data) == 2:
+                    no_entrada = data['entrada']
+                    if Documento.objects.get_or_create(no_entrada_doc=int(no_entrada)):
+                        doc = Documento.objects.filter(no_entrada_doc=no_entrada).all()
+                        for i in doc:
+                            fn['pk'] = i.pk
+                            fn['no_entrada_doc'] = i.no_entrada_doc
+                            fn['titulo'] = i.titulo
+                            fn['f_entrada'] = i.f_entrada_doc
+                            fn['dirigido'] = i.dirigido.pk
+                            fn['entidad'] = i.entidad.pk
+                            fn['organismo'] = i.organismo.pk
+                            fn['tipo_documento'] = i.t_documento.pk
+                            fn['observaciones'] = i.observaciones
+                    return JsonResponse(fn)
+                elif len(data) > 2:
+                    pk = data['pk']
+                    if Documento.objects.get_or_create(pk=int(pk)):
+                        doc = Documento.objects.filter(pk=pk).all()
+
+
+
+
+
         except Exception as e:
             info['error'] = str(e)
             return JsonResponse(info)

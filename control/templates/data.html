@@ -152,149 +152,166 @@
                                                     <div class="modal-dialog">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
-                                                                <h4 class="modal-title mx-auto">Agregar Documento</h4>
+                                                                <h4 class="modal-title mx-auto">Editar Documento</h4>
                                                                 <button type="button" class="close" data-dismiss="modal"
                                                                         aria-label="Close">
                                                                     <span aria-hidden="true">&times;</span>
                                                                 </button>
                                                             </div>
                                                             <div class="modal-body">
-                                                                <form method="post" name="agrega_documento"
-                                                                      id="agregrar">
+                                                                <form method="post" name="editar_documento"
+                                                                      id="editar_doc >
                                                                     {% csrf_token %}
                                                                     <div class="form-group">
-                                                                        <label class="form-label">Número de
-                                                                            entrada:</label>
-                                                                        <h6 class="text-blue">*El número tiene ser el
-                                                                            consecutivo de 1</h6>
-                                                                        <input type="number" name="no_entrada_doc"
-                                                                               class="form-control"
-                                                                               label="Número de entrada"
-                                                                               placeholder="Número consecutivo"
-                                                                               style="max-width: 200px;" required
-                                                                               id="id_no_entrada_doc">
-                                                                        <h6 class="font-weight-bold mt-3">Titulo</h6>
-                                                                        <input type="text" name="titulo"
-                                                                               class="form-control" label="Título"
-                                                                               placeholder="Titulo documento"
-                                                                               style="max-width: 500px;" maxlength="255"
-                                                                               required="True" id="id_titulo">
-                                                                        <h6 class="font-weight-bold mt-3">Fecha
-                                                                            entrada</h6>
-                                                                        <input type="date" name="f_entrada_doc"
-                                                                               class="form-control"
-                                                                               label="Fecha de entrada"
-                                                                               style="max-width: 200px;" required
-                                                                               id="id_f_entrada_doc">
-                                                                        <h6 class="font-weight-bold mt-3">Dirigido
-                                                                            a:</h6>
-                                                                        <select name="dirigido" class="form-control"
-                                                                                label="Dirigido a:"
-                                                                                style="max-width: 300px;" required
-                                                                                id="id_dirigido">
-                                                                            <option value="" selected="">---------
-                                                                            </option>
+                                                                <label class="form-label">Número de
+                                                                    entrada:</label>
+                                                                <h6 class="text-blue">*El número tiene ser el
+                                                                    consecutivo de 1</h6>
+                                                                <input type="number" name="no_entrada_doc"
+                                                                       class="form-control"
+                                                                       label="Número de entrada"
+                                                                       placeholder="Número consecutivo"
+                                                                       style="max-width: 200px;" required
+                                                                       id="id_no_entrada_doc">
+                                                                <h6 class="font-weight-bold mt-3">Titulo</h6>
+                                                                <input type="text" name="titulo"
+                                                                       class="form-control" label="Título"
+                                                                       placeholder="Titulo documento"
+                                                                       style="max-width: 500px;" maxlength="255"
+                                                                       required="True" id="id_titulo">
+                                                                <h6 class="font-weight-bold mt-3">Fecha
+                                                                    entrada</h6>
+                                                                <input type="date" name="f_entrada_doc"
+                                                                       class="form-control"
+                                                                       label="Fecha de entrada"
+                                                                       style="max-width: 200px;" required
+                                                                       id="id_f_entrada_doc">
+                                                                <h6 class="font-weight-bold mt-3">Dirigido
+                                                                    a:</h6>
+                                                                <select name="dirigido" class="form-control"
+                                                                        label="Dirigido a:"
+                                                                        style="max-width: 300px;" required
+                                                                        id="id_dirigido">
+                                                                    <option value="" selected="">---------
+                                                                    </option>
 
-                                                                            <option value="1">Dirección Documentación
-                                                                            </option>
+                                                                    <option value="1">Dirección Documentación
+                                                                    </option>
 
-                                                                            <option value="2">Dirección de Registro
-                                                                            </option>
+                                                                    <option value="2">Dirección de Registro
+                                                                    </option>
 
-                                                                            <option value="3">Dirección Técnica</option>
+                                                                    <option value="3">Dirección Técnica</option>
 
-                                                                            <option value="4">Dirección General</option>
+                                                                    <option value="4">Dirección General</option>
 
-                                                                            <option value="6">Dirección Hidrocarburos
-                                                                            </option>
+                                                                    <option value="6">Dirección Hidrocarburos
+                                                                    </option>
 
-                                                                            <option value="5">Dirección de Inspección
-                                                                            </option>
+                                                                    <option value="5">Dirección de Inspección
+                                                                    </option>
 
-                                                                        </select>
-                                                                        <h6 class="font-weight-bold mt-3">Organismo</h6>
-                                                                        <select name="organismo" class="form-control"
-                                                                                label="Organismo:"
-                                                                                style="max-width: 300px;" required=""
-                                                                                id="id_organismo">
-                                                                            <option value="" selected="">---------
-                                                                            </option>
+                                                                </select>
+                                                                <h6 class="font-weight-bold mt-3">Organismo</h6>
+                                                                <select name="organismo" class="form-control"
+                                                                        label="Organismo:"
+                                                                        style="max-width: 300px;" required=""
+                                                                        id="id_organismo">
+                                                                    <option value="" selected="">---------
+                                                                    </option>
 
-                                                                            <option value="1">MINEM</option>
+                                                                    <option value="1">MINEM</option>
 
-                                                                            <option value="2">MICONS</option>
+                                                                    <option value="2">MICONS</option>
 
-                                                                            <option value="3">INRH</option>
+                                                                    <option value="3">INRH</option>
 
-                                                                            <option value="4">MINTUR</option>
+                                                                    <option value="4">MINTUR</option>
 
-                                                                        </select>
-                                                                        <h6 class="font-weight-bold mt-3">Entidad</h6>
-                                                                        <select name="entidad" class="form-control"
-                                                                                label="Entidad:"
-                                                                                style="max-width: 300px;" required=""
-                                                                                id="id_entidad">
-                                                                            <option value="" selected="">---------
-                                                                            </option>
+                                                                </select>
+                                                                <h6 class="font-weight-bold mt-3">Entidad</h6>
+                                                                <select name="entidad" class="form-control"
+                                                                        label="Entidad:"
+                                                                        style="max-width: 300px;" required=""
+                                                                        id="id_entidad">
+                                                                    <option value="" selected="">---------
+                                                                    </option>
 
-                                                                            <option value="1">Empresa de materiales de
-                                                                                la construccion Habana
-                                                                            </option>
+                                                                    <option value="1">Empresa de materiales de
+                                                                        la construccion Habana
+                                                                    </option>
 
-                                                                            <option value="2">MOA NICKEL</option>
+                                                                    <option value="2">MOA NICKEL</option>
 
-                                                                            <option value="3">Empresa de la sal
-                                                                                Caimanera
-                                                                            </option>
+                                                                    <option value="3">Empresa de la sal
+                                                                        Caimanera
+                                                                    </option>
 
-                                                                        </select>
-                                                                        <label class="form-label mt-3">Tipo de
-                                                                            documento</label>
-                                                                        <select name="t_documento" class="form-control"
-                                                                                label="Dirigido a:"
-                                                                                style="max-width: 300px;" required=""
-                                                                                id="id_t_documento">
+                                                                </select>
+                                                                <label class="form-label mt-3">Tipo de
+                                                                    documento</label>
+                                                                <select name="t_documento" class="form-control"
+                                                                        label="Dirigido a:"
+                                                                        style="max-width: 300px;" required=""
+                                                                        id="id_t_documento">
+                                                                    <option value="" selected="">---------
+                                                                    </option>
 
+                                                                    <option value="1">ITE</option>
 
-                                                                        </select>
-                                                                        <h6 class="font-weight-bold mt-3">
-                                                                            Observaciones</h6>
-                                                                        <textarea name="observaciones" cols="40"
-                                                                                  rows="10" class="form-control"
-                                                                                  placeholder="Observaciones al documento"
-                                                                                  style="max-width: 500px;"
-                                                                                  maxlength="500"
-                                                                                  id="id_observaciones"></textarea>
-                                                                    </div>
-                                                                    <div class="modal-footer mx-auto">
+                                                                    <option value="2">BNRR</option>
 
-                                                                        <button type="submit" id="btnAceptar"
-                                                                                class="btn btn-primary">Agregar
-                                                                        </button>
-                                                                        <button type="button" class="btn btn-default"
-                                                                                data-dismiss="modal">Cerrar
-                                                                        </button>
-                                                                    </div>
-                                                                </form>
+                                                                    <option value="3">PAM</option>
+
+                                                                    <option value="4">Dictamen Tecnico de BNRR
+                                                                    </option>
+
+                                                                    <option value="5">Dictamen Tecnico de
+                                                                        Informe Geologico
+                                                                    </option>
+
+                                                                    <option value="6">Informe de Exploracion
+                                                                    </option>
+
+                                                                </select>
+                                                                <h6 class="font-weight-bold mt-3">
+                                                                    Observaciones</h6>
+                                                                <textarea name="observaciones" cols="40"
+                                                                          rows="10" class="form-control"
+                                                                          placeholder="Observaciones al documento"
+                                                                          style="max-width: 500px;"
+                                                                          maxlength="500"
+                                                                          id="id_observaciones"></textarea>
                                                             </div>
+                                                            <div class="modal-footer mx-auto">
+
+                                                                <button type="submit" id="btnAceptar"
+                                                                        class="btn btn-primary">Editar
+                                                                </button>
+                                                                <button type="button" class="btn btn-default"
+                                                                        data-dismiss="modal">Cerrar
+                                                                </button>
+                                                            </div>
+                                                            </form>
                                                         </div>
-                                                        <!-- /.modal-content -->
                                                     </div>
-                                                    <!-- /.modal-dialog -->
+                                                    <!-- /.modal-content -->
+                                                </div>
+                                                <!-- /.modal-dialog -->
                                                 </div>
                                             {% endfor %}
-                                            </tfoot>
-                                        </table>
-                                    </div>
-                                    <!-- /.card-body -->
+                                    </tfoot>
+                                    </table>
                                 </div>
-                                <!-- /.card -->
+                                <!-- /.card-body -->
                             </div>
-                            <!-- /.col -->
+                            <!-- /.card -->
                         </div>
-                        <!-- /.row -->
+                        <!-- /.col -->
                     </div>
-                    <!-- /.container-fluid -->
+                    <!-- /.row -->
+                </div>
+                <!-- /.container-fluid -->
                 </section>
 
                 </div>
@@ -418,13 +435,14 @@
         const entidad = d.getElementById("id_entidad");
         const tipo_documento = d.getElementById("id_t_documento");
         const observaciones = d.getElementById("id_observaciones");
-        $btnAceptar = d.getElementById("btnAceptar");
         const no_entrada = no_entrada_doc.value;
         const tabla = d.getElementById("tabla_entradas");
         let last = {{ no_entrada.no_entrada_doc}};
         const form = d.getElementById("myFormId");
         const alertBox = d.getElementById('alert-box');
         const $form = d.getElementById('agregar');
+
+        /****Capturando id para pasarle valores para el form editar****/
         const input_no_entrada = d.getElementById("id_no_entrada_doc");
         const input_titulo = d.getElementById("id_titulo");
         const input_f_entrada = d.getElementById("id_f_entrada_doc");
@@ -550,16 +568,15 @@
                     })
                         .then(response => response.json())
                         .then(data => {
-                            input_no_entrada.value = 5;
-                            console.log(data['fields'])
+                            input_no_entrada.value = data['no_entrada_doc'];
                             input_titulo.value = data['titulo'];
-                            input_f_entrada.value = data['f_entrada_doc'];
+                            input_f_entrada.value = data['f_entrada'];
                             input_dirigido.value = data['dirigido'];
                             input_organismo.value = data['organismo'];
                             input_entidad.value = data['entidad'];
-                            input_t_documento.value = data['t_documento'];
+                            input_t_documento.value = data['tipo_documento'];
                             input_observaciones.value = data['observaciones'];
-                            console.log(typeof(data))
+                            console.log(data);
 
                         })
                         .catch((error) => {
@@ -568,9 +585,12 @@
                 }
             });
         };
+
+
         d.addEventListener("DOMContentLoaded", () => {
             handleSubmit(form);
             handleEdit();
+            handleSubmitEdit()
 
         });
 
