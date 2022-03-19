@@ -53,7 +53,7 @@
                                         <h3 class="card-title">Listado de documentos en entrada</h3>
                                     </div>
                                     <!-- /.card-header -->
-                                    <div class="card-body">
+                                    <div class="card-body" id="cardbody">
                                         <button class="button" data-toggle="modal" data-target="#modal-default"
                                                 id="agregar">Agregar Documento
                                         </button>
@@ -162,7 +162,8 @@
                                                                 <form method="post" name="editar_documento"
                                                                       id="editar_doc >
                                                                     {% csrf_token %}
-                                                                    <div class="form-group">
+                                                                    <div class=" form-group
+                                                                ">
                                                                 <label class="form-label">Número de
                                                                     entrada:</label>
                                                                 <h6 class="text-blue">*El número tiene ser el
@@ -172,26 +173,26 @@
                                                                        label="Número de entrada"
                                                                        placeholder="Número consecutivo"
                                                                        style="max-width: 200px;" required
-                                                                       id="id_no_entrada_doc">
+                                                                       id="id_edit_no_entrada_doc">
                                                                 <h6 class="font-weight-bold mt-3">Titulo</h6>
                                                                 <input type="text" name="titulo"
                                                                        class="form-control" label="Título"
                                                                        placeholder="Titulo documento"
                                                                        style="max-width: 500px;" maxlength="255"
-                                                                       required="True" id="id_titulo">
+                                                                       required="True" id="id_edit_titulo">
                                                                 <h6 class="font-weight-bold mt-3">Fecha
                                                                     entrada</h6>
                                                                 <input type="date" name="f_entrada_doc"
                                                                        class="form-control"
                                                                        label="Fecha de entrada"
                                                                        style="max-width: 200px;" required
-                                                                       id="id_f_entrada_doc">
+                                                                       id="id_edit_f_entrada_doc">
                                                                 <h6 class="font-weight-bold mt-3">Dirigido
                                                                     a:</h6>
                                                                 <select name="dirigido" class="form-control"
                                                                         label="Dirigido a:"
                                                                         style="max-width: 300px;" required
-                                                                        id="id_dirigido">
+                                                                        id="id_edit_dirigido">
                                                                     <option value="" selected="">---------
                                                                     </option>
 
@@ -216,7 +217,7 @@
                                                                 <select name="organismo" class="form-control"
                                                                         label="Organismo:"
                                                                         style="max-width: 300px;" required=""
-                                                                        id="id_organismo">
+                                                                        id="id_edit_organismo">
                                                                     <option value="" selected="">---------
                                                                     </option>
 
@@ -233,7 +234,7 @@
                                                                 <select name="entidad" class="form-control"
                                                                         label="Entidad:"
                                                                         style="max-width: 300px;" required=""
-                                                                        id="id_entidad">
+                                                                        id="id_edit_entidad">
                                                                     <option value="" selected="">---------
                                                                     </option>
 
@@ -246,14 +247,13 @@
                                                                     <option value="3">Empresa de la sal
                                                                         Caimanera
                                                                     </option>
-
                                                                 </select>
                                                                 <label class="form-label mt-3">Tipo de
                                                                     documento</label>
                                                                 <select name="t_documento" class="form-control"
                                                                         label="Dirigido a:"
                                                                         style="max-width: 300px;" required=""
-                                                                        id="id_t_documento">
+                                                                        id="id_edit_t_documento">
                                                                     <option value="" selected="">---------
                                                                     </option>
 
@@ -281,17 +281,18 @@
                                                                           placeholder="Observaciones al documento"
                                                                           style="max-width: 500px;"
                                                                           maxlength="500"
-                                                                          id="id_observaciones"></textarea>
+                                                                          id="id_edit_observaciones"></textarea>
                                                             </div>
                                                             <div class="modal-footer mx-auto">
 
-                                                                <button type="submit" id="btnAceptar"
-                                                                        class="btn btn-primary">Editar
+                                                                <button type="submit" id="btnEditar"
+                                                                        class="btn btn-outline-dark">Editar
                                                                 </button>
                                                                 <button type="button" class="btn btn-default"
                                                                         data-dismiss="modal">Cerrar
                                                                 </button>
                                                             </div>
+
                                                             </form>
                                                         </div>
                                                     </div>
@@ -327,7 +328,7 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form method="post" name="agrega_documento" id="agregrar">
+                                <form method="post" name="agrega_documento" id="form_agregar">
                                     {% csrf_token %}
                                     <div class="form-group">
                                         <label class="form-label">{{ form_entradas.no_entrada_doc.label }}:</label>
@@ -351,11 +352,12 @@
                                         {{ form_entradas.observaciones }}
                                     </div>
                                     <div class="modal-footer mx-auto">
-
-                                        <button type="submit" id="btnAceptar" class="btn btn-primary">Agregar</button>
+                                        <button type="submit" id="btnAceptar" class="btn btn-outline-primary">Agregar
+                                        </button>
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar
                                         </button>
                                     </div>
+
                                 </form>
                             </div>
                         </div>
@@ -389,7 +391,6 @@
     <script src="{% static 'css/datatables-responsive/js/responsive.bootstrap4.min.js' %}"></script>
     <script src="{% static 'css/datatables-buttons/js/dataTables.buttons.min.js' %}"></script>
     <script src="{% static 'css/datatables-buttons/js/buttons.bootstrap4.min.js' %}"></script>
-    <script src="{% static 'js/tempusdominus-bootstrap-4/tempusdominus-bootstrap-4.min.js' %}"></script>
     <script src="{% static 'js/jszip/jszip.min.js' %}"></script>
     <script src="{% static 'js/pdfmake/pdfmake.min.js' %}"></script>
     <script src="{% static 'js/pdfmake/vfs_fonts.js' %}"></script>
@@ -436,21 +437,21 @@
         const tipo_documento = d.getElementById("id_t_documento");
         const observaciones = d.getElementById("id_observaciones");
         const no_entrada = no_entrada_doc.value;
-        const tabla = d.getElementById("tabla_entradas");
         let last = {{ no_entrada.no_entrada_doc}};
+        const $btn_agregar = d.getElementById("btnAceptar");
         const form = d.getElementById("myFormId");
         const alertBox = d.getElementById('alert-box');
-        const $form = d.getElementById('agregar');
-
+        const $form = d.getElementById('form_agregar');
+        const tabla = d.getElementById('#tabla_entradas');
         /****Capturando id para pasarle valores para el form editar****/
-        const input_no_entrada = d.getElementById("id_no_entrada_doc");
-        const input_titulo = d.getElementById("id_titulo");
-        const input_f_entrada = d.getElementById("id_f_entrada_doc");
-        const input_dirigido = d.getElementById("id_dirigido");
-        const input_organismo = d.getElementById("id_organismo");
-        const input_entidad = d.getElementById("id_entidad");
-        const input_t_documento = d.getElementById("id_t_documento");
-        const input_observaciones = d.getElementById("id_observaciones");
+        const input_no_entrada = d.getElementById("id_edit_no_entrada_doc");
+        const input_titulo = d.getElementById("id_edit_titulo");
+        const input_f_entrada = d.getElementById("id_edit_f_entrada_doc");
+        const input_dirigido = d.getElementById("id_edit_dirigido");
+        const input_organismo = d.getElementById("id_edit_organismo");
+        const input_entidad = d.getElementById("id_edit_entidad");
+        const input_t_documento = d.getElementById("id_edit_t_documento");
+        const input_observaciones = d.getElementById("id_edit_observaciones");
         const handleAlerts = (type, text) => {
             alertBox.innerHTML = `<div class="alert alert-${type}" role="alert">
                             ${text}
@@ -487,11 +488,11 @@
              }
          })*/
 
-
-        const handleSubmit = ($form) => {
-            d.addEventListener("submit", (e) => {
-                e.preventDefault();
-                const fd = new FormData;
+        const EnviarForm = ($formulario) => {
+            d.addEventListener("submit", ev => {
+                ev.preventDefault()
+                var fd;
+                fd = new FormData;
                 fd.append('ccsrfmiddlewaretoken', getCookie("csrftoken"));
                 fd.append('titulo', titulo.value);
                 fd.append('no_entrada_doc', no_entrada_doc.value);
@@ -501,13 +502,12 @@
                 fd.append('entidad', entidad.value);
                 fd.append('tipo_documento', tipo_documento.value);
                 fd.append('observaciones', observaciones.value);
-                const msg = 'Documento agregado';
                 if (last >= no_entrada_doc.value) {
-                    handleAlerts('danger', "Upssssss número de entrada debe ser mayor")
+                    alert('error1 programa esto')
                 } else if (last + 1 < no_entrada_doc.value) {
-                    handleAlerts('danger', "Introduzca el número consecutivo correspondiente")
+                    alert('error2 programa esto tambien')
                 } else {
-
+                    const msg = 'Documento agregado';
                     const request = new Request(
                         {% url 'crear_entradas' %},
                         {
@@ -517,29 +517,24 @@
                         }
                     );
                     fetch(request, {
-                        method: 'POST',
+                        method: 'post',
                         mode: 'same-origin',
                         body: fd,
 
                     })
                         .then(response => response.json())
                         .then(data => {
-                            console.log(data)
-                            handleAlerts('success', msg)
-                            d.location.reload()
-
+                            console.log(data);
+                            location.reload()
                         })
                         .catch((error) => {
                             console.log(error)
                             handleAlerts('danger', "upsss..Existe un error en el formulario")
                         });
-
                 }
-
-
             });
+        }
 
-        };
 
         const handleEdit = () => {
             d.addEventListener("click", ev => {
@@ -576,22 +571,27 @@
                             input_entidad.value = data['entidad'];
                             input_t_documento.value = data['tipo_documento'];
                             input_observaciones.value = data['observaciones'];
-                            console.log(data);
-
                         })
                         .catch((error) => {
                             console.log(error);
                         });
+
                 }
             });
         };
 
+        const EnviarEdit = () => {
+          d.addEventListener("submit", ev => {
+
+          })
+        }
+
+
 
         d.addEventListener("DOMContentLoaded", () => {
-            handleSubmit(form);
+            EnviarForm($form);
             handleEdit();
-            handleSubmitEdit()
-
+            EnviarEdit();
         });
 
 

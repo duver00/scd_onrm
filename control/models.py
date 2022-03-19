@@ -64,7 +64,7 @@ class Documento(models.Model):
     class Meta:
         verbose_name = 'Documento'
         verbose_name_plural = 'Documentos'
-        ordering = ['-no_entrada_doc']
+        ordering = ['no_entrada_doc']
 
     def __str__(self):
         return self.titulo

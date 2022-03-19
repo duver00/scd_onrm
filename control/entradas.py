@@ -25,13 +25,13 @@ class NuevoDocumentoView(CreateView):
     template_name = 'data.html'
     model = Documento
     form_class = DocumentoForm
-    success_url = '/entradas/'
     context_object_name = "list_entradas"
+
 
     def post(self, request, *args, **kwargs):
         info = {}
         try:
-            if request.method == "POST":
+            if request.method == 'POST':
                 data = request.POST
                 doc = Documento()
                 org = Organismo()
@@ -72,7 +72,7 @@ class EditarDocumento(UpdateView):
                 if len(data) == 2:
                     no_entrada = data['entrada']
                     if Documento.objects.get_or_create(no_entrada_doc=int(no_entrada)):
-                        doc = Documento.objects.filter(no_entrada_doc=no_entrada).all()
+                        doc = Documento.objects.filter(no_entrada_doc=no_entrada)
                         for i in doc:
                             fn['pk'] = i.pk
                             fn['no_entrada_doc'] = i.no_entrada_doc
@@ -85,14 +85,9 @@ class EditarDocumento(UpdateView):
                             fn['observaciones'] = i.observaciones
                     return JsonResponse(fn)
                 elif len(data) > 2:
-                    pk = data['pk']
-                    if Documento.objects.get_or_create(pk=int(pk)):
-                        doc = Documento.objects.filter(pk=pk).all()
-
-
-
-
-
+                    pk_doc = data['pk']
+                    doc = Documento.objects.get(pk_doc)
+                    doc.no_entrada_doc = data['no']
         except Exception as e:
             info['error'] = str(e)
             return JsonResponse(info)
