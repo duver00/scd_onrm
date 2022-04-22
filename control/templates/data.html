@@ -159,11 +159,10 @@
                                                                 </button>
                                                             </div>
                                                             <div class="modal-body">
-                                                                <form method="post" name="editar_documento"
-                                                                      id="editar_doc >
+                                                                <form method="post" name="editar_documento" id="editar_doc" >
                                                                     {% csrf_token %}
-                                                                    <div class=" form-group
-                                                                ">
+                                                                    <input type="hidden" name="action" value="edit">
+                                                                    <div class=" form-group" >
                                                                 <label class="form-label">Número de
                                                                     entrada:</label>
                                                                 <h6 class="text-blue">*El número tiene ser el
@@ -330,6 +329,7 @@
                             <div class="modal-body">
                                 <form method="post" name="agrega_documento" id="form_agregar">
                                     {% csrf_token %}
+                                    <input type="hidden" name="action" value="add">
                                     <div class="form-group">
                                         <label class="form-label">{{ form_entradas.no_entrada_doc.label }}:</label>
                                         <h6 class="text-blue">*El número tiene ser el consecutivo
@@ -480,11 +480,7 @@
                  input_entidad.value = todos[4].innerText;
                  input_t_documento.value = todos[6].innerText;
                  input_observaciones.value = todos[7].innerText;
-
-
                  console.log(input_no_entrada.value)
-
-
              }
          })*/
 
@@ -599,4 +595,3 @@
 {% endblock %}
 </body>
 </html>
-

@@ -38,6 +38,7 @@ class NuevoDocumentoView(CreateView):
                 ent = Entidad()
                 tdoc = TipoDocumento()
                 dir = Direcciones()
+
                 dir.pk = data['dirigido']
                 ent.pk = data['entidad']
                 org.pk = data['organismo']
