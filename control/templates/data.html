@@ -159,7 +159,7 @@
                                                                 </button>
                                                             </div>
                                                             <div class="modal-body">
-                                                                <form method="post" name="editar_documento" id="editar_doc" >
+                                                                <form method="post" name="editar_documento" id="form_editar"  >
                                                                     {% csrf_token %}
                                                                     <input type="hidden" name="action" value="edit">
                                                                     <div class=" form-group" >
@@ -426,8 +426,9 @@
             }
             return cookieValue;
         }
-
+      /****Capturando valores por el id para agregar****/
         d = document;
+        const form_add_name = d.getElementById("form_agregar").name;
         const no_entrada_doc = d.getElementById("id_no_entrada_doc");
         const titulo = d.getElementById("id_titulo");
         const f_entrada_doc = d.getElementById("id_f_entrada_doc");
@@ -443,7 +444,9 @@
         const alertBox = d.getElementById('alert-box');
         const $form = d.getElementById('form_agregar');
         const tabla = d.getElementById('#tabla_entradas');
+
         /****Capturando id para pasarle valores para el form editar****/
+
         const input_no_entrada = d.getElementById("id_edit_no_entrada_doc");
         const input_titulo = d.getElementById("id_edit_titulo");
         const input_f_entrada = d.getElementById("id_edit_f_entrada_doc");
@@ -457,6 +460,10 @@
                             ${text}
                                 </div>`
         };
+
+        const form_edit_name = d.getElementById("form_editar").name;
+
+
 
         /* d.addEventListener('click', ev => {
              if (ev.target.matches(".btn-floating .fa-edit ")) {
@@ -486,18 +493,34 @@
 
         const EnviarForm = ($formulario) => {
             d.addEventListener("submit", ev => {
-                ev.preventDefault()
-                var fd;
-                fd = new FormData;
-                fd.append('ccsrfmiddlewaretoken', getCookie("csrftoken"));
-                fd.append('titulo', titulo.value);
-                fd.append('no_entrada_doc', no_entrada_doc.value);
-                fd.append('f_entrada_doc', f_entrada_doc.value);
-                fd.append('dirigido', dirigido.value);
-                fd.append('organismo', organismo.value);
-                fd.append('entidad', entidad.value);
-                fd.append('tipo_documento', tipo_documento.value);
-                fd.append('observaciones', observaciones.value);
+                ev.preventDefault();
+
+                /****Capturando valores para el envio del formulario de agregar documento****/
+                var fd_add;
+                fd_add = new FormData;
+                fd_add.append('ccsrfmiddlewaretoken', getCookie("csrftoken"));
+                fd_add.append('titulo', titulo.value);
+                fd_add.append('no_entrada_doc', no_entrada_doc.value);
+                fd_add.append('f_entrada_doc', f_entrada_doc.value);
+                fd_add.append('dirigido', dirigido.value);
+                fd_add.append('organismo', organismo.value);
+                fd_add.append('entidad', entidad.value);
+                fd_add.append('tipo_documento', tipo_documento.value);
+                fd_add.append('observaciones', observaciones.value);
+
+                /****Capturando valores para el envio del formulario de editar documento****/
+                var fd_edit;
+                fd_edit = new FormData;
+                fd_edit.append('ccsrfmiddlewaretoken', getCookie("csrftoken"));
+                fd_edit.append('titulo', titulo.value);
+                fd_edit.append('no_entrada_doc', no_entrada_doc.value);
+                fd_edit.append('f_entrada_doc', f_entrada_doc.value);
+                fd_edit.append('dirigido', dirigido.value);
+                fd_edit.append('organismo', organismo.value);
+                fd_edit.append('entidad', entidad.value);
+                fd_edit.append('tipo_documento', tipo_documento.value);
+                fd_edit.append('observaciones', observaciones.value);
+
                 if (last >= no_entrada_doc.value) {
                     alert('error1 programa esto')
                 } else if (last + 1 < no_entrada_doc.value) {
@@ -515,7 +538,7 @@
                     fetch(request, {
                         method: 'post',
                         mode: 'same-origin',
-                        body: fd,
+                        body: fd_add,
 
                     })
                         .then(response => response.json())
@@ -576,18 +599,10 @@
             });
         };
 
-        const EnviarEdit = () => {
-          d.addEventListener("submit", ev => {
-
-          })
-        }
-
-
 
         d.addEventListener("DOMContentLoaded", () => {
-            EnviarForm($form);
+            EnviarForm();
             handleEdit();
-            EnviarEdit();
         });
 
 
