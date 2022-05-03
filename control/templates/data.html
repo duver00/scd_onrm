@@ -54,7 +54,7 @@
                                     </div>
                                     <!-- /.card-header -->
                                     <div class="card-body" id="cardbody">
-                                        <button class="button" data-toggle="modal" data-target="#modal-default"
+                                        <button class="button mb-2  " data-toggle="modal" data-target="#modal-default"
                                                 id="agregar">Agregar Documento
                                         </button>
                                         <table id="tabla_entradas" class="table table-bordered table-striped">
@@ -407,7 +407,8 @@
                 language: {
                     url: '{% static "fonts/spanish.json" %}'
                 },
-                "responsive": true, "lengthChange": false, "autoWidth": false,
+                "order": [[ 2,"asc" ]],
+                "responsive": true, "lengthChange": true, "autoWidth": false,
             }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
         });
 
@@ -540,7 +541,7 @@
 
         const handleEdit = () => {
             d.addEventListener("click", ev => {
-                var fn;
+                let fn;
                 if (ev.target.matches(".btn-floating .fa-edit ")) {
                     const $btn_edit = ev.target,
                         $alltr = $btn_edit.closest('tr'),
@@ -584,7 +585,7 @@
         const handleSubmitEdit = () => {
             d.addEventListener("click", ev => {
                 if(ev.target.matches(".btn-outline-success")){
-                    var fd_edit;
+                    let fd_edit;
                     fd_edit = new FormData;
                     fd_edit.append('ccsrfmiddlewaretoken', getCookie("csrftoken"));
                     fd_edit.append('action','editar');
@@ -612,12 +613,12 @@
                     })
                         .then(response => response.json())
                         .then(data => {
-                            console.log(data)
+                            console.log(data);
                             $("#wrapper").load(location.href+" #wrapper")
 
                         })
                         .catch((error) => {
-                            console.log(error)
+                            console.log(error);
                             handleAlerts('danger', "upsss..Existe un error en el formulario")
                         });
                 }
@@ -626,11 +627,52 @@
 
         }
 
+        const handleDelete = () =>{
+            d.addEventListener("click", ev => {
+                let fd;
+                if(ev.target.matches(".btn-floating ") || (ev.target.matches(".fa-trash"))){
+                   const $btn_delete = ev.target,
+                        $alltr = $btn_delete.closest('tr'),
+                        todos = $alltr.querySelectorAll('td');
+                   fd = new FormData;
+                   fd.append('ccsrfmiddlewaretoken', getCookie("csrftoken"));
+                   fd.append('entrada', todos[0].innerText);
+                    const request = new Request(
+                        {% url 'eliminar_entradas' %},
+                        {
+                            headers: {'X-CSRFToken': getCookie("csrftoken")},
+                            'Accept': 'application/json, application/xml, text/plain, text/html, *.*',
+                            'Content-Type': 'x-www-form-urlencoded'
+                        }
+                    );
+                    fetch(request, {
+                        method: 'POST',
+                        mode: 'same-origin',
+                        body: fd,
+
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            console.log(data)
+                            alert("borrado cojone");
+                            location.reload()
+
+
+
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                        });
+
+                }
+            })
+        };
 
         d.addEventListener("DOMContentLoaded", () => {
             EnviarForm();
             handleEdit();
             handleSubmitEdit();
+            handleDelete()
         });
 
 

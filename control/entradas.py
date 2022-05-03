@@ -1,12 +1,10 @@
-from django.shortcuts import render, redirect
-from django.urls import reverse_lazy, reverse
-from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
+from django.shortcuts import get_object_or_404
+from django.http import  JsonResponse
 from control.models import Documento, Direcciones, Organismo, Entidad, TipoDocumento
-from django.views.generic import ListView, CreateView, UpdateView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from control.forms import DocumentoForm
-from django.utils import dateformat
-import datetime
 
+import datetime
 
 
 # Create your views here.
@@ -29,7 +27,6 @@ class NuevoDocumentoView(CreateView):
     model = Documento
     form_class = DocumentoForm
     context_object_name = "list_entradas"
-
 
     def post(self, request, *args, **kwargs):
         info = {}
@@ -99,8 +96,8 @@ class EditarDocumento(UpdateView):
                     tdoc.pk = data['tipo_documento']
                     doc = Documento.objects.filter(no_entrada_doc=data['no_entrada_doc'])
                     for i in doc:
-                        pk = i.pk
-                    doc_editado = Documento.objects.get(pk=pk)
+                        id_doc = i.pk
+                    doc_editado = Documento.objects.get(pk=id_doc)
                     doc_editado.no_entrada_doc = data['no_entrada_doc']
                     doc_editado.f_entrada_doc = data['f_entrada_doc']
                     doc_editado.titulo = data['titulo']
@@ -115,3 +112,31 @@ class EditarDocumento(UpdateView):
         except Exception as e:
             info['error'] = str(e)
             return JsonResponse(info)
+
+
+class EliminarDocumento(DeleteView):
+    model = Documento
+
+    def post(self, request, *args, **kwargs):
+        info = {}
+        dat = {}
+        try:
+            if request.method == "POST":
+                data = request.POST
+                documento = Documento.objects.filter(no_entrada_doc=data['entrada'])
+                for i in documento:
+                    id_doc = i.pk
+                    break
+                doc = Documento.objects.get(pk=id_doc)
+                dat['datos'] = doc
+                doc.delete()
+                return JsonResponse(dat)
+        except Exception as e:
+            info['error'] = str(e)
+            return JsonResponse(info)
+
+
+
+
+
+

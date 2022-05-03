@@ -59,7 +59,7 @@ class Documento(models.Model):
     organismo = models.ForeignKey('Organismo', on_delete=models.CASCADE)
     entidad = models.ForeignKey('Entidad', on_delete=models.CASCADE)
     t_documento = models.ForeignKey('TipoDocumento', on_delete=models.CASCADE, verbose_name="Tipo de documento")
-    observaciones = models.CharField(max_length=500, null=True,blank=True)
+    observaciones = models.CharField(max_length=500, null=True, blank=True)
 
     class Meta:
         verbose_name = 'Documento'
