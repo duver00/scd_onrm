@@ -36,7 +36,7 @@
     </aside>
 
     <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
+    <div class="content-wrapper" id="wrapper">
         <!-- Content Header (Page header) -->
         <!-- Main content -->
         <section class="content">
@@ -428,7 +428,7 @@
         }
       /****Capturando valores por el id para agregar****/
         d = document;
-        const form_add_name = d.getElementById("form_agregar").name;
+        const form_add_name = d.getElementById("form_agregar");
         const no_entrada_doc = d.getElementById("id_no_entrada_doc");
         const titulo = d.getElementById("id_titulo");
         const f_entrada_doc = d.getElementById("id_f_entrada_doc");
@@ -446,7 +446,7 @@
         const tabla = d.getElementById('#tabla_entradas');
 
         /****Capturando id para pasarle valores para el form editar****/
-        const form_edit_name = d.getElementById("form_editar").name;
+        const form_edit_name = d.getElementById("form_editar");
         const input_no_entrada = d.getElementById("id_edit_no_entrada_doc");
         const input_titulo = d.getElementById("id_edit_titulo");
         const input_f_entrada = d.getElementById("id_edit_f_entrada_doc");
@@ -492,7 +492,6 @@
         const EnviarForm = ($formulario) => {
             d.addEventListener("submit", ev => {
                 ev.preventDefault();
-
                 /****Capturando valores para el envio del formulario de agregar documento****/
                 var fd_add;
                 fd_add = new FormData;
@@ -505,8 +504,7 @@
                 fd_add.append('entidad', entidad.value);
                 fd_add.append('tipo_documento', tipo_documento.value);
                 fd_add.append('observaciones', observaciones.value);
-
-
+                fd_add.append('action',form_add_name.name);
                 if (last >= no_entrada_doc.value) {
                     alert('error1 programa esto')
                 } else if (last + 1 < no_entrada_doc.value) {
@@ -585,23 +583,47 @@
 
         const handleSubmitEdit = () => {
             d.addEventListener("click", ev => {
-                if(ev.target.matches(".btn-outline-success"))
-                      /****Capturando valores para el envio del formulario de editar documento****/
+                if(ev.target.matches(".btn-outline-success")){
                     var fd_edit;
                     fd_edit = new FormData;
                     fd_edit.append('ccsrfmiddlewaretoken', getCookie("csrftoken"));
-                    fd_edit.append('titulo', titulo.value);
-                    fd_edit.append('no_entrada_doc', no_entrada_doc.value);
-                    fd_edit.append('f_entrada_doc', f_entrada_doc.value);
-                    fd_edit.append('dirigido', dirigido.value);
-                    fd_edit.append('organismo', organismo.value);
-                    fd_edit.append('entidad', entidad.value);
-                    fd_edit.append('tipo_documento', tipo_documento.value);
-                    fd_edit.append('observaciones', observaciones.value);
+                    fd_edit.append('action','editar');
+                    fd_edit.append('titulo', input_titulo.value);
+                    fd_edit.append('no_entrada_doc', input_no_entrada.value);
+                    fd_edit.append('f_entrada_doc', input_f_entrada.value);
+                    fd_edit.append('dirigido', input_dirigido.value);
+                    fd_edit.append('organismo', input_organismo.value);
+                    fd_edit.append('entidad', input_entidad.value);
+                    fd_edit.append('tipo_documento', input_t_documento.value);
+                    fd_edit.append('observaciones', input_observaciones.value);
+                    const request = new Request(
+                        {% url 'editar_entradas' %},
+                        {
+                            headers: {'X-CSRFToken': getCookie("csrftoken")},
+                            'Accept': 'application/json, application/xml, text/plain, text/html, *.*',
+                            'Content-Type': 'x-www-form-urlencoded'
+                        }
+                    );
+                    fetch(request, {
+                        method: 'post',
+                        mode: 'same-origin',
+                        body: fd_edit,
 
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            console.log(data)
+                            $("#wrapper").load(location.href+" #wrapper")
 
+                        })
+                        .catch((error) => {
+                            console.log(error)
+                            handleAlerts('danger', "upsss..Existe un error en el formulario")
+                        });
+                }
 
-            })
+            });
+
         }
 
 
