@@ -110,7 +110,8 @@
                                                     <div class="modal-dialog">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
-                                                                <h4 class="modal-title mx-auto">Detalles de
+                                                                <img src="{% static 'img/onrm.png' %}">
+                                                                <h4 class="modal-title mx-auto mt-4">Detalles de
                                                                     Documento</h4>
                                                                 <button type="button" class="close" data-dismiss="modal"
                                                                         aria-label="Close">
@@ -152,7 +153,8 @@
                                                     <div class="modal-dialog">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
-                                                                <h4 class="modal-title mx-auto">Editar Documento</h4>
+                                                                <img src="{% static 'img/onrm.png' %}">
+                                                                <h4 class="modal-title mx-auto mt-4">Editar Documento</h4>
                                                                 <button type="button" class="close" data-dismiss="modal"
                                                                         aria-label="Close">
                                                                     <span aria-hidden="true">&times;</span>
@@ -163,15 +165,11 @@
                                                                     {% csrf_token %}
                                                                     <input type="hidden" name="action" value="edit">
                                                                     <div class=" form-group" >
-                                                                <label class="form-label">Número de
-                                                                    entrada:</label>
-                                                                <h6 class="text-blue">*El número tiene ser el
-                                                                    consecutivo de 1</h6>
                                                                 <input type="number" name="no_entrada_doc"
                                                                        class="form-control"
                                                                        label="Número de entrada"
                                                                        placeholder="Número consecutivo"
-                                                                       style="max-width: 200px;" required
+                                                                       style="max-width: 200px;" hidden required
                                                                        id="id_edit_no_entrada_doc">
                                                                 <h6 class="font-weight-bold mt-3">Titulo</h6>
                                                                 <input type="text" name="titulo"
@@ -321,7 +319,8 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h4 class="modal-title mx-auto">Agregar Documento</h4>
+                                <img src="{% static 'img/onrm.png' %}">
+                                <h4 class="modal-title mx-auto mt-4">Agregar Documento</h4>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -332,7 +331,7 @@
                                     <input type="hidden" name="action" value="add">
                                     <div class="form-group">
                                         <label class="form-label">{{ form_entradas.no_entrada_doc.label }}:</label>
-                                        <h6 class="text-blue">*El número tiene ser el consecutivo
+                                        <h6 class="text-blue">*El número tiene que ser el consecutivo
                                             de {{ no_entrada.no_entrada_doc }}</h6>
                                         {{ form_entradas.no_entrada_doc.errors }}
                                         {{ form_entradas.no_entrada_doc }}
@@ -397,6 +396,7 @@
     <script src="{% static 'css/datatables-buttons/js/buttons.html5.min.js' %}"></script>
     <script src="{% static 'css/datatables-buttons/js/buttons.print.min.js' %}"></script>
     <script src="{% static 'css/datatables-buttons/js/buttons.colVis.min.js' %}"></script>
+    <script src="{% static 'js/sweetalert2/sweetalert2.all.min.js' %}"></script>
     <!-- AdminLTE App -->
 
 
@@ -456,12 +456,6 @@
         const input_entidad = d.getElementById("id_edit_entidad");
         const input_t_documento = d.getElementById("id_edit_t_documento");
         const input_observaciones = d.getElementById("id_edit_observaciones");
-        const handleAlerts = (type, text) => {
-            alertBox.innerHTML = `<div class="alert alert-${type}" role="alert">
-                            ${text}
-                                </div>`
-        };
-
 
 
         /* d.addEventListener('click', ev => {
@@ -507,9 +501,17 @@
                 fd_add.append('observaciones', observaciones.value);
                 fd_add.append('action',form_add_name.name);
                 if (last >= no_entrada_doc.value) {
-                    alert('error1 programa esto')
+                    Swal.fire(
+                          'Error!',
+                          'Existe un error en el número de entrada',
+                          'error'
+                        )
                 } else if (last + 1 < no_entrada_doc.value) {
-                    alert('error2 programa esto tambien')
+                     Swal.fire(
+                          'Error!',
+                          'Existe un error en el número de entrada',
+                          'error'
+                        )
                 } else {
                     const msg = 'Documento agregado';
                     const request = new Request(
@@ -528,11 +530,22 @@
                     })
                         .then(response => response.json())
                         .then(data => {
-                            console.log(data)
+                            Swal.fire({
+                              icon: 'success',
+                              title: 'Documento guardado',
+                              showConfirmButton: true,
+                        }).then(function () {
+                            location.reload()
+                            })
                         })
                         .catch((error) => {
                             console.log(error)
-                            handleAlerts('danger', "upsss..Existe un error en el formulario")
+                            Swal.fire({
+                              icon: 'error',
+                              title: 'Oops...',
+                              text: 'Algo salió mal!',
+                              footer: error
+                                })
                         });
                 }
             });
@@ -614,12 +627,18 @@
                         .then(response => response.json())
                         .then(data => {
                             console.log(data);
-                            $("#wrapper").load(location.href+" #wrapper")
+                            Swal.fire({
+                              icon: 'success',
+                              title: 'Documento editado exitosamente',
+                              showConfirmButton: true,
+                        }).then(function () {
+                            location.reload()
+                            });
+
 
                         })
                         .catch((error) => {
                             console.log(error);
-                            handleAlerts('danger', "upsss..Existe un error en el formulario")
                         });
                 }
 
@@ -627,42 +646,62 @@
 
         }
 
+
+
         const handleDelete = () =>{
             d.addEventListener("click", ev => {
                 let fd;
-                if(ev.target.matches(".btn-floating ") || (ev.target.matches(".fa-trash"))){
-                   const $btn_delete = ev.target,
-                        $alltr = $btn_delete.closest('tr'),
-                        todos = $alltr.querySelectorAll('td');
-                   fd = new FormData;
-                   fd.append('ccsrfmiddlewaretoken', getCookie("csrftoken"));
-                   fd.append('entrada', todos[0].innerText);
-                    const request = new Request(
-                        {% url 'eliminar_entradas' %},
-                        {
-                            headers: {'X-CSRFToken': getCookie("csrftoken")},
-                            'Accept': 'application/json, application/xml, text/plain, text/html, *.*',
-                            'Content-Type': 'x-www-form-urlencoded'
-                        }
-                    );
-                    fetch(request, {
-                        method: 'POST',
-                        mode: 'same-origin',
-                        body: fd,
+                if(ev.target.matches(".btn-outline-danger ") || (ev.target.matches(".fa-trash"))){
+                    Swal.fire({
+                      title: 'Desea eliminar el documento?',
+                      text: "Si acepta no se puede revertir el proceso",
+                      icon: 'warning',
+                      showCancelButton: true,
+                      confirmButtonColor: '#3085d6',
+                      cancelButtonColor: '#d33',
+                      confirmButtonText: 'Si, elimínalo!',
+                      cancelButtonText: "Cancelar",
+                    }).then((result) => {
+                      if (result.isConfirmed) {
+                          const $btn_delete = ev.target,
+                            $alltr = $btn_delete.closest('tr'),
+                            todos = $alltr.querySelectorAll('td');
 
+                           fd = new FormData;
+                           fd.append('ccsrfmiddlewaretoken', getCookie("csrftoken"));
+                           fd.append('entrada', todos[0].innerText);
+                            const request = new Request(
+                                {% url 'eliminar_entradas' %},
+                                {
+                                    headers: {'X-CSRFToken': getCookie("csrftoken")},
+                                    'Accept': 'application/json, application/xml, text/plain, text/html, *.*',
+                                    'Content-Type': 'x-www-form-urlencoded'
+                                }
+                            );
+                            fetch(request, {
+                                method: 'POST',
+                                mode: 'same-origin',
+                                body: fd,
+
+                            })
+                                .then(response => response.json())
+                                .then(data => {
+                                    console.log(data);
+                                    Swal.fire({
+                                       icon: 'success',
+                                       title: 'Documento eliminado exitosamente',
+                                       showConfirmButton: true,
+                                        }).then(function () {
+                                         location.reload()
+                                        });
+
+                                })
+                                .catch((error) => {
+                                    console.log(error);
+                                });
+
+                      }
                     })
-                        .then(response => response.json())
-                        .then(data => {
-                            console.log(data)
-                            alert("borrado cojone");
-                            location.reload()
-
-
-
-                        })
-                        .catch((error) => {
-                            console.log(error);
-                        });
 
                 }
             })
