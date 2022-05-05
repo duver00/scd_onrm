@@ -1,11 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e2c777aa-d78f-4306-b5f2-6039cf1414a5" name="Default Changelist" comment="lap dev 12/04">
-      <change afterPath="$PROJECT_DIR$/control/migrations/0002_alter_documento_options_alter_documento_dirigido_and_more.py" afterDir="false" />
+    <list default="true" id="e2c777aa-d78f-4306-b5f2-6039cf1414a5" name="Default Changelist" comment="lap dev 4/05">
+      <change afterPath="$PROJECT_DIR$/autenticacion/templates/logout.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/autenticacion/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/Templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Templates/inicio.html" beforeDir="false" afterPath="$PROJECT_DIR$/Templates/inicio.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/autenticacion/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/autenticacion/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/autenticacion/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/autenticacion/templates/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/autenticacion/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/autenticacion/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/control/entradas.py" beforeDir="false" afterPath="$PROJECT_DIR$/control/entradas.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/control/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/control/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/control/templates/data.html" beforeDir="false" afterPath="$PROJECT_DIR$/control/templates/data.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/control/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/control/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/control/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/control/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scd/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/scd/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scd/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/scd/urls.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,9 +119,14 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/autenticacion/templates" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="settings.editor.selected.configurable" value="settings.github" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Dev\Proyectos\Django\scd\autenticacion\templates" />
+    </key>
   </component>
   <component name="RunManager" selected="Django server.scd">
     <configuration name="Test: templates" type="DjangoTestsConfigurationType" temporary="true">
@@ -232,7 +248,7 @@
       <workItem from="1651173768954" duration="108000" />
       <workItem from="1651174783383" duration="4020000" />
       <workItem from="1651588036849" duration="9541000" />
-      <workItem from="1651598594416" duration="24796000" />
+      <workItem from="1651598594416" duration="41384000" />
     </task>
     <task id="LOCAL-00001" summary="all files">
       <created>1645634960889</created>
@@ -318,7 +334,14 @@
       <option name="project" value="LOCAL" />
       <updated>1651611119463</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="lap dev 4/05">
+      <created>1651697017240</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1651697017240</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -337,41 +360,43 @@
     <MESSAGE value="lap dev 22/04" />
     <MESSAGE value="lap dev 28/04" />
     <MESSAGE value="lap dev 12/04" />
-    <option name="LAST_COMMIT_MESSAGE" value="lap dev 12/04" />
+    <MESSAGE value="lap dev 4/05" />
+    <option name="LAST_COMMIT_MESSAGE" value="lap dev 4/05" />
   </component>
   <component name="WindowStateProjectService">
     <state x="84" y="39" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1646241319150">
       <screen x="0" y="0" width="1260" height="768" />
     </state>
     <state x="84" y="39" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1260.768@0.0.1260.768" timestamp="1646241319150" />
-    <state x="254" y="0" key="CommitChangelistDialog2" timestamp="1651673840043">
+    <state x="254" y="0" key="CommitChangelistDialog2" timestamp="1651697011582">
       <screen x="0" y="0" width="1255" height="768" />
     </state>
-    <state x="254" y="0" key="CommitChangelistDialog2/0.0.1255.768@0.0.1255.768" timestamp="1651673840043" />
+    <state x="254" y="0" key="CommitChangelistDialog2/0.0.1255.768@0.0.1255.768" timestamp="1651697011582" />
     <state x="255" y="0" key="CommitChangelistDialog2/0.0.1260.768@0.0.1260.768" timestamp="1650655925639" />
-    <state x="87" y="6" key="DiffContextDialog" timestamp="1649785892244">
-      <screen x="0" y="0" width="1260" height="768" />
+    <state x="87" y="6" key="DiffContextDialog" timestamp="1651697075137">
+      <screen x="0" y="0" width="1255" height="768" />
     </state>
+    <state x="87" y="6" key="DiffContextDialog/0.0.1255.768@0.0.1255.768" timestamp="1651697075137" />
     <state x="87" y="6" key="DiffContextDialog/0.0.1260.768@0.0.1260.768" timestamp="1649785892244" />
-    <state width="1212" height="192" key="GridCell.Tab.0.bottom" timestamp="1651694451204">
+    <state width="1212" height="192" key="GridCell.Tab.0.bottom" timestamp="1651781566228">
       <screen x="0" y="0" width="1255" height="768" />
     </state>
-    <state width="1212" height="192" key="GridCell.Tab.0.bottom/0.0.1255.768@0.0.1255.768" timestamp="1651694451204" />
+    <state width="1212" height="192" key="GridCell.Tab.0.bottom/0.0.1255.768@0.0.1255.768" timestamp="1651781566228" />
     <state width="1217" height="192" key="GridCell.Tab.0.bottom/0.0.1260.768@0.0.1260.768" timestamp="1650308685445" />
-    <state width="1212" height="192" key="GridCell.Tab.0.center" timestamp="1651694451204">
+    <state width="1212" height="192" key="GridCell.Tab.0.center" timestamp="1651781566227">
       <screen x="0" y="0" width="1255" height="768" />
     </state>
-    <state width="1212" height="192" key="GridCell.Tab.0.center/0.0.1255.768@0.0.1255.768" timestamp="1651694451204" />
+    <state width="1212" height="192" key="GridCell.Tab.0.center/0.0.1255.768@0.0.1255.768" timestamp="1651781566227" />
     <state width="1217" height="192" key="GridCell.Tab.0.center/0.0.1260.768@0.0.1260.768" timestamp="1650308685444" />
-    <state width="1212" height="192" key="GridCell.Tab.0.left" timestamp="1651694451204">
+    <state width="1212" height="192" key="GridCell.Tab.0.left" timestamp="1651781566227">
       <screen x="0" y="0" width="1255" height="768" />
     </state>
-    <state width="1212" height="192" key="GridCell.Tab.0.left/0.0.1255.768@0.0.1255.768" timestamp="1651694451204" />
+    <state width="1212" height="192" key="GridCell.Tab.0.left/0.0.1255.768@0.0.1255.768" timestamp="1651781566227" />
     <state width="1217" height="192" key="GridCell.Tab.0.left/0.0.1260.768@0.0.1260.768" timestamp="1650308685425" />
-    <state width="1212" height="192" key="GridCell.Tab.0.right" timestamp="1651694451204">
+    <state width="1212" height="192" key="GridCell.Tab.0.right" timestamp="1651781566227">
       <screen x="0" y="0" width="1255" height="768" />
     </state>
-    <state width="1212" height="192" key="GridCell.Tab.0.right/0.0.1255.768@0.0.1255.768" timestamp="1651694451204" />
+    <state width="1212" height="192" key="GridCell.Tab.0.right/0.0.1255.768@0.0.1255.768" timestamp="1651781566227" />
     <state width="1217" height="192" key="GridCell.Tab.0.right/0.0.1260.768@0.0.1260.768" timestamp="1650308685444" />
     <state width="1212" height="186" key="GridCell.Tab.1.bottom" timestamp="1651597826391">
       <screen x="0" y="0" width="1255" height="768" />
@@ -409,10 +434,10 @@
       <screen x="0" y="0" width="1260" height="768" />
     </state>
     <state x="477" y="300" key="VCS.ChangelistChooser/0.0.1260.768@0.0.1260.768" timestamp="1646258478537" />
-    <state x="221" y="117" key="Vcs.Push.Dialog.v2" timestamp="1651611158044">
+    <state x="221" y="117" key="Vcs.Push.Dialog.v2" timestamp="1651697076198">
       <screen x="0" y="0" width="1255" height="768" />
     </state>
-    <state x="221" y="117" key="Vcs.Push.Dialog.v2/0.0.1255.768@0.0.1255.768" timestamp="1651611158044" />
+    <state x="221" y="117" key="Vcs.Push.Dialog.v2/0.0.1255.768@0.0.1255.768" timestamp="1651697076198" />
     <state x="222" y="117" key="Vcs.Push.Dialog.v2/0.0.1260.768@0.0.1260.768" timestamp="1650655965999" />
     <state x="357" y="189" key="com.intellij.database.dbimport.ImportUtil.MyDialog" timestamp="1651594526583">
       <screen x="0" y="0" width="1255" height="768" />

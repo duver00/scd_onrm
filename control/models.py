@@ -3,6 +3,8 @@ from django.db import models
 
 # Create your models here.
 
+app_name = 'control'
+
 
 class Direcciones(models.Model):
     nombre = models.CharField(max_length=50, null=False, blank=False)

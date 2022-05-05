@@ -3,14 +3,16 @@ from django.http import  JsonResponse
 from control.models import Documento, Direcciones, Organismo, Entidad, TipoDocumento
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from control.forms import DocumentoForm
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 import datetime
 
 
 # Create your views here.
-class DocumentosListView(ListView):
+class DocumentosListView(LoginRequiredMixin, ListView):
     template_name = 'data.html'
     context_object_name = 'list_entradas'
+    login_url = '/entrar/'
 
     def get_queryset(self):
         return Documento.objects.all()
@@ -22,11 +24,12 @@ class DocumentosListView(ListView):
         return context
 
 
-class NuevoDocumentoView(CreateView):
+class NuevoDocumentoView(LoginRequiredMixin, CreateView):
     template_name = 'data.html'
     model = Documento
     form_class = DocumentoForm
     context_object_name = "list_entradas"
+    login_url = '/entrar/'
 
     def post(self, request, *args, **kwargs):
         info = {}
@@ -59,9 +62,10 @@ class NuevoDocumentoView(CreateView):
             return JsonResponse(info)
 
 
-class EditarDocumento(UpdateView):
+class EditarDocumento(LoginRequiredMixin, UpdateView):
     form_class = DocumentoForm
     model = Documento
+    login_url = '/entrar/'
 
     def post(self, request, *args, **kwargs):
         info = {}
@@ -114,8 +118,9 @@ class EditarDocumento(UpdateView):
             return JsonResponse(info)
 
 
-class EliminarDocumento(DeleteView):
+class EliminarDocumento(LoginRequiredMixin, DeleteView):
     model = Documento
+    login_url = '/entrar/'
 
     def post(self, request, *args, **kwargs):
         info = {}

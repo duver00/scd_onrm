@@ -18,6 +18,7 @@ from django.urls import path
 from .views import inicio
 from .entradas import DocumentosListView, NuevoDocumentoView, EditarDocumento, EliminarDocumento
 
+
 urlpatterns = [
     path('', inicio, name="home"),
     path('entradas/', DocumentosListView.as_view(), name="entradas"),
