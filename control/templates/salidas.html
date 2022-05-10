@@ -1,0 +1,333 @@
+{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% block style %}
+        <!-- Google Font: Source Sans Pro -->
+        <link rel="stylesheet"
+              href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="{% static 'css/fontawesome-free/css/all.min.css' %}">
+        <!-- Tempusdominus Bootstrap 4 -->
+
+        <!-- DataTables -->
+        <link rel="stylesheet" href="{% static 'css/datatables-bs4/css/dataTables.bootstrap4.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/datatables-responsive/css/responsive.bootstrap4.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/datatables-buttons/css/buttons.bootstrap4.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+    {% endblock %}
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{% static 'css/adminlte.min.css' %}">
+</head>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+    <!-- Navbar -->
+
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+
+    <!-- /.sidebar -->
+    </aside>
+    <div class="content-wrapper" id="wrapper">
+        <!-- Content Header (Page header) -->
+        <!-- Main content -->
+        <section class="content">
+            {% block body %}
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+
+                                <!-- /.card -->
+
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h3 class="card-title">Listado de documentos de salida</h3>
+                                    </div>
+                                    <!-- /.card-header -->
+                                    <div class="card-body" id="cardbody">
+                                        <button class="button mb-2  " data-toggle="modal" data-target="#modal-default"
+                                                id="agregar">Agregar Documento
+                                        </button>
+                                        <table id="tabla_entradas" class="table table-bordered table-striped">
+                                            <thead>
+                                            <tr>
+                                                <th>No. Salida</th>
+                                                <th>Título</th>
+                                                <th>Fecha salida(s)</th>
+                                                <th>Organismo</th>
+                                                <th>Entidad</th>
+                                                <th>Dirigido a:</th>
+                                                <th>Acciones</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            {% for entradas in  list_entradas %}
+                                                <tr>
+                                                    <td>{{ entradas.no_entrada_doc }}</td>
+                                                    <td>{{ entradas.titulo }}</td>
+                                                    <td>{{ entradas.f_entrada_doc }}</td>
+                                                    <td> {{ entradas.organismo }}</td>
+                                                    <td> {{ entradas.entidad }}</td>
+                                                    <td> {{ entradas.dirigido }}</td>
+                                                    <td>
+                                                        <div class="button btn-group inline-group">
+                                                            <button type="button" data-toggle="modal"
+                                                                    data-target="#detalles{{ entradas.pk }}"
+                                                                    id="{{ entradas.pk }}"
+                                                                    class="btn-sm btn-outline-info btn-floating "
+                                                                    data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                                                    title="Mostrar documento">
+                                                                <i class="fa fa-eye"></i>
+                                                            </button>
+                                                            <button type="button" id="editar_button" data-toggle="modal"
+                                                                    data-target="#editar"
+                                                                    class="btn btn-outline-dark btn-floating"
+                                                                    data-bs-toggle="tooltip" data-bs-placement="top"
+                                                                    title="Editar documento">
+                                                                <i class="fa fa-edit"></i>
+                                                            </button>
+                                                            <button type="button" id="{{ entradas.pk }}"
+                                                                    class="btn btn-outline-danger btn-floating"
+                                                                    data-bs-toggle="tooltip" data-bs-placement="top"
+                                                                    title="Eliminar documento">
+                                                                <i class="fa fa-trash"></i>
+                                                            </button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <!-- /.modal-Detalles -->
+                                                <div class="modal fade" id="detalles{{ entradas.pk }}">
+                                                    <div id="alert-box"></div>
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <img src="{% static 'img/onrm.png' %}">
+                                                                <h4 class="modal-title mx-auto mt-4">Detalles del
+                                                                    Documento</h4>
+                                                                <button type="button" class="close" data-dismiss="modal"
+                                                                        aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="form-group">
+                                                                    <label class="form-label h5">Número de
+                                                                        entrada:</label>
+                                                                    {{ entradas.no_entrada_doc }}
+                                                                    <h5 class="font-weight-bold mt-3">Título</h5>
+                                                                    {{ entradas.titulo }}
+                                                                    <h5 class="font-weight-bold mt-3">Fecha de
+                                                                        entrada</h5>
+                                                                    {{ entradas.f_entrada_doc }}
+                                                                    <h5 class="font-weight-bold mt-3"></h5>
+                                                                    <h5 class="font-weight-bold mt-3">Dirigido a:</h5>
+                                                                    {{ entradas.dirigido }}
+                                                                    <h5 class="font-weight-bold mt-3">Organismo</h5>
+                                                                    {{ entradas.organismo }}
+                                                                    <h5 class="font-weight-bold mt-3">Entidad</h5>
+                                                                    {{ entradas.entidad }}<br>
+                                                                    <label class="form-label mt-3">Tipo de
+                                                                        documento</label>
+                                                                    {{ entradas.t_documento }}
+                                                                    <h5 class="font-weight-bold mt-3">Observaciones</h5>
+                                                                    {{ entradas.observaciones }}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- /.modal-content -->
+                                                    </div>
+                                                    <!-- /.modal-dialog -->
+                                                </div>
+                                                <!-- /.modal-editar -->
+                                                <div class="modal fade" id="editar">
+                                                    <div id="alert-box"></div>
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <img src="{% static 'img/onrm.png' %}">
+                                                                <h4 class="modal-title mx-auto mt-4">Editar Documento</h4>
+                                                                <button type="button" class="close" data-dismiss="modal"
+                                                                        aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <form method="post" name="editar_documento" id="form_editar"  >
+                                                                    {% csrf_token %}
+                                                                    <input type="hidden" name="action" value="edit">
+                                                                    <div class=" form-group" >
+                                                                <input type="number" name="no_entrada_doc"
+                                                                       class="form-control"
+                                                                       label="Número de entrada"
+                                                                       placeholder="Número consecutivo"
+                                                                       style="max-width: 200px;" hidden required
+                                                                       id="id_edit_no_entrada_doc">
+                                                                <h6 class="font-weight-bold mt-3">Titulo</h6>
+                                                                <input type="text" name="titulo"
+                                                                       class="form-control" label="Título"
+                                                                       placeholder="Titulo documento"
+                                                                       style="max-width: 500px;" maxlength="255"
+                                                                       required="True" id="id_edit_titulo">
+                                                                <h6 class="font-weight-bold mt-3">Fecha
+                                                                    entrada</h6>
+                                                                <input type="date" name="f_entrada_doc"
+                                                                       class="form-control"
+                                                                       label="Fecha de entrada"
+                                                                       style="max-width: 200px;" required
+                                                                       id="id_edit_f_entrada_doc">
+                                                                <h6 class="font-weight-bold mt-3">Dirigido
+                                                                    a:</h6>
+                                                                <select name="dirigido" class="form-control"
+                                                                        label="Dirigido a:"
+                                                                        style="max-width: 300px;" required
+                                                                        id="id_edit_dirigido">
+                                                                    <option value="" selected="">---------
+                                                                    </option>
+
+                                                                    <option value="1">Dirección Documentación
+                                                                    </option>
+
+                                                                    <option value="2">Dirección de Registro
+                                                                    </option>
+
+                                                                    <option value="3">Dirección Técnica</option>
+
+                                                                    <option value="4">Dirección General</option>
+
+                                                                    <option value="6">Dirección Hidrocarburos
+                                                                    </option>
+
+                                                                    <option value="5">Dirección de Inspección
+                                                                    </option>
+
+                                                                </select>
+                                                                <h6 class="font-weight-bold mt-3">Organismo</h6>
+                                                                <select name="organismo" class="form-control"
+                                                                        label="Organismo:"
+                                                                        style="max-width: 300px;" required=""
+                                                                        id="id_edit_organismo">
+                                                                    <option value="" selected="">---------
+                                                                    </option>
+
+                                                                    <option value="1">MINEM</option>
+
+                                                                    <option value="2">MICONS</option>
+
+                                                                    <option value="3">INRH</option>
+
+                                                                    <option value="4">MINTUR</option>
+
+                                                                </select>
+                                                                <h6 class="font-weight-bold mt-3">Entidad</h6>
+                                                                <select name="entidad" class="form-control"
+                                                                        label="Entidad:"
+                                                                        style="max-width: 300px;" required=""
+                                                                        id="id_edit_entidad">
+                                                                    <option value="" selected="">---------
+                                                                    </option>
+
+                                                                    <option value="1">Empresa de materiales de
+                                                                        la construccion Habana
+                                                                    </option>
+
+                                                                    <option value="2">MOA NICKEL</option>
+
+                                                                    <option value="3">Empresa de la sal
+                                                                        Caimanera
+                                                                    </option>
+                                                                </select>
+                                                                <label class="form-label mt-3">Tipo de
+                                                                    documento</label>
+                                                                <select name="t_documento" class="form-control"
+                                                                        label="Dirigido a:"
+                                                                        style="max-width: 300px;" required=""
+                                                                        id="id_edit_t_documento">
+                                                                    <option value="" selected="">---------
+                                                                    </option>
+
+                                                                    <option value="1">ITE</option>
+
+                                                                    <option value="2">BNRR</option>
+
+                                                                    <option value="3">PAM</option>
+
+                                                                    <option value="4">Dictamen Tecnico de BNRR
+                                                                    </option>
+
+                                                                    <option value="5">Dictamen Tecnico de
+                                                                        Informe Geologico
+                                                                    </option>
+
+                                                                    <option value="6">Informe de Exploracion
+                                                                    </option>
+
+                                                                </select>
+                                                                <h6 class="font-weight-bold mt-3">
+                                                                    Observaciones</h6>
+                                                                <textarea name="observaciones" cols="40"
+                                                                          rows="10" class="form-control"
+                                                                          placeholder="Observaciones al documento"
+                                                                          style="max-width: 500px;"
+                                                                          maxlength="500"
+                                                                          id="id_edit_observaciones"></textarea>
+                                                            </div>
+                                                            <div class="modal-footer mx-auto">
+
+                                                                <button type="button" id="btnEditar"
+                                                                        class="btn btn-outline-success">Editar
+                                                                </button>
+                                                                <button type="button" class="btn btn-default"
+                                                                        data-dismiss="modal">Cerrar
+                                                                </button>
+                                                            </div>
+
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                    <!-- /.modal-content -->
+                                                </div>
+                                                <!-- /.modal-dialog -->
+                                                </div>
+                                            {% endfor %}
+                                    </tfoot>
+                                    </table>
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                            <!-- /.card -->
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.container-fluid -->
+                </section>
+                </div>
+{% endblock body %}
+{% block script %}
+    <!-- jQuery -->
+    <script src="{% static 'js/jquery/jquery.min.js' %}"></script>
+    <!-- Bootstrap 4 -->
+    <script src="{% static 'js/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/entradas.js' %}"></script>
+    <!-- DataTables  & Plugins -->
+    <script src="{% static 'js/datatables/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'css/datatables-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+    <script src="{% static 'css/datatables-responsive/js/dataTables.responsive.min.js' %}"></script>
+    <script src="{% static 'css/datatables-responsive/js/responsive.bootstrap4.min.js' %}"></script>
+    <script src="{% static 'css/datatables-buttons/js/dataTables.buttons.min.js' %}"></script>
+    <script src="{% static 'css/datatables-buttons/js/buttons.bootstrap4.min.js' %}"></script>
+    <script src="{% static 'js/jszip/jszip.min.js' %}"></script>
+    <script src="{% static 'js/pdfmake/pdfmake.min.js' %}"></script>
+    <script src="{% static 'js/pdfmake/vfs_fonts.js' %}"></script>
+    <script src="{% static 'css/datatables-buttons/js/buttons.html5.min.js' %}"></script>
+    <script src="{% static 'css/datatables-buttons/js/buttons.print.min.js' %}"></script>
+    <script src="{% static 'css/datatables-buttons/js/buttons.colVis.min.js' %}"></script>
+    <script src="{% static 'js/sweetalert2/sweetalert2.all.min.js' %}"></script>
+{% endblock script %}
+</html>

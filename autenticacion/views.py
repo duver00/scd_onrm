@@ -10,6 +10,7 @@ class LoginScd(LoginView):
     template_name = "login.html"
 
 
-class LogoutSCD(LoginRequiredMixin, LogoutView):
-    pass
+class LogoutSCD(LogoutView):
+    next_page = "/entrar"
+
 

@@ -5,7 +5,6 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdminLTE 3 | DataTables</title>
     {% block style %}
         <!-- Google Font: Source Sans Pro -->
         <link rel="stylesheet"
@@ -60,7 +59,7 @@
                                         <table id="tabla_entradas" class="table table-bordered table-striped">
                                             <thead>
                                             <tr>
-                                                <th>No. Entrada</th>
+                                                <th>No.</th>
                                                 <th>Título</th>
                                                 <th>Fecha entrada(s)</th>
                                                 <th>Organismo</th>
@@ -129,15 +128,24 @@
                                                                         entrada</h5>
                                                                     {{ entradas.f_entrada_doc }}
                                                                     <h5 class="font-weight-bold mt-3"></h5>
+                                                                    <h5 class="font-weight-bold mt-3">Forma de entrega</h5>
+                                                                    {{ entradas.forma_entrada }}<br>
                                                                     <h5 class="font-weight-bold mt-3">Dirigido a:</h5>
                                                                     {{ entradas.dirigido }}
+                                                                    <h5 class="font-weight-bold mt-3">Fecha de entrega dirección</h5>
+                                                                    {{ entradas.f_entrega_dirigido }}
                                                                     <h5 class="font-weight-bold mt-3">Organismo</h5>
                                                                     {{ entradas.organismo }}
                                                                     <h5 class="font-weight-bold mt-3">Entidad</h5>
-                                                                    {{ entradas.entidad }}
-                                                                    <label class="form-label mt-3">Tipo de
-                                                                        documento</label>
+                                                                    {{ entradas.entidad }}<br>
+                                                                    <h5 class="font-weight-bold mt-3">Provincia</h5>
+                                                                    {{ entradas.provincia }}<br>
+                                                                    <h5 class="font-weight-bold mt-3">Tipo de documento</h5>
                                                                     {{ entradas.t_documento }}
+                                                                    <h5 class="font-weight-bold mt-3">Soporte</h5>
+                                                                    {{ entradas.soporte_doc }}<br>
+                                                                    <h5 class="font-weight-bold mt-3">Fecha de término</h5>
+                                                                    {{ entradas.f_termino }}<br>
                                                                     <h5 class="font-weight-bold mt-3">Observaciones</h5>
                                                                     {{ entradas.observaciones }}
                                                                 </div>
@@ -184,6 +192,28 @@
                                                                        label="Fecha de entrada"
                                                                        style="max-width: 200px;" required
                                                                        id="id_edit_f_entrada_doc">
+                                                                 <h6 class="font-weight-bold mt-3">Forma de entrada
+                                                                    </h6>
+                                                                <select name="forma entrada" class="form-control"
+                                                                        label="Forma de entrada:"
+                                                                        style="max-width: 300px;" required
+                                                                        id="id_edit_forma_entrada">
+                                                                    <option value="" selected="">---------
+                                                                    </option>
+
+                                                                    <option value="Correo">Correo
+                                                                    </option>
+
+                                                                    <option value="Correo electrónico">Correo electrónico
+                                                                    </option>
+
+                                                                    <option value="Mensajeria">Mensajeria</option>
+
+                                                                    <option value="Fax">Fax</option>
+
+                                                                    <option value="Personal">Personal
+                                                                    </option>
+                                                                </select>
                                                                 <h6 class="font-weight-bold mt-3">Dirigido
                                                                     a:</h6>
                                                                 <select name="dirigido" class="form-control"
@@ -208,8 +238,14 @@
 
                                                                     <option value="5">Dirección de Inspección
                                                                     </option>
-
                                                                 </select>
+                                                                 <h6 class="font-weight-bold mt-3">Fecha de
+                                                                    entrega a dirección</h6>
+                                                                 <input type="date" name="f_entrega"
+                                                                       class="form-control"
+                                                                       label="Fecha de entrega"
+                                                                       style="max-width: 200px;" required
+                                                                       id="id_edit_f_entrega">
                                                                 <h6 class="font-weight-bold mt-3">Organismo</h6>
                                                                 <select name="organismo" class="form-control"
                                                                         label="Organismo:"
@@ -245,33 +281,43 @@
                                                                         Caimanera
                                                                     </option>
                                                                 </select>
-                                                                <label class="form-label mt-3">Tipo de
-                                                                    documento</label>
+                                                                <h6 class="font-weight-bold mt-3">Provincia</h6>
+                                                                <select name="organismo" class="form-control"
+                                                                        label="Organismo:"
+                                                                        style="max-width: 300px;" required=""
+                                                                        id="id_edit_organismo">
+                                                                    <option value="" selected="">---------
+                                                                    </option>
+
+                                                                    <option value=""></option>
+
+                                                                </select>
+                                                                 <h6 class="font-weight-bold mt-3">Tipo de documento</h6>
                                                                 <select name="t_documento" class="form-control"
-                                                                        label="Dirigido a:"
                                                                         style="max-width: 300px;" required=""
                                                                         id="id_edit_t_documento">
                                                                     <option value="" selected="">---------
                                                                     </option>
 
-                                                                    <option value="1">ITE</option>
+                                                                     <option value=""></option>
 
-                                                                    <option value="2">BNRR</option>
-
-                                                                    <option value="3">PAM</option>
-
-                                                                    <option value="4">Dictamen Tecnico de BNRR
-                                                                    </option>
-
-                                                                    <option value="5">Dictamen Tecnico de
-                                                                        Informe Geologico
-                                                                    </option>
-
-                                                                    <option value="6">Informe de Exploracion
-                                                                    </option>
-
+                                                                    <
                                                                 </select>
-                                                                <h6 class="font-weight-bold mt-3">
+                                                                <h6 class="font-weight-bold mt-3">Soporte</h6>
+                                                                <input type="text" name="soporte"
+                                                                       class="form-control" label="Título"
+                                                                       placeholder="Soporte en el que se entrega"
+                                                                       style="max-width: 200px;" maxlength="255"
+                                                                       required="True" id="id_edit_soporte">
+
+                                                                <h6 class="font-weight-bold mt-3">Fecha
+                                                                    entrada</h6>
+                                                                <input type="date" name="f_termino"
+                                                                       class="form-control"
+                                                                       label="Fecha término"
+                                                                       style="max-width: 200px;" required
+                                                                       id="id_edit_f_termino">
+                                                                 <h6 class="font-weight-bold mt-3">
                                                                     Observaciones</h6>
                                                                 <textarea name="observaciones" cols="40"
                                                                           rows="10" class="form-control"
@@ -339,14 +385,24 @@
                                         {{ form_entradas.titulo }}
                                         <h6 class="font-weight-bold mt-3">{{ form_entradas.f_entrada_doc.label }}</h6>
                                         {{ form_entradas.f_entrada_doc }}
+                                        <h6 class="font-weight-bold mt-3">{{ form_entradas.forma_entrada.label }}</h6>
+                                        {{ form_entradas.forma_entrada }}
                                         <h6 class="font-weight-bold mt-3">{{ form_entradas.dirigido.label }}</h6>
                                         {{ form_entradas.dirigido }}
+                                        <h6 class="font-weight-bold mt-3">{{ form_entradas.f_entrega_dirigido.label }}</h6>
+                                        {{ form_entradas.f_entrega_dirigido }}
                                         <h6 class="font-weight-bold mt-3">{{ form_entradas.organismo.label }}</h6>
                                         {{ form_entradas.organismo }}
                                         <h6 class="font-weight-bold mt-3">{{ form_entradas.entidad.label }}</h6>
                                         {{ form_entradas.entidad }}
+                                        <h6 class="font-weight-bold mt-3">{{ form_entradas.provincia.label }}</h6>
+                                        {{ form_entradas.provincia }}
                                         <label class="form-label mt-3">{{ form_entradas.t_documento.label }}</label>
                                         {{ form_entradas.t_documento }}
+                                        <h6 class="font-weight-bold mt-3">{{ form_entradas.soporte_doc.label }}</h6>
+                                        {{ form_entradas.soporte_doc }}
+                                        <h6 class="font-weight-bold mt-3">{{ form_entradas.f_termino.label }}</h6>
+                                        {{ form_entradas.f_termino }}
                                         <h6 class="font-weight-bold mt-3">{{ form_entradas.observaciones.label }}</h6>
                                         {{ form_entradas.observaciones }}
                                     </div>
@@ -438,6 +494,11 @@
         const entidad = d.getElementById("id_entidad");
         const tipo_documento = d.getElementById("id_t_documento");
         const observaciones = d.getElementById("id_observaciones");
+        const forma_entrada = d.getElementById("id_forma_entrada");
+        const soporte_doc = d.getElementById("id_soporte_doc");
+        const f_termino = d.getElementById("id_f_termino");
+        const f_dirigido = d.getElementById("id_f_entrega_dirigido");
+        const provincia = d.getElementById("id_provincia");
         const no_entrada = no_entrada_doc.value;
         let last = {{ no_entrada.no_entrada_doc}};
         const $btn_agregar = d.getElementById("btnAceptar");
@@ -499,7 +560,12 @@
                 fd_add.append('entidad', entidad.value);
                 fd_add.append('tipo_documento', tipo_documento.value);
                 fd_add.append('observaciones', observaciones.value);
-                fd_add.append('action',form_add_name.name);
+                fd_add.append('f_dirigido', f_dirigido.value);
+                fd_add.append('f_termino', f_termino.value);
+                fd_add.append('provincia', provincia.value);
+                fd_add.append('soporte', soporte_doc.value);
+                fd_add.append('forma_entrada', forma_entrada.value);
+
                 if (last >= no_entrada_doc.value) {
                     Swal.fire(
                           'Error!',
@@ -532,7 +598,7 @@
                         .then(data => {
                             Swal.fire({
                               icon: 'success',
-                              title: 'Documento guardado',
+                              title: 'Documento guardado exitosamente',
                               showConfirmButton: true,
                         }).then(function () {
                             location.reload()
@@ -586,6 +652,7 @@
                             input_entidad.value = data['entidad'];
                             input_t_documento.value = data['tipo_documento'];
                             input_observaciones.value = data['observaciones'];
+                            console.log(data['tipo_documento'])
                         })
                         .catch((error) => {
                             console.log(error);
@@ -654,7 +721,7 @@
                 if(ev.target.matches(".btn-outline-danger ") || (ev.target.matches(".fa-trash"))){
                     Swal.fire({
                       title: 'Desea eliminar el documento?',
-                      text: "Si acepta no se puede revertir el proceso",
+                      text: "Si acepta no se podrá revertir el proceso",
                       icon: 'warning',
                       showCancelButton: true,
                       confirmButtonColor: '#3085d6',
@@ -706,6 +773,7 @@
                 }
             })
         };
+
 
         d.addEventListener("DOMContentLoaded", () => {
             EnviarForm();

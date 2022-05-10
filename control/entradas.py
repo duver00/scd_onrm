@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404
-from django.http import  JsonResponse
-from control.models import Documento, Direcciones, Organismo, Entidad, TipoDocumento
+from django.http import JsonResponse
+from control.models import Documento, Direcciones, Organismo, Entidad, TipoDocumento, Provincia
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from control.forms import DocumentoForm
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -10,7 +10,7 @@ import datetime
 
 # Create your views here.
 class DocumentosListView(LoginRequiredMixin, ListView):
-    template_name = 'data.html'
+    template_name = 'entradas.html'
     context_object_name = 'list_entradas'
     login_url = '/entrar/'
 
@@ -25,7 +25,7 @@ class DocumentosListView(LoginRequiredMixin, ListView):
 
 
 class NuevoDocumentoView(LoginRequiredMixin, CreateView):
-    template_name = 'data.html'
+    template_name = 'entradas.html'
     model = Documento
     form_class = DocumentoForm
     context_object_name = "list_entradas"
@@ -39,20 +39,27 @@ class NuevoDocumentoView(LoginRequiredMixin, CreateView):
                 doc = Documento()
                 org = Organismo()
                 ent = Entidad()
+                prov = Provincia()
                 tdoc = TipoDocumento()
                 dir = Direcciones()
                 dir.pk = data['dirigido']
                 ent.pk = data['entidad']
                 org.pk = data['organismo']
                 tdoc.pk = data['tipo_documento']
+                prov.pk = data['provincia']
                 doc.no_entrada_doc = data['no_entrada_doc']
                 doc.titulo = request.POST['titulo']
                 doc.f_entrada_doc = data['f_entrada_doc']
+                doc.f_entrega_dirigido = data['f_dirigido']
+                doc.f_termino = data['f_termino']
                 doc.dirigido = dir
                 doc.organismo = org
                 doc.entidad = ent
                 doc.t_documento = tdoc
+                doc.provincia = prov
                 doc.observaciones = data['observaciones']
+                doc.soporte_doc = data['soporte']
+                doc.forma_entrada = data['forma_entrada']
                 doc.save()
                 return JsonResponse(data)
             else:

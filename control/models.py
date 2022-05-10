@@ -3,7 +3,6 @@ from django.db import models
 
 # Create your models here.
 
-app_name = 'control'
 
 
 class Direcciones(models.Model):
@@ -51,16 +50,37 @@ class TipoDocumento(models.Model):
         return self.tipo
 
 
+class Provincia (models.Model):
+    nombre = models.CharField(max_length=100, null=False, blank=False)
+
+    class Meta:
+        verbose_name = 'Provincia'
+        verbose_name_plural = 'Provincias'
+
+    def __str__(self):
+        return self.nombre
+
+
 class Documento(models.Model):
+    Forma_Entrada = [
+        ('Correo', 'Correo'),
+        ('Correo electrónico', 'Correo electrónico'),
+        ('Mensajeria', 'Mensajeria'),
+        ('Fax', 'Fax'),
+        ('Personal', 'Personal'),
+    ]
     no_entrada_doc = models.IntegerField(verbose_name="Número de entrada", null=False, blank=False, unique=True)
-    no_salida_doc = models.IntegerField(verbose_name="Número de salida", null=True, blank=True, unique=True)
-    f_entrada_doc = models.DateField(verbose_name="fecha entrada", null=False, blank=False, )
-    f_salida_doc = models.DateField(verbose_name="fecha salida", null=True, blank=True)
-    titulo = models.CharField(max_length=255)
+    f_entrada_doc = models.DateField(verbose_name="fecha entrada", null=False, blank=False )
+    forma_entrada = models.CharField(choices=Forma_Entrada, default = 'Personal',max_length=55)
+    titulo = models.CharField(max_length=255, null=False, blank=False)
     dirigido = models.ForeignKey("Direcciones", on_delete=models.CASCADE, verbose_name="Dirigido a:")
+    f_entrega_dirigido = models.DateField(verbose_name="Fecha de entrega", null=False, blank=False)
     organismo = models.ForeignKey('Organismo', on_delete=models.CASCADE)
     entidad = models.ForeignKey('Entidad', on_delete=models.CASCADE)
+    provincia = models.ForeignKey('Provincia',on_delete=models.CASCADE)
     t_documento = models.ForeignKey('TipoDocumento', on_delete=models.CASCADE, verbose_name="Tipo de documento")
+    soporte_doc = models.CharField(max_length=55,null=False, blank=False)
+    f_termino = models.DateField(verbose_name="Fecha de término", null=True, blank=True)
     observaciones = models.CharField(max_length=500, null=True, blank=True)
 
     class Meta:
@@ -74,3 +94,8 @@ class Documento(models.Model):
     def last_no_doc(self):
         last = Documento.objects.all().last()
         return last
+
+
+class SalidaDocumeto(models.Model):
+    no_salida_doc = models.IntegerField(verbose_name="Número de salida", null=False, blank=False, unique=True)
+    documentos_salida = models.ForeignKey("Documento", on_delete=models.CASCADE)

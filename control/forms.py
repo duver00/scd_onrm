@@ -9,7 +9,7 @@ class DocumentoForm(forms.ModelForm):
     class Meta:
         model = Documento
         fields = ['no_entrada_doc', 'titulo', 'f_entrada_doc', 'dirigido', 'organismo', 'entidad', 't_documento',
-                  'observaciones']
+                  'observaciones','f_termino','soporte_doc','forma_entrada','provincia','f_entrega_dirigido']
 
         widgets = {
             'titulo': TextInput(attrs={
@@ -22,7 +22,7 @@ class DocumentoForm(forms.ModelForm):
                 'class': "form-control",
                 'label': "Número de entrada",
                 'placeholder': 'Número consecutivo',
-                'style': 'max-width: 200px;',
+                'style': 'max-width: 100px;',
                 'required': '',
             }),
             'f_entrada_doc': DateInput(attrs={
@@ -39,6 +39,7 @@ class DocumentoForm(forms.ModelForm):
             'organismo': Select(attrs={
                 'class': "form-control",
                 'label': 'Organismo:',
+                'placeholder': 'Organismo al que pertenece',
                 'style': 'max-width: 300px;'
             }),
             'entidad': Select(attrs={
@@ -55,6 +56,35 @@ class DocumentoForm(forms.ModelForm):
                 'class': "form-control",
                 'placeholder': 'Observaciones al documento',
                 'style': 'max-width: 500px;'
+            }),
+            'f_termino': DateInput(attrs={
+                'class': "form-control",
+                'type': 'date',
+                'label': 'Fecha de término',
+                'style': 'max-width: 200px;'
+            }),
+            'forma_entrada': Select(attrs={
+                'class': "form-control",
+                'label': 'Forma de entrada del documento',
+                'style': 'max-width: 300px;'
+            }),
+            'soporte_doc': TextInput(attrs={
+                'class': "form-control",
+                'label': "Soporte",
+                'placeholder': 'Soporte en el que se entrega',
+                'style': 'max-width: 300px;'
+            }),
+            'provincia': Select(attrs={
+                'class': "form-control",
+                'labeel': 'Provincia',
+                'placeholder': 'Provincia',
+                'style': 'max-width: 300px;'
+            }),
+            'f_entrega_dirigido': DateInput(attrs={
+                'class': "form-control",
+                'type': 'date',
+                'label': 'Fecha de entrega dirección',
+                'style': 'max-width: 200px;'
             }),
 
         }
