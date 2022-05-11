@@ -112,7 +112,7 @@ class SalidaDocumento(models.Model):
     ]
     no_salida_doc = models.IntegerField(verbose_name="Número de salida", null=False, blank=False, unique=True)
     f_salida_doc = models.DateField(verbose_name="fecha de salida", null=False, blank=False)
-    forma_entrada = models.CharField(choices=Salida, default='', max_length=55)
+    forma_salida = models.CharField(choices=Salida, default='', max_length=55)
     titulo = models.CharField(max_length=255, null=False, blank=False)
     procedencia = models.ForeignKey("Direcciones", on_delete=models.CASCADE, verbose_name="Procedencia:")
     organismo = models.ForeignKey('Organismo', on_delete=models.CASCADE)
@@ -120,7 +120,7 @@ class SalidaDocumento(models.Model):
     provincia = models.ForeignKey('Provincia', on_delete=models.CASCADE)
     t_documento_salida = models.ForeignKey('TipoDocumentoSalida', on_delete=models.CASCADE,
                                     verbose_name="Tipo de documento de saalida")
-    soporte_doc = models.CharField(max_length=55, null=False, blank=False)
+    soporte_doc_salida = models.CharField(max_length=55, null=False, blank=False)
 
     class Meta:
         verbose_name = "Salida de Documento"
