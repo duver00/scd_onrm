@@ -198,21 +198,10 @@
                                                                         label="Forma de entrada:"
                                                                         style="max-width: 300px;" required
                                                                         id="id_edit_forma_entrada">
-                                                                    <option value="" selected="">---------
-                                                                    </option>
-
-                                                                    <option value="Correo">Correo
-                                                                    </option>
-
-                                                                    <option value="Correo electrónico">Correo electrónico
-                                                                    </option>
-
-                                                                    <option value="Mensajeria">Mensajeria</option>
-
-                                                                    <option value="Fax">Fax</option>
-
-                                                                    <option value="Personal">Personal
-                                                                    </option>
+                                                                   {% for id,texto in list_formas_entrada %}
+                                                                   <option value="{{ id }}"{% if id == list_formas_entrada.id %} selected="selected"{% endif %}>{{ texto }}
+                                                                   </option>.
+                                                                    {% endfor %}
                                                                 </select>
                                                                 <h6 class="font-weight-bold mt-3">Dirigido
                                                                     a:</h6>
@@ -220,24 +209,10 @@
                                                                         label="Dirigido a:"
                                                                         style="max-width: 300px;" required
                                                                         id="id_edit_dirigido">
-                                                                    <option value="" selected="">---------
-                                                                    </option>
-
-                                                                    <option value="1">Dirección Documentación
-                                                                    </option>
-
-                                                                    <option value="2">Dirección de Registro
-                                                                    </option>
-
-                                                                    <option value="3">Dirección Técnica</option>
-
-                                                                    <option value="4">Dirección General</option>
-
-                                                                    <option value="6">Dirección Hidrocarburos
-                                                                    </option>
-
-                                                                    <option value="5">Dirección de Inspección
-                                                                    </option>
+                                                                   {% for dirigido in list_direcciones %}
+                                                                   <option value="{{ dirigido.pk }}"{% if dirigido.id == id %} selected="selected"{% endif %}>{{ dirigido }}
+                                                                   </option>
+                                                                    {% endfor %}
                                                                 </select>
                                                                  <h6 class="font-weight-bold mt-3">Fecha de
                                                                     entrega a dirección</h6>
@@ -251,16 +226,10 @@
                                                                         label="Organismo:"
                                                                         style="max-width: 300px;" required=""
                                                                         id="id_edit_organismo">
-                                                                    <option value="" selected="">---------
-                                                                    </option>
-
-                                                                    <option value="1">MINEM</option>
-
-                                                                    <option value="2">MICONS</option>
-
-                                                                    <option value="3">INRH</option>
-
-                                                                    <option value="4">MINTUR</option>
+                                                                   {% for organismo in list_organismos %}
+                                                                   <option value="{{ organismo.pk }}"{% if organismo.id == id %} selected="selected"{% endif %}>{{ organismo }}
+                                                                   </option>
+                                                                    {% endfor %}
 
                                                                 </select>
                                                                 <h6 class="font-weight-bold mt-3">Entidad</h6>
@@ -268,40 +237,31 @@
                                                                         label="Entidad:"
                                                                         style="max-width: 300px;" required=""
                                                                         id="id_edit_entidad">
-                                                                    <option value="" selected="">---------
-                                                                    </option>
-
-                                                                    <option value="1">Empresa de materiales de
-                                                                        la construccion Habana
-                                                                    </option>
-
-                                                                    <option value="2">MOA NICKEL</option>
-
-                                                                    <option value="3">Empresa de la sal
-                                                                        Caimanera
-                                                                    </option>
+                                                                    {% for entidades in list_entidad %}
+                                                                   <option value="{{ entidades.pk }}"{% if entidades.id == id %} selected="selected"{% endif %}>{{ entidades }}
+                                                                   </option>
+                                                                    {% endfor %}
                                                                 </select>
                                                                 <h6 class="font-weight-bold mt-3">Provincia</h6>
                                                                 <select name="organismo" class="form-control"
                                                                         label="Organismo:"
                                                                         style="max-width: 300px;" required=""
-                                                                        id="id_edit_organismo">
-                                                                    <option value="" selected="">---------
-                                                                    </option>
-
-                                                                    <option value=""></option>
+                                                                        id="id_edit_provincia">
+                                                                   {% for provincia in list_provincias %}
+                                                                   <option value="{{ provincia.pk }}"{% if provincia.id == id %} selected="selected"{% endif %}>{{ provincia }}
+                                                                   </option>
+                                                                    {% endfor %}
 
                                                                 </select>
                                                                  <h6 class="font-weight-bold mt-3">Tipo de documento</h6>
                                                                 <select name="t_documento" class="form-control"
                                                                         style="max-width: 300px;" required=""
                                                                         id="id_edit_t_documento">
-                                                                    <option value="" selected="">---------
-                                                                    </option>
+                                                                    {% for tdoc in list_tipos_documentos %}
+                                                                   <option value="{{ tdoc.pk }}"{% if tdoc.id == id %} selected="selected"{% endif %}>{{ tdoc }}
+                                                                   </option>
+                                                                    {% endfor %}
 
-                                                                     <option value=""></option>
-
-                                                                    <
                                                                 </select>
                                                                 <h6 class="font-weight-bold mt-3">Soporte</h6>
                                                                 <input type="text" name="soporte"
@@ -311,7 +271,7 @@
                                                                        required="True" id="id_edit_soporte">
 
                                                                 <h6 class="font-weight-bold mt-3">Fecha
-                                                                    entrada</h6>
+                                                                    de término</h6>
                                                                 <input type="date" name="f_termino"
                                                                        class="form-control"
                                                                        label="Fecha término"
@@ -377,10 +337,9 @@
                                     <input type="hidden" name="action" value="add">
                                     <div class="form-group">
                                         <label class="form-label">{{ form_entradas.no_entrada_doc.label }}:</label>
-                                        <h6 class="text-blue">*El número tiene que ser el consecutivo
-                                            de {{ no_entrada.no_entrada_doc }}</h6>
-                                        {{ form_entradas.no_entrada_doc.errors }}
-                                        {{ form_entradas.no_entrada_doc }}
+                                        <h6 class="text-blue"> {% if no_entrada.no_entrada_doc == null %}*El número tiene que ser el consecutivo
+                                            de 0 {% else %}*El número tiene que ser el consecutivo de {{ no_entrada.no_entrada_doc }} {% endif %}</h6>
+                                       {{ form_entradas.no_entrada_doc }}
                                         <h6 class="font-weight-bold mt-3">{{ form_entradas.titulo.label }}</h6>
                                         {{ form_entradas.titulo }}
                                         <h6 class="font-weight-bold mt-3">{{ form_entradas.f_entrada_doc.label }}</h6>
@@ -483,6 +442,7 @@
             }
             return cookieValue;
         }
+
       /****Capturando valores por el id para agregar****/
         d = document;
         const form_add_name = d.getElementById("form_agregar");
@@ -497,13 +457,17 @@
         const forma_entrada = d.getElementById("id_forma_entrada");
         const soporte_doc = d.getElementById("id_soporte_doc");
         const f_termino = d.getElementById("id_f_termino");
-        const f_dirigido = d.getElementById("id_f_entrega_dirigido");
+        const f_dirigido = d.getElementById("id_edit_f_entrega");
         const provincia = d.getElementById("id_provincia");
         const no_entrada = no_entrada_doc.value;
-        let last = {{ no_entrada.no_entrada_doc}};
+        {% if no_entrada.no_entrada_doc %}
+            let last = {{ no_entrada.no_entrada_doc }}
+                {% else %}
+            let last = 0;
+        {% endif %}
+        console.log(last);
         const $btn_agregar = d.getElementById("btnAceptar");
         const form = d.getElementById("myFormId");
-        const alertBox = d.getElementById('alert-box');
         const $form = d.getElementById('form_agregar');
         const tabla = d.getElementById('#tabla_entradas');
 
@@ -517,6 +481,11 @@
         const input_entidad = d.getElementById("id_edit_entidad");
         const input_t_documento = d.getElementById("id_edit_t_documento");
         const input_observaciones = d.getElementById("id_edit_observaciones");
+        const input_f_entrada_doc = d.getElementById("id_edit_forma_entrada");
+        const input_soporte_doc = d.getElementById("id_edit_soporte");
+        const input_f_termino = d.getElementById("id_edit_f_termino");
+        const input_f_dirigido = d.getElementById("id_edit_f_entrega");
+        const input_provincia = d.getElementById("id_edit_provincia");
 
 
         /* d.addEventListener('click', ev => {
@@ -545,7 +514,7 @@
              }
          })*/
 
-        const EnviarForm = ($formulario) => {
+        const EnviarForm = () => {
             d.addEventListener("submit", ev => {
                 ev.preventDefault();
                 /****Capturando valores para el envio del formulario de agregar documento****/
@@ -615,7 +584,7 @@
                         });
                 }
             });
-        }
+        };
 
 
         const handleEdit = () => {
@@ -628,6 +597,7 @@
                     fn = new FormData;
                     fn.append('ccsrfmiddlewaretoken', getCookie("csrftoken"));
                     fn.append('entrada', todos[0].innerText);
+
                     const request = new Request(
                         {% url 'editar_entradas' %},
                         {
@@ -652,7 +622,12 @@
                             input_entidad.value = data['entidad'];
                             input_t_documento.value = data['tipo_documento'];
                             input_observaciones.value = data['observaciones'];
-                            console.log(data['tipo_documento'])
+                            input_f_entrada_doc.value = data['f_entrada_doc'];
+                            input_soporte_doc.value = data['soporte_doc'];
+                            input_provincia.value = data['provincia'];
+                            input_f_termino.value = data['f_termino'];
+                            input_f_dirigido.value = data['f_dirigido'];
+
                         })
                         .catch((error) => {
                             console.log(error);
@@ -677,6 +652,11 @@
                     fd_edit.append('entidad', input_entidad.value);
                     fd_edit.append('tipo_documento', input_t_documento.value);
                     fd_edit.append('observaciones', input_observaciones.value);
+                    fd_edit.append('forma_entrada', input_f_entrada_doc.value);
+                    fd_edit.append('soporte_doc', input_soporte_doc.value);
+                    fd_edit.append('provincia', input_provincia.value);
+                    fd_edit.append('f_termino', input_f_termino.value);
+                    fd_edit.append('f_dirigido', input_f_dirigido.value);
                     const request = new Request(
                         {% url 'editar_entradas' %},
                         {
@@ -716,6 +696,7 @@
 
 
         const handleDelete = () =>{
+            console.log("dentroo")
             d.addEventListener("click", ev => {
                 let fd;
                 if(ev.target.matches(".btn-outline-danger ") || (ev.target.matches(".fa-trash"))){

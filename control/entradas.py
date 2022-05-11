@@ -20,7 +20,13 @@ class DocumentosListView(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['form_entradas'] = DocumentoForm()
-        context['no_entrada'] = Documento.last_no_doc(Documento)
+        context['no_entrada'] = Documento.objects.all().last()
+        context['list_tipos_documentos'] = TipoDocumento.objects.all()
+        context['list_organismos'] = Organismo.objects.all()
+        context['list_direcciones'] = Direcciones.objects.all()
+        context['list_provincias'] = Provincia.objects.all()
+        context['list_entidad'] = Entidad.objects.all()
+        context['list_formas_entrada'] = Documento.Entrada
         return context
 
 
@@ -95,16 +101,23 @@ class EditarDocumento(LoginRequiredMixin, UpdateView):
                             fn['organismo'] = i.organismo.pk
                             fn['tipo_documento'] = i.t_documento.pk
                             fn['observaciones'] = i.observaciones
+                            fn['f_entrada_doc'] = i.forma_entrada
+                            fn['soporte_doc'] = i.soporte_doc
+                            fn['provincia'] = i.provincia.pk
+                            fn['f_termino'] = i.f_termino
+                            fn['f_dirigido'] = i.f_entrega_dirigido
                     return JsonResponse(fn)
                 elif len(data) > 2:
                     org = Organismo()
                     ent = Entidad()
                     tdoc = TipoDocumento()
                     dir = Direcciones()
+                    prov = Provincia()
                     dir.pk = data['dirigido']
                     ent.pk = data['entidad']
                     org.pk = data['organismo']
                     tdoc.pk = data['tipo_documento']
+                    prov.pk = data['provincia']
                     doc = Documento.objects.filter(no_entrada_doc=data['no_entrada_doc'])
                     for i in doc:
                         id_doc = i.pk
@@ -112,10 +125,15 @@ class EditarDocumento(LoginRequiredMixin, UpdateView):
                     doc_editado.no_entrada_doc = data['no_entrada_doc']
                     doc_editado.f_entrada_doc = data['f_entrada_doc']
                     doc_editado.titulo = data['titulo']
+                    doc_editado.f_termino = data['f_termino']
+                    doc_editado.soporte_doc = data['soporte_doc']
+                    doc_editado.forma_entrada = data['forma_entrada']
+                    doc_editado.f_entrega_dirigido = data['f_dirigido']
                     doc_editado.dirigido = dir
                     doc_editado.organismo = org
                     doc_editado.entidad = ent
                     doc_editado.t_documento = tdoc
+                    doc_editado.provincia = prov
                     doc_editado.observaciones = data['observaciones']
                     doc_editado.save()
                     agregado['ok'] = 'editado'

@@ -3,7 +3,7 @@ from django.forms import ModelForm, TextInput, Textarea, NumberInput, DateField,
 from control.models import Documento
 
 
-# tirala aq
+# tirala aqui
 
 class DocumentoForm(forms.ModelForm):
     class Meta:
@@ -77,7 +77,6 @@ class DocumentoForm(forms.ModelForm):
             'provincia': Select(attrs={
                 'class': "form-control",
                 'labeel': 'Provincia',
-                'placeholder': 'Provincia',
                 'style': 'max-width: 300px;'
             }),
             'f_entrega_dirigido': DateInput(attrs={
