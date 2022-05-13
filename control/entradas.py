@@ -1,7 +1,6 @@
-from django.shortcuts import get_object_or_404
 from django.http import JsonResponse
 from control.models import Documento, Direcciones, Organismo, Entidad, TipoDocumento, Provincia
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView, TemplateView
 from control.forms import DocumentoForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -9,13 +8,10 @@ import datetime
 
 
 # Create your views here.
-class DocumentosListView(LoginRequiredMixin, ListView):
-    template_name = 'entradas.html'
-    context_object_name = 'list_entradas'
-    login_url = '/entrar/'
+class DocumentosTemplateView(LoginRequiredMixin, TemplateView):
+    template_name = "entradas.html"
 
-    def get_queryset(self):
-        return Documento.objects.all()
+
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -27,6 +23,7 @@ class DocumentosListView(LoginRequiredMixin, ListView):
         context['list_provincias'] = Provincia.objects.all()
         context['list_entidad'] = Entidad.objects.all()
         context['list_formas_entrada'] = Documento.Entrada
+        context['list_entradas'] = Documento.objects.all()
         return context
 
 

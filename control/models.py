@@ -83,8 +83,8 @@ class Documento(models.Model):
     observaciones = models.CharField(max_length=500, null=True, blank=True)
 
     class Meta:
-        verbose_name = 'Documento'
-        verbose_name_plural = 'Documentos'
+        verbose_name = 'Control de Entradas'
+        verbose_name_plural = 'Entradas de documentos'
         ordering = ['no_entrada_doc']
 
     def __str__(self):
@@ -95,14 +95,14 @@ class TipoDocumentoSalida(models.Model):
     tipo = models.CharField(max_length=255, null=False, blank=False)
 
     class Meta:
-        verbose_name = 'Tipo de Documento'
-        verbose_name_plural = 'Tipos de Documentos'
+        verbose_name = 'Tipo de Documento Salida'
+        verbose_name_plural = 'Tipos de Documentos de Salidas'
 
     def __str__(self):
         return self.tipo
 
 
-class SalidaDocumento(models.Model):
+class DocumentoSalida(models.Model):
     Salida = [
         ('Correo', 'Correo'),
         ('Correo electrónico', 'Correo electrónico'),
@@ -121,10 +121,11 @@ class SalidaDocumento(models.Model):
     t_documento_salida = models.ForeignKey('TipoDocumentoSalida', on_delete=models.CASCADE,
                                     verbose_name="Tipo de documento de saalida")
     soporte_doc_salida = models.CharField(max_length=55, null=False, blank=False)
+    observaciones = models.CharField(max_length=500, null=True, blank=True)
 
     class Meta:
-        verbose_name = "Salida de Documento"
-        verbose_name_plural = "Salidas de Documentos"
+        verbose_name = "Control de Salidas"
+        verbose_name_plural = "Salidas de documentos"
 
     def __str__(self):
         return self.titulo

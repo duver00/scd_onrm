@@ -2,23 +2,31 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e2c777aa-d78f-4306-b5f2-6039cf1414a5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/control/salidas.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/control/templates/salidas.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/control/migrations/0004_salidadocumento_tipodocumentosalida_and_more.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/control/migrations/0005_documentosalida_delete_salidadocumento.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/control/static/css/datatable-searchpanes/css/searchPanes.bootstrap4.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/control/static/css/datatable-searchpanes/css/searchPanes.bootstrap4.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/control/static/css/datatable-select/css/select.bootstrap4.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/control/static/css/datatable-select/css/select.bootstrap4.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/control/static/js/datatables-searchpanes/js/dataTables.searchPanes.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/control/static/js/datatables-searchpanes/js/dataTables.searchPanes.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/control/static/js/datatables-searchpanes/js/searchPanes.bootstrap4.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/control/static/js/datatables-searchpanes/js/searchPanes.bootstrap4.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/control/static/js/datatables-select/js/dataTables.select.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/control/static/js/datatables-select/js/dataTables.select.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/control/static/js/datatables-select/js/select.bootstrap4.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/control/static/js/datatables-select/js/select.bootstrap4.min.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/Templates/base.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Templates/inicio.html" beforeDir="false" afterPath="$PROJECT_DIR$/Templates/inicio.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/autenticacion/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/autenticacion/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/autenticacion/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/control/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/control/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/control/entradas.py" beforeDir="false" afterPath="$PROJECT_DIR$/control/entradas.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/control/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/control/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/control/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/control/migrations/0002_alter_documento_options_alter_documento_dirigido_and_more.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/control/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/control/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/control/static/css/adminlte.css" beforeDir="false" afterPath="$PROJECT_DIR$/control/static/css/adminlte.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/control/templates/data.html" beforeDir="false" afterPath="$PROJECT_DIR$/control/templates/entradas.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/control/salidas.py" beforeDir="false" afterPath="$PROJECT_DIR$/control/salidas.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/control/templates/entradas.html" beforeDir="false" afterPath="$PROJECT_DIR$/control/templates/entradas.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/control/templates/salidas.html" beforeDir="false" afterPath="$PROJECT_DIR$/control/templates/salidas.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/control/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/control/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scd/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/scd/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,6 +84,16 @@
         <item name="public: schema" type="983ebcf7:PgImplModel$Schema" />
         <item name="tables" type="d4e8921:DatabaseStructure$FamilyGroup" />
       </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="scd bd" type="feb32156:DbDataSourceImpl" />
+        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="control: database" type="162271b6:PgImplModel$Database" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="public: schema" type="983ebcf7:PgImplModel$Schema" />
+        <item name="tables" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="control_documento: table" type="69fad909:PgImplModel$LocalTable" />
+      </path>
     </expand>
     <select />
   </component>
@@ -104,12 +122,15 @@
     </option>
   </component>
   <component name="ProjectId" id="21SyyUuiVHYBD3QCR1LF58U27lU" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -250,7 +271,11 @@
       <workItem from="1651848786324" duration="2255000" />
       <workItem from="1652106429020" duration="16332000" />
       <workItem from="1652195420717" duration="254000" />
-      <workItem from="1652199701900" duration="12694000" />
+      <workItem from="1652199701900" duration="12825000" />
+      <workItem from="1652271851400" duration="16312000" />
+      <workItem from="1652293622695" duration="10744000" />
+      <workItem from="1652367827676" duration="13008000" />
+      <workItem from="1652444709924" duration="22149000" />
     </task>
     <task id="LOCAL-00001" summary="all files">
       <created>1645634960889</created>
@@ -350,13 +375,35 @@
       <option name="project" value="LOCAL" />
       <updated>1651784108889</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="lap dev 10/05">
+      <created>1652215829601</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1652215829602</updated>
+    </task>
+    <task id="LOCAL-00016" summary="lap dev 11/05">
+      <created>1652301851828</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1652301851828</updated>
+    </task>
+    <task id="LOCAL-00017" summary="lap dev 11/05">
+      <created>1652302920236</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1652302920236</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="all files" />
     <MESSAGE value="requirements updated" />
     <MESSAGE value="models updated 24/02" />
@@ -371,43 +418,50 @@
     <MESSAGE value="lap dev 12/04" />
     <MESSAGE value="lap dev 4/05" />
     <MESSAGE value="lap dev 5/05" />
-    <option name="LAST_COMMIT_MESSAGE" value="lap dev 5/05" />
+    <MESSAGE value="lap dev 10/05" />
+    <MESSAGE value="lap dev 11/05" />
+    <option name="LAST_COMMIT_MESSAGE" value="lap dev 11/05" />
   </component>
   <component name="WindowStateProjectService">
     <state x="84" y="39" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1646241319150">
       <screen x="0" y="0" width="1260" height="768" />
     </state>
     <state x="84" y="39" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1260.768@0.0.1260.768" timestamp="1646241319150" />
-    <state x="254" y="0" key="CommitChangelistDialog2" timestamp="1651784105545">
-      <screen x="0" y="0" width="1255" height="768" />
+    <state x="264" y="0" key="CommitChangelistDialog2" timestamp="1652302919110">
+      <screen x="0" y="0" width="1303" height="768" />
     </state>
     <state x="254" y="0" key="CommitChangelistDialog2/0.0.1255.768@0.0.1255.768" timestamp="1651784105545" />
     <state x="255" y="0" key="CommitChangelistDialog2/0.0.1260.768@0.0.1260.768" timestamp="1650655925639" />
+    <state x="264" y="0" key="CommitChangelistDialog2/0.0.1303.768@0.0.1303.768" timestamp="1652302919110" />
     <state x="87" y="6" key="DiffContextDialog" timestamp="1651784296143">
       <screen x="0" y="0" width="1255" height="768" />
     </state>
     <state x="87" y="6" key="DiffContextDialog/0.0.1255.768@0.0.1255.768" timestamp="1651784296143" />
     <state x="87" y="6" key="DiffContextDialog/0.0.1260.768@0.0.1260.768" timestamp="1649785892244" />
-    <state width="1212" height="192" key="GridCell.Tab.0.bottom" timestamp="1652207890126">
-      <screen x="0" y="0" width="1255" height="768" />
+    <state width="1260" height="192" key="GridCell.Tab.0.bottom" timestamp="1652470935383">
+      <screen x="0" y="0" width="1303" height="768" />
     </state>
     <state width="1212" height="192" key="GridCell.Tab.0.bottom/0.0.1255.768@0.0.1255.768" timestamp="1652207890126" />
     <state width="1217" height="192" key="GridCell.Tab.0.bottom/0.0.1260.768@0.0.1260.768" timestamp="1650308685445" />
-    <state width="1212" height="192" key="GridCell.Tab.0.center" timestamp="1652207890126">
-      <screen x="0" y="0" width="1255" height="768" />
+    <state width="1260" height="192" key="GridCell.Tab.0.bottom/0.0.1303.768@0.0.1303.768" timestamp="1652470935383" />
+    <state width="1260" height="192" key="GridCell.Tab.0.center" timestamp="1652470935383">
+      <screen x="0" y="0" width="1303" height="768" />
     </state>
     <state width="1212" height="192" key="GridCell.Tab.0.center/0.0.1255.768@0.0.1255.768" timestamp="1652207890126" />
     <state width="1217" height="192" key="GridCell.Tab.0.center/0.0.1260.768@0.0.1260.768" timestamp="1650308685444" />
-    <state width="1212" height="192" key="GridCell.Tab.0.left" timestamp="1652207890125">
-      <screen x="0" y="0" width="1255" height="768" />
+    <state width="1260" height="192" key="GridCell.Tab.0.center/0.0.1303.768@0.0.1303.768" timestamp="1652470935383" />
+    <state width="1260" height="192" key="GridCell.Tab.0.left" timestamp="1652470935383">
+      <screen x="0" y="0" width="1303" height="768" />
     </state>
     <state width="1212" height="192" key="GridCell.Tab.0.left/0.0.1255.768@0.0.1255.768" timestamp="1652207890125" />
     <state width="1217" height="192" key="GridCell.Tab.0.left/0.0.1260.768@0.0.1260.768" timestamp="1650308685425" />
-    <state width="1212" height="192" key="GridCell.Tab.0.right" timestamp="1652207890126">
-      <screen x="0" y="0" width="1255" height="768" />
+    <state width="1260" height="192" key="GridCell.Tab.0.left/0.0.1303.768@0.0.1303.768" timestamp="1652470935383" />
+    <state width="1260" height="192" key="GridCell.Tab.0.right" timestamp="1652470935383">
+      <screen x="0" y="0" width="1303" height="768" />
     </state>
     <state width="1212" height="192" key="GridCell.Tab.0.right/0.0.1255.768@0.0.1255.768" timestamp="1652207890126" />
     <state width="1217" height="192" key="GridCell.Tab.0.right/0.0.1260.768@0.0.1260.768" timestamp="1650308685444" />
+    <state width="1260" height="192" key="GridCell.Tab.0.right/0.0.1303.768@0.0.1303.768" timestamp="1652470935383" />
     <state width="1212" height="186" key="GridCell.Tab.1.bottom" timestamp="1651597826391">
       <screen x="0" y="0" width="1255" height="768" />
     </state>
@@ -444,20 +498,22 @@
       <screen x="0" y="0" width="1260" height="768" />
     </state>
     <state x="477" y="300" key="VCS.ChangelistChooser/0.0.1260.768@0.0.1260.768" timestamp="1646258478537" />
-    <state x="221" y="117" key="Vcs.Push.Dialog.v2" timestamp="1651784302663">
-      <screen x="0" y="0" width="1255" height="768" />
+    <state x="229" y="117" key="Vcs.Push.Dialog.v2" timestamp="1652302932354">
+      <screen x="0" y="0" width="1303" height="768" />
     </state>
     <state x="221" y="117" key="Vcs.Push.Dialog.v2/0.0.1255.768@0.0.1255.768" timestamp="1651784302663" />
     <state x="222" y="117" key="Vcs.Push.Dialog.v2/0.0.1260.768@0.0.1260.768" timestamp="1650655965999" />
+    <state x="229" y="117" key="Vcs.Push.Dialog.v2/0.0.1303.768@0.0.1303.768" timestamp="1652302932354" />
     <state x="357" y="189" key="com.intellij.database.dbimport.ImportUtil.MyDialog" timestamp="1651594526583">
       <screen x="0" y="0" width="1255" height="768" />
     </state>
     <state x="357" y="189" key="com.intellij.database.dbimport.ImportUtil.MyDialog/0.0.1255.768@0.0.1255.768" timestamp="1651594526583" />
-    <state x="325" y="208" key="com.intellij.ide.util.TipDialog" timestamp="1652199714961">
-      <screen x="0" y="0" width="1255" height="768" />
+    <state x="337" y="208" key="com.intellij.ide.util.TipDialog" timestamp="1652445255749">
+      <screen x="0" y="0" width="1303" height="768" />
     </state>
     <state x="325" y="208" key="com.intellij.ide.util.TipDialog/0.0.1255.768@0.0.1255.768" timestamp="1652199714961" />
     <state x="326" y="208" key="com.intellij.ide.util.TipDialog/0.0.1260.768@0.0.1260.768" timestamp="1650483054366" />
+    <state x="337" y="208" key="com.intellij.ide.util.TipDialog/0.0.1303.768@0.0.1303.768" timestamp="1652445255749" />
     <state x="437" y="301" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1651588499050">
       <screen x="0" y="0" width="1255" height="768" />
     </state>

@@ -17,6 +17,8 @@
         <link rel="stylesheet" href="{% static 'css/datatables-bs4/css/dataTables.bootstrap4.min.css' %}">
         <link rel="stylesheet" href="{% static 'css/datatables-responsive/css/responsive.bootstrap4.min.css' %}">
         <link rel="stylesheet" href="{% static 'css/datatables-buttons/css/buttons.bootstrap4.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/datatable-searchpanes/css/searchPanes.bootstrap4.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/datatable-select/css/select.bootstrap4.min.css' %}">
         <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
     {% endblock %}
     <!-- Theme style -->
@@ -52,7 +54,7 @@
                                         <h3 class="card-title">Listado de documentos en entrada</h3>
                                     </div>
                                     <!-- /.card-header -->
-                                    <div class="card-body" id="cardbody">
+                                    <div class="card-body mb-4" id="cardbody">
                                         <button class="button mb-2  " data-toggle="modal" data-target="#modal-default"
                                                 id="agregar">Agregar Documento
                                         </button>
@@ -200,7 +202,7 @@
                                                                         id="id_edit_forma_entrada">
                                                                    {% for id,texto in list_formas_entrada %}
                                                                    <option value="{{ id }}"{% if id == list_formas_entrada.id %} selected="selected"{% endif %}>{{ texto }}
-                                                                   </option>.
+                                                                   </option>
                                                                     {% endfor %}
                                                                 </select>
                                                                 <h6 class="font-weight-bold mt-3">Dirigido
@@ -412,21 +414,27 @@
     <script src="{% static 'css/datatables-buttons/js/buttons.print.min.js' %}"></script>
     <script src="{% static 'css/datatables-buttons/js/buttons.colVis.min.js' %}"></script>
     <script src="{% static 'js/sweetalert2/sweetalert2.all.min.js' %}"></script>
+    <script src="{% static 'js/datatables-searchpanes/js/searchPanes.bootstrap4.min.js' %}"></script>
+    <script src="{% static 'js/datatables-searchpanes/js/dataTables.searchPanes.js' %}"></script>
+    <script src="{% static 'js/datatables-select/js/dataTables.select.min.js' %}"></script>
+
     <!-- AdminLTE App -->
 
 
     <!-- Page specific script -->
     <script>
+        function getData (){
         $(function () {
             $("#tabla_entradas").DataTable({
+                dom: 'frtipP',
                 language: {
                     url: '{% static "fonts/spanish.json" %}'
                 },
                 "order": [[ 2,"asc" ]],
                 "responsive": true, "lengthChange": true, "autoWidth": false,
             }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-        });
-
+         });
+        }
         function getCookie(name) {
             let cookieValue = null;
             if (document.cookie && document.cookie !== '') {
@@ -457,7 +465,7 @@
         const forma_entrada = d.getElementById("id_forma_entrada");
         const soporte_doc = d.getElementById("id_soporte_doc");
         const f_termino = d.getElementById("id_f_termino");
-        const f_dirigido = d.getElementById("id_edit_f_entrega");
+        const f_dirigido = d.getElementById("id_f_entrega_dirigido");
         const provincia = d.getElementById("id_provincia");
         const no_entrada = no_entrada_doc.value;
         {% if no_entrada.no_entrada_doc %}
@@ -757,6 +765,7 @@
 
 
         d.addEventListener("DOMContentLoaded", () => {
+            getData();
             EnviarForm();
             handleEdit();
             handleSubmitEdit();

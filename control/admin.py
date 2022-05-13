@@ -28,10 +28,13 @@ class DocumentoAdmin(admin.ModelAdmin):
     list_filter = ( "organismo", "entidad", "dirigido")
 
 
-class SalidaDocumentoAdmin(admin.ModelAdmin):
+class DocumentoSalidaAdmin(admin.ModelAdmin):
     list_display = ("titulo", "f_salida_doc", "entidad", "procedencia", "no_salida_doc",)
     list_filter = ("organismo", "provincia", "t_documento_salida")
 
+
+class TipoDocumentoSalidaAdmin(admin.ModelAdmin):
+    list_display = ("tipo",)
 
 
 admin.site.register(Direcciones, DireccionesAdmin)
@@ -40,4 +43,5 @@ admin.site.register(Entidad, EntidadAdmin)
 admin.site.register(TipoDocumento, TipoDocumentoAdmin)
 admin.site.register(Documento, DocumentoAdmin)
 admin.site.register(Provincia, ProvinciaAdmin)
-admin.site.register(SalidaDocumento, SalidaDocumentoAdmin)
+admin.site.register(DocumentoSalida, DocumentoSalidaAdmin)
+admin.site.register(TipoDocumentoSalida, TipoDocumentoSalidaAdmin)

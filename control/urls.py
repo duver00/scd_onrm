@@ -16,15 +16,19 @@ Including another URLconf
 
 from django.urls import path
 from .views import inicio
-from .entradas import DocumentosListView, NuevoDocumentoView, EditarDocumento, EliminarDocumento
-from .salidas import salidas
+from .entradas import DocumentosTemplateView, NuevoDocumentoView, EditarDocumento, EliminarDocumento
+from .salidas import DocumentoSalidaTemplateView, NuevoDocumentoSalidaView, EditarDocumentoSalidasView, EliminarDocumentoSalidasView
+
 
 
 urlpatterns = [
     path('', inicio, name="home"),
-    path('entradas/', DocumentosListView.as_view(), name="entradas"),
+    path('entradas/', DocumentosTemplateView.as_view(), name="entradas"),
     path('crear_entradas/', NuevoDocumentoView.as_view(), name="crear_entradas"),
     path('editar_entradas/', EditarDocumento.as_view(), name="editar_entradas"),
     path('eliminar_entradas/', EliminarDocumento.as_view(), name="eliminar_entradas"),
-    path('salidas/', salidas, name="salidas"),
+    path('salidas/', DocumentoSalidaTemplateView.as_view(), name="salidas"),
+    path('crear_salidas/', NuevoDocumentoSalidaView.as_view(), name="crear_salidas"),
+    path('editar_salidas/', EditarDocumentoSalidasView.as_view(), name="editar_salidas"),
+    path('eliminar_salidas/', EliminarDocumentoSalidasView.as_view(), name="eliminar_salidas"),
 ]
