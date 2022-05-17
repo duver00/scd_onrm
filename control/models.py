@@ -11,6 +11,7 @@ class Direcciones(models.Model):
     class Meta:
         verbose_name = 'Direccion'
         verbose_name_plural = 'Direcciones'
+        app_label = 'control'
 
     def __str__(self):
         return self.nombre
@@ -22,6 +23,7 @@ class Organismo(models.Model):
     class Meta:
         verbose_name = 'Organismo'
         verbose_name_plural = 'Organismos'
+        app_label = 'control'
 
     def __str__(self):
         return self.nombre
@@ -33,6 +35,7 @@ class Entidad(models.Model):
     class Meta:
         verbose_name = 'Entidad'
         verbose_name_plural = 'Entidades'
+        app_label = 'control'
 
     def __str__(self):
         return self.nombre
@@ -44,6 +47,7 @@ class TipoDocumento(models.Model):
     class Meta:
         verbose_name = 'Tipo de Documento'
         verbose_name_plural = 'Tipos de Documentos'
+        app_label = 'control'
 
     def __str__(self):
         return self.tipo
@@ -55,6 +59,7 @@ class Provincia(models.Model):
     class Meta:
         verbose_name = 'Provincia'
         verbose_name_plural = 'Provincias'
+        app_label = 'control'
 
     def __str__(self):
         return self.nombre
@@ -97,6 +102,7 @@ class TipoDocumentoSalida(models.Model):
     class Meta:
         verbose_name = 'Tipo de Documento Salida'
         verbose_name_plural = 'Tipos de Documentos de Salidas'
+
 
     def __str__(self):
         return self.tipo

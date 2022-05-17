@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'control.apps.ControlConfig',
     'autenticacion.apps.AutenticacionConfig',
     'widget_tweaks',
+    'registro.apps.RegistroConfig',
 ]
 
 MIDDLEWARE = [

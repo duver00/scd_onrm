@@ -94,7 +94,7 @@ class EditarDocumento(LoginRequiredMixin, UpdateView):
                             fn['titulo'] = i.titulo
                             fn['f_entrada'] = i.f_entrada_doc
                             fn['dirigido'] = i.dirigido.pk
-                            fn['entidad'] = i.entidad.pk
+                            fn['entidad'] = i.entidad.pks
                             fn['organismo'] = i.organismo.pk
                             fn['tipo_documento'] = i.t_documento.pk
                             fn['observaciones'] = i.observaciones

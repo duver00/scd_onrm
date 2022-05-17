@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 {% load static %}
 <!DOCTYPE html>
 <html lang="es">
@@ -23,6 +23,7 @@
     {% endblock %}
     <!-- Theme style -->
     <link rel="stylesheet" href="{% static 'css/adminlte.min.css' %}">
+
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -34,6 +35,8 @@
 
     <!-- /.sidebar -->
     </aside>
+
+    <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper" id="wrapper">
         <!-- Content Header (Page header) -->
         <!-- Main content -->
@@ -48,39 +51,37 @@
 
                                 <div class="card">
                                     <div class="card-header">
-                                        <h3 class="card-title">Listado de documentos de salida</h3>
+                                        <h3 class="card-title">Listado de documentos en entrada</h3>
                                     </div>
                                     <!-- /.card-header -->
-                                    <div class="card-body" id="cardbody">
+                                    <div class="card-body mb-4" id="cardbody">
                                         <button class="button mb-2  " data-toggle="modal" data-target="#modal-default"
                                                 id="agregar">Agregar Documento
                                         </button>
-                                        <table id="tabla_salidas" class="table table-bordered table-striped">
+                                        <table id="tabla_entradas" class="table table-bordered table-striped">
                                             <thead>
                                             <tr>
-                                                <th>No. Salida</th>
+                                                <th>No.</th>
                                                 <th>Título</th>
-                                                <th>Fecha salida(s)</th>
+                                                <th>Fecha entrada(s)</th>
                                                 <th>Organismo</th>
                                                 <th>Entidad</th>
-                                                <th>Procedencia</th>
                                                 <th>Acciones</th>
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            {% for salidas in  list_salidas %}
+                                            {% for entradas in  list_entradas %}
                                                 <tr>
-                                                    <td>{{ salidas.no_salida_doc }}</td>
-                                                    <td>{{ salidas.titulo }}</td>
-                                                    <td>{{ salidas.f_salida_doc }}</td>
-                                                    <td> {{ salidas.organismo }}</td>
-                                                    <td> {{ salidas.entidad }}</td>
-                                                    <td> {{ salidas.procedencia }}</td>
+                                                    <td>{{ entradas.no_registro }}</td>
+                                                    <td>{{ entradas.titulo }}</td>
+                                                    <td>{{ entradas.f_entrada_registro }}</td>
+                                                    <td> {{ entradas.organismo }}</td>
+                                                    <td> {{ entradas.entidad }}</td>
                                                     <td>
                                                         <div class="button btn-group inline-group">
                                                             <button type="button" data-toggle="modal"
-                                                                    data-target="#detalles{{ salidas.pk }}"
-                                                                    id="{{ salidas.pk }}"
+                                                                    data-target="#detalles{{ entradas.pk }}"
+                                                                    id="{{ entradas.pk }}"
                                                                     class="btn-sm btn-outline-info btn-floating "
                                                                     data-bs-toggle="tooltip" data-bs-placement="bottom"
                                                                     title="Mostrar documento">
@@ -93,7 +94,7 @@
                                                                     title="Editar documento">
                                                                 <i class="fa fa-edit"></i>
                                                             </button>
-                                                            <button type="button" id="{{ salidas.pk }}"
+                                                            <button type="button" id="{{ entradas.pk }}"
                                                                     class="btn btn-outline-danger btn-floating"
                                                                     data-bs-toggle="tooltip" data-bs-placement="top"
                                                                     title="Eliminar documento">
@@ -103,7 +104,7 @@
                                                     </td>
                                                 </tr>
                                                 <!-- /.modal-Detalles -->
-                                                <div class="modal fade" id="detalles{{ salidas.pk }}">
+                                                <div class="modal fade" id="detalles{{ entradas.pk }}">
                                                     <div id="alert-box"></div>
                                                     <div class="modal-dialog">
                                                         <div class="modal-content">
@@ -119,31 +120,26 @@
                                                             <div class="modal-body">
                                                                 <div class="form-group">
                                                                     <label class="form-label h5">Número de
-                                                                        entrada:</label>
-                                                                    {{ salidas.no_salida_doc }}
+                                                                        entrada en Registro:</label><br>
+                                                                    {{ entradas.no_registro }}<br>
+                                                                    <label class="form-label h5">Número de
+                                                                        entrada en Documentación:</label><br>
+                                                                    {{ entradas.no_entrada }}
                                                                     <h5 class="font-weight-bold mt-3">Título</h5>
-                                                                    {{ salidas.titulo }}
+                                                                    {{ entradas.titulo }}
                                                                     <h5 class="font-weight-bold mt-3">Fecha de
-                                                                        salida</h5>
-                                                                    {{ salidas.f_salida_doc }}
-                                                                    <h5 class="font-weight-bold mt-3">Forma de salida</h5>
-                                                                    {{ salidas.forma_salida }}
-                                                                    <h5 class="font-weight-bold mt-3">Procedencia</h5>
-                                                                    {{ salidas.procedencia }}
+                                                                        entrada</h5>
+                                                                    {{ entradas.f_entrada_registro}}
                                                                     <h5 class="font-weight-bold mt-3">Organismo</h5>
-                                                                    {{ salidas.organismo }}
+                                                                    {{ entradas.organismo }}
                                                                     <h5 class="font-weight-bold mt-3">Entidad</h5>
-                                                                    {{ salidas.entidad }}<br>
+                                                                    {{ entradas.entidad }}<br>
                                                                     <h5 class="font-weight-bold mt-3">Provincia</h5>
-                                                                    {{ salidas.provincia }}<br>
-                                                                    <label class="form-label mt-3">Tipo de
-                                                                        documento</label><br>
-                                                                    {{ salidas.t_documento_salida }}<br>
-                                                                    <label class="form-label mt-3">Soporte del documento
-                                                                        </label><br>
-                                                                    {{ salidas.soporte_doc_salida }}
+                                                                    {{ entradas.provincia }}<br>
+                                                                    <h5 class="font-weight-bold mt-3">Tipo de documento</h5>
+                                                                    {{ entradas.t_documento }}
                                                                     <h5 class="font-weight-bold mt-3">Observaciones</h5>
-                                                                    {{ salidas.observaciones }}
+                                                                    {{ entradas.observaciones }}
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -169,12 +165,12 @@
                                                                     {% csrf_token %}
                                                                     <input type="hidden" name="action" value="edit">
                                                                     <div class=" form-group" >
-                                                                <input type="number" name="no_salida_doc"
+                                                                <input type="number" name="no_entrada_doc"
                                                                        class="form-control"
                                                                        label="Número de entrada"
                                                                        placeholder="Número consecutivo"
                                                                        style="max-width: 200px;" hidden required
-                                                                       id="id_edit_no_salida_doc">
+                                                                       id="id_edit_no_entrada">
                                                                 <h6 class="font-weight-bold mt-3">Titulo</h6>
                                                                 <input type="text" name="titulo"
                                                                        class="form-control" label="Título"
@@ -182,51 +178,20 @@
                                                                        style="max-width: 500px;" maxlength="255"
                                                                        required="True" id="id_edit_titulo">
                                                                 <h6 class="font-weight-bold mt-3">Fecha
-                                                                    salida</h6>
-                                                                <input type="date" name="f_salida_doc"
+                                                                    entrada a registro</h6>
+                                                                <input type="date" name="f_entrada_doc"
                                                                        class="form-control"
-                                                                       label="Fecha de salida"
+                                                                       label="Fecha de entrada"
                                                                        style="max-width: 200px;" required
-                                                                       id="id_edit_f_salida_doc">
-                                                                   <h6 class="font-weight-bold mt-3">Forma de salida
-                                                                    </h6>
-                                                                <select name="forma salida" class="form-control"
-                                                                        label="Forma de salida:"
-                                                                        style="max-width: 300px;" required
-                                                                        id="id_edit_forma_salida">
-                                                                   {% for id,texto in list_formas_salidas %}
-                                                                   <option value="{{ id }}"{% if id == list_formas_salidas.id %} selected="selected"{% endif %}>{{ texto }}
-                                                                   </option>.
-                                                                    {% endfor %}
-                                                                </select>
-                                                                <h6 class="font-weight-bold mt-3">Procendencia
-                                                                    </h6>
-                                                                <select name="procedencia" class="form-control"
-                                                                        label="Procendencia"
-                                                                        style="max-width: 300px;" required
-                                                                        id="id_edit_procedencia">
-                                                                    {% for procedencia in list_direcciones %}
-                                                                   <option value="{{ procedencia.pk }}"{% if procedencia.id == id %} selected="selected"{% endif %}>{{ procedencia }}
-                                                                   </option>
-                                                                    {% endfor %}
-                                                                </select>
+                                                                       id="id_edit_f_entrada_registo">
+
                                                                 <h6 class="font-weight-bold mt-3">Organismo</h6>
                                                                 <select name="organismo" class="form-control"
                                                                         label="Organismo:"
                                                                         style="max-width: 300px;" required=""
                                                                         id="id_edit_organismo">
-                                                                    {% for organismo in list_organismos %}
+                                                                   {% for organismo in list_organismos %}
                                                                    <option value="{{ organismo.pk }}"{% if organismo.id == id %} selected="selected"{% endif %}>{{ organismo }}
-                                                                   </option>
-                                                                    {% endfor %}
-                                                                </select>
-                                                                <h6 class="font-weight-bold mt-3">Provincia</h6>
-                                                                <select name="organismo" class="form-control"
-                                                                        label="Organismo:"
-                                                                        style="max-width: 300px;" required=""
-                                                                        id="id_edit_provincia">
-                                                                   {% for provincia in list_provincias %}
-                                                                   <option value="{{ provincia.pk }}"{% if provincia.id == id %} selected="selected"{% endif %}>{{ provincia }}
                                                                    </option>
                                                                     {% endfor %}
                                                                 </select>
@@ -240,26 +205,27 @@
                                                                    </option>
                                                                     {% endfor %}
                                                                 </select>
-
-                                                                <label class="form-label mt-3">Tipo de
-                                                                    documento de salida</label>
-                                                                <select name="t_documento" class="form-control"
-                                                                        label="Dirigido a:"
+                                                                <h6 class="font-weight-bold mt-3">Provincia</h6>
+                                                                <select name="organismo" class="form-control"
+                                                                        label="Organismo:"
                                                                         style="max-width: 300px;" required=""
-                                                                        id="id_edit_t_documento_salida">
-                                                                    {% for tdoc in list_tipos_documentos_salidas %}
-                                                                   <option value="{{ tdoc.pk }}"{% if tdoc.id == id %} selected="selected"{% endif %}>{{ tdoc }}
+                                                                        id="id_edit_provincia">
+                                                                   {% for provincia in list_provincias %}
+                                                                   <option value="{{ provincia.pk }}"{% if provincia.id == id %} selected="selected"{% endif %}>{{ provincia }}
                                                                    </option>
                                                                     {% endfor %}
 
                                                                 </select>
-                                                                 <h6 class="font-weight-bold mt-3">Soporte de Salida</h6>
-                                                                <input type="text" name="soporte_doc_salida"
-                                                                       class="form-control" label="Soporte de salida"
-                                                                       placeholder="Soporte en el que se entrega"
-                                                                       style="max-width: 500px;" maxlength="255"
-                                                                       required="True" id="id_edit_soporte_salida">
-                                                                <h6 class="font-weight-bold mt-3">
+                                                                 <h6 class="font-weight-bold mt-3">Tipo de documento</h6>
+                                                                <select name="t_documento" class="form-control"
+                                                                        style="max-width: 300px;" required=""
+                                                                        id="id_edit_t_documento">
+                                                                    {% for tdoc in list_tipos_documentos %}
+                                                                   <option value="{{ tdoc.pk }}"{% if tdoc.id == id %} selected="selected"{% endif %}>{{ tdoc }}
+                                                                   </option>
+                                                                    {% endfor %}
+                                                                </select>
+                                                                 <h6 class="font-weight-bold mt-3">
                                                                     Observaciones</h6>
                                                                 <textarea name="observaciones" cols="40"
                                                                           rows="10" class="form-control"
@@ -299,8 +265,9 @@
                 </div>
                 <!-- /.container-fluid -->
                 </section>
+
                 </div>
-                   <!-- Modal de agregar documentos junto son su alert -->
+                <!-- Modal de agregar documentos junto son su alert -->
                 <div class="modal fade" id="modal-default">
                     <div id="alert-box"></div>
                     <div class="modal-dialog">
@@ -317,30 +284,26 @@
                                     {% csrf_token %}
                                     <input type="hidden" name="action" value="add">
                                     <div class="form-group">
-                                        <label class="form-label">{{ form_salidas.no_salida_doc.label }}:</label>
-                                        <h6 class="text-blue"> {% if no_salida.no_salida_doc == null %}*El número tiene que ser el consecutivo
-                                            de 0 {% else %}*El número tiene que ser el consecutivo de {{ no_salida.no_salida_doc }} {% endif %}</h6>
-                                       {{ form_salidas.no_salida_doc }}
-                                        <h6 class="font-weight-bold mt-3">{{ form_salidas.titulo.label }}</h6>
-                                        {{ form_salidas.titulo }}
-                                        <h6 class="font-weight-bold mt-3">{{ form_salidas.f_salida_doc.label }}</h6>
-                                        {{ form_salidas.f_salida_doc }}
-                                        <h6 class="font-weight-bold mt-3">{{ form_salidas.forma_salida.label }}</h6>
-                                        {{ form_salidas.forma_salida }}
-                                        <h6 class="font-weight-bold mt-3">{{ form_salidas.procedencia.label }}</h6>
-                                        {{ form_salidas.procedencia }}
-                                        <h6 class="font-weight-bold mt-3">{{ form_salidas.organismo.label }}</h6>
-                                        {{ form_salidas.organismo }}
-                                        <h6 class="font-weight-bold mt-3">{{ form_salidas.entidad.label }}</h6>
-                                        {{ form_salidas.entidad }}
-                                        <h6 class="font-weight-bold mt-3">{{ form_salidas.provincia.label }}</h6>
-                                        {{ form_salidas.provincia }}
-                                        <label class="form-label mt-3">{{ form_salidas.t_documento_salida.label }}</label>
-                                        {{ form_salidas.t_documento_salida }}
-                                        <label class="form-label mt-3">{{ form_salidas.soporte_doc_salida.label }}</label>
-                                        {{ form_salidas.soporte_doc_salida }}
-                                       <h6 class="font-weight-bold mt-3">{{ form_salidas.observaciones.label }}</h6>
-                                        {{ form_salidas.observaciones }}
+                                        <label class="form-label">{{ form_entradas.no_registro.label }}</label>
+                                        <h6 class="text-blue"> {% if no_registro.no_registro == null %}*El número tiene que ser el consecutivo
+                                            de 0 {% else %}*El número tiene que ser el consecutivo de {{ no_registro.no_registro}} {% endif %}</h6>
+                                       {{ form_entradas.no_registro }}
+                                    <label class="form-label">{{ form_entradas.no_entrada.label }}</label>
+                                       {{ form_entradas.no_entrada }}
+                                        <h6 class="font-weight-bold mt-3">{{ form_entradas.titulo.label }}</h6>
+                                        {{ form_entradas.titulo }}
+                                        <h6 class="font-weight-bold mt-3">{{ form_entradas.f_entrada_registro.label }}</h6>
+                                        {{ form_entradas.f_entrada_registro }}
+                                        <h6 class="font-weight-bold mt-3">{{ form_entradas.organismo.label }}</h6>
+                                        {{ form_entradas.organismo }}
+                                        <h6 class="font-weight-bold mt-3">{{ form_entradas.entidad.label }}</h6>
+                                        {{ form_entradas.entidad }}
+                                        <h6 class="font-weight-bold mt-3">{{ form_entradas.provincia.label }}</h6>
+                                        {{ form_entradas.provincia }}
+                                        <label class="form-label mt-3">{{ form_entradas.t_documento.label }}</label>
+                                        {{ form_entradas.t_documento }}
+                                        <h6 class="font-weight-bold mt-3">{{ form_entradas.observaciones.label }}</h6>
+                                        {{ form_entradas.observaciones }}
                                     </div>
                                     <div class="modal-footer mx-auto">
                                         <button type="submit" id="btnAceptar" class="btn btn-outline-primary">Agregar
@@ -355,23 +318,23 @@
                         <!-- /.modal-content -->
                     </div>
                     <!-- /.modal-dialog -->
-                 </div>
-
-
+                </div>
                 <!-- /.modal -->
-             <!-- Modal de detalles -->
+                <!-- Modal de detalles -->
 
                 <!-- /.content -->
-{% endblock body %}
-
+            {% endblock %}
+    <!-- /.content-wrapper -->
+    <!-- Control Sidebar -->
     <aside class="control-sidebar control-sidebar-dark">
         <!-- Control sidebar content goes here -->
     </aside>
-
+    <!-- /.control-sidebar -->
 </div>
+<!-- ./wrapper -->
 {% block script %}
     <!-- jQuery -->
-   <script src="{% static 'js/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'js/jquery/jquery.min.js' %}"></script>
     <!-- Bootstrap 4 -->
     <script src="{% static 'js/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
     <script src="{% static 'js/entradas.js' %}"></script>
@@ -393,12 +356,14 @@
     <script src="{% static 'js/datatables-searchpanes/js/dataTables.searchPanes.js' %}"></script>
     <script src="{% static 'js/datatables-select/js/dataTables.select.min.js' %}"></script>
 
+    <!-- AdminLTE App -->
 
 
-<script>
+    <!-- Page specific script -->
+    <script>
         function getData (){
         $(function () {
-            $("#tabla_salidas").DataTable({
+            $("#tabla_entradas").DataTable({
                 dom: 'frtipP',
                 language: {
                     url: '{% static "fonts/spanish.json" %}'
@@ -408,7 +373,6 @@
             }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
          });
         }
-        //Capturar el valor del csrf
         function getCookie(name) {
             let cookieValue = null;
             if (document.cookie && document.cookie !== '') {
@@ -427,36 +391,36 @@
 
       /****Capturando valores por el id para agregar****/
         d = document;
-        const no_salida_doc = d.getElementById("id_no_salida_doc");
+        const form_add_name = d.getElementById("form_agregar");
+        const no_registro_doc = d.getElementById("id_no_registro");
+        const no_entrada_doc = d.getElementById("id_no_entrada");
         const titulo = d.getElementById("id_titulo");
-        const f_salida_doc = d.getElementById("id_f_salida_doc");
-        const procedencia = d.getElementById("id_procedencia");
+        const f_entrada_registro = d.getElementById("id_f_entrada_registro");
         const organismo = d.getElementById("id_organismo");
         const entidad = d.getElementById("id_entidad");
-        const tipo_documento_salida = d.getElementById("id_t_documento_salida");
+        const tipo_documento = d.getElementById("id_t_documento");
         const observaciones = d.getElementById("id_observaciones");
-        const forma_salida = d.getElementById("id_forma_salida");
-        const soporte_doc_salida = d.getElementById("id_soporte_doc_salida");
         const provincia = d.getElementById("id_provincia");
-        const no_salida = no_salida_doc.value;
-        {% if no_salida.no_salida_doc %}
-            let last = {{ no_salida.no_salida_doc }}
+        const no_entrada = no_registro_doc.value;
+        {% if no_registro.no_registro%}
+            let last = {{ no_registro.no_registro}}
                 {% else %}
             let last = 0;
         {% endif %}
+        console.log(last);
+        const form = d.getElementById("myFormId");
+        const $form = d.getElementById('form_agregar');
+        const tabla = d.getElementById('#tabla_entradas');
 
         /****Capturando id para pasarle valores para el form editar****/
-
-        const input_no_salida = d.getElementById("id_edit_no_salida_doc");
+        const input_no_entrada = d.getElementById("id_edit_no_entrada");
+        const input_no_registro = d.getElementById("id_edit_no_registro");
         const input_titulo = d.getElementById("id_edit_titulo");
-        const input_f_salida = d.getElementById("id_edit_f_salida_doc");
-        const input_procedencia = d.getElementById("id_edit_procedencia");
+        const input_f_entrada = d.getElementById("id_edit_f_entrada_registro");
         const input_organismo = d.getElementById("id_edit_organismo");
         const input_entidad = d.getElementById("id_edit_entidad");
-        const input_t_documento_salida = d.getElementById("id_edit_t_documento_salida");
+        const input_t_documento = d.getElementById("id_edit_t_documento");
         const input_observaciones = d.getElementById("id_edit_observaciones");
-        const input_forma_salida_doc = d.getElementById("id_edit_forma_salida");
-        const input_soporte_doc_salida = d.getElementById("id_edit_soporte_salida");
         const input_provincia = d.getElementById("id_edit_provincia");
 
 
@@ -494,32 +458,31 @@
                 fd_add = new FormData;
                 fd_add.append('ccsrfmiddlewaretoken', getCookie("csrftoken"));
                 fd_add.append('titulo', titulo.value);
-                fd_add.append('no_salida_doc', no_salida_doc.value);
-                fd_add.append('f_salida_doc', f_salida_doc.value);
-                fd_add.append('procedencia', procedencia.value);
+                fd_add.append('no_registro', no_registro_doc.value);
+                fd_add.append('no_entrada_doc', no_entrada_doc.value);
+                fd_add.append('f_entrada_registro', f_entrada_registro.value);
                 fd_add.append('organismo', organismo.value);
                 fd_add.append('entidad', entidad.value);
-                fd_add.append('tipo_documento_salida', tipo_documento_salida.value);
+                fd_add.append('tipo_documento', tipo_documento.value);
                 fd_add.append('observaciones', observaciones.value);
                 fd_add.append('provincia', provincia.value);
-                fd_add.append('soporte_salida', soporte_doc_salida.value);
-                fd_add.append('forma_salida', forma_salida.value);
 
-                if (last >= no_salida_doc.value) {
+                if (last >= no_entrada.value) {
                     Swal.fire(
                           'Error!',
                           'Existe un error en el número de entrada',
                           'error'
                         )
-                } else if (last + 1 < no_salida_doc.value) {
+                } else if (last + 1 < no_entrada.value) {
                      Swal.fire(
                           'Error!',
                           'Existe un error en el número de entrada',
                           'error'
                         )
                 } else {
+                    const msg = 'Documento agregado';
                     const request = new Request(
-                        {% url 'crear_salidas' %},
+                        {% url 'nuevo_entrada_registro' %},
                         {
                             headers: {'X-CSRFToken': getCookie("csrftoken")},
                             'Accept': 'application/json, application/xml, text/plain, text/html, *.*',
@@ -565,9 +528,10 @@
                         todos = $alltr.querySelectorAll('td');
                     fn = new FormData;
                     fn.append('ccsrfmiddlewaretoken', getCookie("csrftoken"));
-                    fn.append('salida', todos[0].innerText);
+                    fn.append('registro', todos[0].innerText);
+                       console.log(todos[0].innerText)
                     const request = new Request(
-                        {% url 'editar_salidas' %},
+                        {% url 'editar_entradas_registro' %},
                         {
                             headers: {'X-CSRFToken': getCookie("csrftoken")},
                             'Accept': 'application/json, application/xml, text/plain, text/html, *.*',
@@ -582,31 +546,26 @@
                     })
                         .then(response => response.json())
                         .then(data => {
-                            console.log(data);
-                            input_no_salida.value = data['no_salida_doc'];
+                            console.log(data)
+                            input_no_entrada.value = data['no_entrada_doc'];
+                            input_no_entrada.value = data['no_registro'];
                             input_titulo.value = data['titulo'];
-                            input_f_salida.value = data['f_salida_doc'];
-                            input_provincia.value = data['provincia'];
+                            input_f_entrada.value = data['f_entrada_registro'];
                             input_organismo.value = data['organismo'];
                             input_entidad.value = data['entidad'];
-                            input_t_documento_salida.value = data['tipo_documento_salida'];
+                            input_t_documento.value = data['tipo_documento'];
                             input_observaciones.value = data['observaciones'];
-                            input_forma_salida_doc.value = data['forma_salida'];
-                            input_procedencia.value = data['procedencia'];
-                            input_soporte_doc_salida.value = data['soporte_salida'];
+                            input_provincia.value = data['provincia'];
+
+
+
                         })
                         .catch((error) => {
                             console.log(error);
-                            swal.fire({
-                              icon: 'error',
-                              title: 'Oops...',
-                              text: 'Algo salió mal!',
-                              footer: error
-                                })
+                        });
 
-                         })
-
-              }  });
+                }
+            });
         };
 
         const handleSubmitEdit = () => {
@@ -615,20 +574,22 @@
                     let fd_edit;
                     fd_edit = new FormData;
                     fd_edit.append('ccsrfmiddlewaretoken', getCookie("csrftoken"));
+                    fd_edit.append('action','editar');
                     fd_edit.append('titulo', input_titulo.value);
-                    fd_edit.append('no_salida_doc', input_no_salida.value);
-                    fd_edit.append('f_salida_doc', input_f_salida.value);
-                    fd_edit.append('procedencia', input_procedencia.value);
+                    fd_edit.append('no_entrada_doc', input_no_entrada.value);
+                    fd_edit.append('f_entrada_doc', input_f_entrada.value);
+                    fd_edit.append('dirigido', input_dirigido.value);
                     fd_edit.append('organismo', input_organismo.value);
                     fd_edit.append('entidad', input_entidad.value);
-                    fd_edit.append('tipo_documento_salida', input_t_documento_salida.value);
+                    fd_edit.append('tipo_documento', input_t_documento.value);
                     fd_edit.append('observaciones', input_observaciones.value);
-                    fd_edit.append('forma_salida', input_forma_salida_doc.value);
-                    fd_edit.append('soporte_salida', input_soporte_doc_salida.value);
+                    fd_edit.append('forma_entrada', input_f_entrada_doc.value);
+                    fd_edit.append('soporte_doc', input_soporte_doc.value);
                     fd_edit.append('provincia', input_provincia.value);
-
+                    fd_edit.append('f_termino', input_f_termino.value);
+                    fd_edit.append('f_dirigido', input_f_dirigido.value);
                     const request = new Request(
-                        {% url 'editar_salidas' %},
+                        {% url 'editar_entradas_registro' %},
                         {
                             headers: {'X-CSRFToken': getCookie("csrftoken")},
                             'Accept': 'application/json, application/xml, text/plain, text/html, *.*',
@@ -656,12 +617,6 @@
                         })
                         .catch((error) => {
                             console.log(error);
-                            swal.fire({
-                              icon: 'error',
-                              title: 'Oops...',
-                              text: 'Algo salió mal!',
-                              footer: error
-                                })
                         });
                 }
 
@@ -672,6 +627,7 @@
 
 
         const handleDelete = () =>{
+            console.log("dentroo")
             d.addEventListener("click", ev => {
                 let fd;
                 if(ev.target.matches(".btn-outline-danger ") || (ev.target.matches(".fa-trash"))){
@@ -692,9 +648,9 @@
 
                            fd = new FormData;
                            fd.append('ccsrfmiddlewaretoken', getCookie("csrftoken"));
-                           fd.append('salida', todos[0].innerText);
+                           fd.append('entrada', todos[0].innerText);
                             const request = new Request(
-                                {% url 'eliminar_salidas' %},
+                                {% url 'eliminar_entradas_registro' %},
                                 {
                                     headers: {'X-CSRFToken': getCookie("csrftoken")},
                                     'Accept': 'application/json, application/xml, text/plain, text/html, *.*',
@@ -721,12 +677,6 @@
                                 })
                                 .catch((error) => {
                                     console.log(error);
-                                    swal.fire({
-                                      icon: 'error',
-                                      title: 'Oops...',
-                                      text: 'Algo salió mal!',
-                                      footer: error
-                                })
                                 });
 
                       }
@@ -738,13 +688,14 @@
 
 
         d.addEventListener("DOMContentLoaded", () => {
-            getData()
+            getData();
             EnviarForm();
             handleEdit();
             handleSubmitEdit();
             handleDelete()
         });
+
+
     </script>
 {% endblock %}
 </body>
-</html>
