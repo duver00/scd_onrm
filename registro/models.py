@@ -22,3 +22,23 @@ class DocumentosRegistro(models.Model):
 
     def __str__(self):
         return self.titulo
+
+
+
+class SalidasRegistro(models.Model):
+    no_salida_registro = models.IntegerField(verbose_name="Número de salida registro", null=False, blank=False, unique=True)
+    f_salida_registro = models.DateField(verbose_name="fecha de salida registro", null=False, blank=False)
+    titulo = models.CharField(max_length=255, null=False, blank=False)
+    organismo = models.ForeignKey('control.Organismo', on_delete=models.CASCADE)
+    entidad = models.ForeignKey('control.Entidad', on_delete=models.CASCADE)
+    provincia = models.ForeignKey('control.Provincia', on_delete=models.CASCADE)
+    t_documento_salida = models.ForeignKey('control.TipoDocumentoSalida', on_delete=models.CASCADE,
+                                           verbose_name="Tipo de documento de saalida")
+    observaciones = models.CharField(max_length=500, null=True, blank=True)
+
+    class Meta:
+        verbose_name = "Salida de registro"
+        verbose_name_plural = "Salidas de documentos en registro"
+
+    def __str__(self):
+        return self.titulo
