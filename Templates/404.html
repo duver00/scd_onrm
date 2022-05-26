@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% load static %}
+<title>Error 404</title>
+ {% block body %}
+      <h2 class="d-flex justify-content-center" style="color: red">Error 404 No se encuentra el recurso</h2>
+      <h3 class="d-flex justify-content-center">Esta intentando acceder a un recurso que no existe</h3>
+      <a class="d-flex justify-content-center" href="{% url 'home' %}">Regresar</a>
+
+{% endblock %}

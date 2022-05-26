@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% load static %}
+<title>Error 500</title>
+ {% block body %}
+      <h2 class="d-flex justify-content-center" style="color: red">Error 500</h2>
+      <h3 class="d-flex justify-content-center">Existe un error en el servidor por favor notifique al administrador</h3>
+      <a class="d-flex justify-content-center" href="{% url 'home' %}">Regresar</a>
+
+{% endblock %}

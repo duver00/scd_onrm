@@ -58,7 +58,7 @@
                                         <button class="button mb-2  " data-toggle="modal" data-target="#modal-default"
                                                 id="agregar">Agregar Documento
                                         </button>
-                                        <table id="tabla_entradas" class="table table-bordered table-striped">
+                                        <table id="tabla_entradas_tecnica" class="table table-bordered table-striped">
                                             <thead>
                                             <tr>
                                                 <th>No.</th>
@@ -66,21 +66,19 @@
                                                 <th>Fecha entrada(s)</th>
                                                 <th>Organismo</th>
                                                 <th>Entidad</th>
-                                                <th>Dirigido a:</th>
                                                 <th>Acciones</th>
                                             </tr>
                                             </thead>
                                             <tbody>
                                             {% for entradas in  list_entradas %}
                                                 <tr>
-                                                    <td>{{ entradas.no_entrada_doc }}</td>
+                                                    <td>{{ entradas.no_tecnica}}</td>
                                                     <td>{{ entradas.titulo }}</td>
-                                                    <td>{{ entradas.f_entrada_doc }}</td>
+                                                    <td>{{ entradas.f_entrada_tecnica }}</td>
                                                     <td> {{ entradas.organismo }}</td>
                                                     <td> {{ entradas.entidad }}</td>
-                                                    <td> {{ entradas.dirigido }}</td>
                                                     <td>
-                                                        <div class="button btn-group d-flex justify-content-center">
+                                                        <div class="button btn-group inline-group">
                                                             <button type="button" data-toggle="modal"
                                                                     data-target="#detalles{{ entradas.pk }}"
                                                                     id="{{ entradas.pk }}"
@@ -122,20 +120,16 @@
                                                             <div class="modal-body">
                                                                 <div class="form-group">
                                                                     <label class="form-label h5">Número de
-                                                                        entrada:</label>
-                                                                    {{ entradas.no_entrada_doc }}
+                                                                        entrada en técnica:</label><br>
+                                                                    {{ entradas.no_tecnica }}<br>
+                                                                    <label class="form-label h5">Número de
+                                                                        entrada en documentación:</label><br>
+                                                                    {{ entradas.no_entrada }}
                                                                     <h5 class="font-weight-bold mt-3">Título</h5>
                                                                     {{ entradas.titulo }}
                                                                     <h5 class="font-weight-bold mt-3">Fecha de
                                                                         entrada</h5>
-                                                                    {{ entradas.f_entrada_doc }}
-                                                                    <h5 class="font-weight-bold mt-3"></h5>
-                                                                    <h5 class="font-weight-bold mt-3">Forma de entrega</h5>
-                                                                    {{ entradas.forma_entrada }}<br>
-                                                                    <h5 class="font-weight-bold mt-3">Dirigido a:</h5>
-                                                                    {{ entradas.dirigido }}
-                                                                    <h5 class="font-weight-bold mt-3">Fecha de entrega dirección</h5>
-                                                                    {{ entradas.f_entrega_dirigido }}
+                                                                    {{ entradas.f_entrada_tecnica}}
                                                                     <h5 class="font-weight-bold mt-3">Organismo</h5>
                                                                     {{ entradas.organismo }}
                                                                     <h5 class="font-weight-bold mt-3">Entidad</h5>
@@ -144,10 +138,6 @@
                                                                     {{ entradas.provincia }}<br>
                                                                     <h5 class="font-weight-bold mt-3">Tipo de documento</h5>
                                                                     {{ entradas.t_documento }}
-                                                                    <h5 class="font-weight-bold mt-3">Soporte</h5>
-                                                                    {{ entradas.soporte_doc }}<br>
-                                                                    <h5 class="font-weight-bold mt-3">Fecha de término</h5>
-                                                                    {{ entradas.f_termino }}<br>
                                                                     <h5 class="font-weight-bold mt-3">Observaciones</h5>
                                                                     {{ entradas.observaciones }}
                                                                 </div>
@@ -175,12 +165,18 @@
                                                                     {% csrf_token %}
                                                                     <input type="hidden" name="action" value="edit">
                                                                     <div class=" form-group" >
-                                                                <input type="number" name="no_entrada_doc"
+                                                                 <input type="number" name="no_registro"
                                                                        class="form-control"
-                                                                       label="Número de entrada"
+                                                                       label="Número de entrada registro"
                                                                        placeholder="Número consecutivo"
                                                                        style="max-width: 200px;" hidden required
-                                                                       id="id_edit_no_entrada_doc">
+                                                                       id="id_edit_no_tecnica">
+                                                                <input type="number" name="no_entrada_doc"
+                                                                       class="form-control"
+                                                                       label="Número de entrada documentación"
+                                                                       placeholder="Número consecutivo"
+                                                                       style="max-width: 200px;" hidden required
+                                                                       id="id_edit_no_entrada">
                                                                 <h6 class="font-weight-bold mt-3">Titulo</h6>
                                                                 <input type="text" name="titulo"
                                                                        class="form-control" label="Título"
@@ -188,41 +184,13 @@
                                                                        style="max-width: 500px;" maxlength="255"
                                                                        required="True" id="id_edit_titulo">
                                                                 <h6 class="font-weight-bold mt-3">Fecha
-                                                                    entrada</h6>
-                                                                <input type="date" name="f_entrada_doc"
+                                                                    entrada a registro</h6>
+                                                                <input type="date" name="f_entrada_tecnica"
                                                                        class="form-control"
                                                                        label="Fecha de entrada"
                                                                        style="max-width: 200px;" required
-                                                                       id="id_edit_f_entrada_doc">
-                                                                 <h6 class="font-weight-bold mt-3">Forma de entrada
-                                                                    </h6>
-                                                                <select name="forma entrada" class="form-control"
-                                                                        label="Forma de entrada:"
-                                                                        style="max-width: 300px;" required
-                                                                        id="id_edit_forma_entrada">
-                                                                   {% for id,texto in list_formas_entrada %}
-                                                                   <option value="{{ id }}"{% if id == list_formas_entrada.id %} selected="selected"{% endif %}>{{ texto }}
-                                                                   </option>
-                                                                    {% endfor %}
-                                                                </select>
-                                                                <h6 class="font-weight-bold mt-3">Dirigido
-                                                                    a:</h6>
-                                                                <select name="dirigido" class="form-control"
-                                                                        label="Dirigido a:"
-                                                                        style="max-width: 300px;" required
-                                                                        id="id_edit_dirigido">
-                                                                   {% for dirigido in list_direcciones %}
-                                                                   <option value="{{ dirigido.pk }}"{% if dirigido.id == id %} selected="selected"{% endif %}>{{ dirigido }}
-                                                                   </option>
-                                                                    {% endfor %}
-                                                                </select>
-                                                                 <h6 class="font-weight-bold mt-3">Fecha de
-                                                                    entrega a dirección</h6>
-                                                                 <input type="date" name="f_entrega"
-                                                                       class="form-control"
-                                                                       label="Fecha de entrega"
-                                                                       style="max-width: 200px;" required
-                                                                       id="id_edit_f_entrega">
+                                                                       id="id_edit_f_entrada_tecnica">
+
                                                                 <h6 class="font-weight-bold mt-3">Organismo</h6>
                                                                 <select name="organismo" class="form-control"
                                                                         label="Organismo:"
@@ -232,7 +200,6 @@
                                                                    <option value="{{ organismo.pk }}"{% if organismo.id == id %} selected="selected"{% endif %}>{{ organismo }}
                                                                    </option>
                                                                     {% endfor %}
-
                                                                 </select>
                                                                 <h6 class="font-weight-bold mt-3">Entidad</h6>
                                                                 <select name="entidad" class="form-control"
@@ -263,22 +230,7 @@
                                                                    <option value="{{ tdoc.pk }}"{% if tdoc.id == id %} selected="selected"{% endif %}>{{ tdoc }}
                                                                    </option>
                                                                     {% endfor %}
-
                                                                 </select>
-                                                                <h6 class="font-weight-bold mt-3">Soporte</h6>
-                                                                <input type="text" name="soporte"
-                                                                       class="form-control" label="Título"
-                                                                       placeholder="Soporte en el que se entrega"
-                                                                       style="max-width: 200px;" maxlength="255"
-                                                                       required="True" id="id_edit_soporte">
-
-                                                                <h6 class="font-weight-bold mt-3">Fecha
-                                                                    de término</h6>
-                                                                <input type="date" name="f_termino"
-                                                                       class="form-control"
-                                                                       label="Fecha término"
-                                                                       style="max-width: 200px;" required
-                                                                       id="id_edit_f_termino">
                                                                  <h6 class="font-weight-bold mt-3">
                                                                     Observaciones</h6>
                                                                 <textarea name="observaciones" cols="40"
@@ -338,20 +290,16 @@
                                     {% csrf_token %}
                                     <input type="hidden" name="action" value="add">
                                     <div class="form-group">
-                                        <label class="form-label">{{ form_entradas.no_entrada_doc.label }}:</label>
-                                        <h6 class="text-blue"> {% if no_entrada.no_entrada_doc == null %}*El número tiene que ser el consecutivo
-                                            de 0 {% else %}*El número tiene que ser el consecutivo de {{ no_entrada.no_entrada_doc }} {% endif %}</h6>
-                                       {{ form_entradas.no_entrada_doc }}
+                                        <label class="form-label">{{ form_entradas.no_tecnica.label }}</label>
+                                        <h6 class="text-blue"> {% if no_tecnica.no_tecnica == null %}*El número tiene que ser el consecutivo
+                                            de 0 {% else %}*El número tiene que ser el consecutivo de {{ no_tecnica.no_tecnica}} {% endif %}</h6>
+                                       {{ form_entradas.no_tecnica }}
+                                    <label class="form-label">{{ form_entradas.no_entrada.label }}</label>
+                                       {{ form_entradas.no_entrada }}
                                         <h6 class="font-weight-bold mt-3">{{ form_entradas.titulo.label }}</h6>
                                         {{ form_entradas.titulo }}
-                                        <h6 class="font-weight-bold mt-3">{{ form_entradas.f_entrada_doc.label }}</h6>
-                                        {{ form_entradas.f_entrada_doc }}
-                                        <h6 class="font-weight-bold mt-3">{{ form_entradas.forma_entrada.label }}</h6>
-                                        {{ form_entradas.forma_entrada }}
-                                        <h6 class="font-weight-bold mt-3">{{ form_entradas.dirigido.label }}</h6>
-                                        {{ form_entradas.dirigido }}
-                                        <h6 class="font-weight-bold mt-3">{{ form_entradas.f_entrega_dirigido.label }}</h6>
-                                        {{ form_entradas.f_entrega_dirigido }}
+                                        <h6 class="font-weight-bold mt-3">{{ form_entradas.f_entrada_tecnica.label }}</h6>
+                                        {{ form_entradas.f_entrada_tecnica }}
                                         <h6 class="font-weight-bold mt-3">{{ form_entradas.organismo.label }}</h6>
                                         {{ form_entradas.organismo }}
                                         <h6 class="font-weight-bold mt-3">{{ form_entradas.entidad.label }}</h6>
@@ -360,10 +308,6 @@
                                         {{ form_entradas.provincia }}
                                         <label class="form-label mt-3">{{ form_entradas.t_documento.label }}</label>
                                         {{ form_entradas.t_documento }}
-                                        <h6 class="font-weight-bold mt-3">{{ form_entradas.soporte_doc.label }}</h6>
-                                        {{ form_entradas.soporte_doc }}
-                                        <h6 class="font-weight-bold mt-3">{{ form_entradas.f_termino.label }}</h6>
-                                        {{ form_entradas.f_termino }}
                                         <h6 class="font-weight-bold mt-3">{{ form_entradas.observaciones.label }}</h6>
                                         {{ form_entradas.observaciones }}
                                     </div>
@@ -425,7 +369,7 @@
     <script>
         function getData (){
         $(function () {
-            $("#tabla_entradas").DataTable({
+            $("#tabla_entradas_tecnica").DataTable({
                 dom: 'frtipP',
                 language: {
                     url: '{% static "fonts/spanish.json" %}'
@@ -453,74 +397,34 @@
 
       /****Capturando valores por el id para agregar****/
         d = document;
-        const form_add_name = d.getElementById("form_agregar");
-        const no_entrada_doc = d.getElementById("id_no_entrada_doc");
+        const no_tecnica_doc = d.getElementById("id_no_tecnica");
+        const no_entrada_doc = d.getElementById("id_no_entrada");
         const titulo = d.getElementById("id_titulo");
-        const f_entrada_doc = d.getElementById("id_f_entrada_doc");
-        const dirigido = d.getElementById("id_dirigido");
+        const f_entrada_tecnica = d.getElementById("id_f_entrada_tecnica");
         const organismo = d.getElementById("id_organismo");
         const entidad = d.getElementById("id_entidad");
         const tipo_documento = d.getElementById("id_t_documento");
         const observaciones = d.getElementById("id_observaciones");
-        const forma_entrada = d.getElementById("id_forma_entrada");
-        const soporte_doc = d.getElementById("id_soporte_doc");
-        const f_termino = d.getElementById("id_f_termino");
-        const f_dirigido = d.getElementById("id_f_entrega_dirigido");
         const provincia = d.getElementById("id_provincia");
-        const no_entrada = no_entrada_doc.value;
-        {% if no_entrada.no_entrada_doc %}
-            let last = {{ no_entrada.no_entrada_doc }}
+        {% if no_tecnica.no_tecnica %}
+            let last = {{ no_tecnica.no_tecnica}}
                 {% else %}
             let last = 0;
         {% endif %}
         console.log(last);
-        const $btn_agregar = d.getElementById("btnAceptar");
-        const form = d.getElementById("myFormId");
-        const $form = d.getElementById('form_agregar');
         const tabla = d.getElementById('#tabla_entradas');
 
         /****Capturando id para pasarle valores para el form editar****/
-        const form_edit_name = d.getElementById("form_editar");
-        const input_no_entrada = d.getElementById("id_edit_no_entrada_doc");
+        const input_no_entrada = d.getElementById("id_edit_no_entrada");
+        const input_no_tecnica = d.getElementById("id_edit_no_tecnica");
         const input_titulo = d.getElementById("id_edit_titulo");
-        const input_f_entrada = d.getElementById("id_edit_f_entrada_doc");
-        const input_dirigido = d.getElementById("id_edit_dirigido");
+        const input_f_entrada_tecnica = d.getElementById("id_edit_f_entrada_tecnica");
         const input_organismo = d.getElementById("id_edit_organismo");
         const input_entidad = d.getElementById("id_edit_entidad");
         const input_t_documento = d.getElementById("id_edit_t_documento");
         const input_observaciones = d.getElementById("id_edit_observaciones");
-        const input_f_entrada_doc = d.getElementById("id_edit_forma_entrada");
-        const input_soporte_doc = d.getElementById("id_edit_soporte");
-        const input_f_termino = d.getElementById("id_edit_f_termino");
-        const input_f_dirigido = d.getElementById("id_edit_f_entrega");
         const input_provincia = d.getElementById("id_edit_provincia");
 
-
-        /* d.addEventListener('click', ev => {
-             if (ev.target.matches(".btn-floating .fa-edit ")) {
-                 const $btn_edit = ev.target;
-                 const $alltr = $btn_edit.closest('tr');
-                 const todos = $alltr.querySelectorAll('td');
-                 console.log(todos);
-                 const input_no_entrada = d.getElementById("id_no_entrada_doc");
-                 const input_titulo = d.getElementById("id_titulo");
-                 const input_f_entrada = d.getElementById("id_f_entrada_doc");
-                 const input_dirigido = d.getElementById("id_dirigido");
-                 const input_organismo = d.getElementById("id_organismo");
-                 const input_entidad = d.getElementById("id_entidad");
-                 const input_t_documento = d.getElementById("id_t_documento");
-                 const input_observaciones = d.getElementById("id_observaciones");
-                 input_no_entrada.value = todos[0].innerText;
-                 input_titulo.value = todos[1].innerText;
-                 input_f_entrada.dataset = todos[2].innerHTML;
-                 input_dirigido.value = todos[5].innerHTML;
-                 input_organismo.value = 4;
-                 input_entidad.value = todos[4].innerText;
-                 input_t_documento.value = todos[6].innerText;
-                 input_observaciones.value = todos[7].innerText;
-                 console.log(input_no_entrada.value)
-             }
-         })*/
 
         const EnviarForm = () => {
             d.addEventListener("submit", ev => {
@@ -530,35 +434,31 @@
                 fd_add = new FormData;
                 fd_add.append('ccsrfmiddlewaretoken', getCookie("csrftoken"));
                 fd_add.append('titulo', titulo.value);
+                fd_add.append('no_tecnica_doc', no_tecnica_doc.value);
                 fd_add.append('no_entrada_doc', no_entrada_doc.value);
-                fd_add.append('f_entrada_doc', f_entrada_doc.value);
-                fd_add.append('dirigido', dirigido.value);
+                fd_add.append('f_entrada_tecnica', f_entrada_tecnica.value);
                 fd_add.append('organismo', organismo.value);
                 fd_add.append('entidad', entidad.value);
                 fd_add.append('tipo_documento', tipo_documento.value);
                 fd_add.append('observaciones', observaciones.value);
-                fd_add.append('f_dirigido', f_dirigido.value);
-                fd_add.append('f_termino', f_termino.value);
                 fd_add.append('provincia', provincia.value);
-                fd_add.append('soporte', soporte_doc.value);
-                fd_add.append('forma_entrada', forma_entrada.value);
 
-                if (last >= no_entrada_doc.value) {
+                if (last >= no_tecnica_doc.value) {
                     Swal.fire(
                           'Error!',
                           'Existe un error en el número de entrada',
                           'error'
                         )
-                } else if (last + 1 < no_entrada_doc.value) {
+                } else if (last + 1 < no_tecnica_doc.value) {
                      Swal.fire(
                           'Error!',
                           'Existe un error en el número de entrada',
                           'error'
                         )
                 } else {
-                    const msg = 'Documento agregado';
+
                     const request = new Request(
-                        {% url 'crear_entradas' %},
+                        {% url 'nuevo_entrada_tecnica' %},
                         {
                             headers: {'X-CSRFToken': getCookie("csrftoken")},
                             'Accept': 'application/json, application/xml, text/plain, text/html, *.*',
@@ -604,10 +504,10 @@
                         todos = $alltr.querySelectorAll('td');
                     fn = new FormData;
                     fn.append('ccsrfmiddlewaretoken', getCookie("csrftoken"));
-                    fn.append('entrada', todos[0].innerText);
-
+                    fn.append('tecnica', todos[0].innerText);
+                       console.log(todos[0].innerText);
                     const request = new Request(
-                        {% url 'editar_entradas' %},
+                        {% url 'editar_entrada_tecnica' %},
                         {
                             headers: {'X-CSRFToken': getCookie("csrftoken")},
                             'Accept': 'application/json, application/xml, text/plain, text/html, *.*',
@@ -622,21 +522,20 @@
                     })
                         .then(response => response.json())
                         .then(data => {
+                            console.log(data);
                             input_no_entrada.value = data['no_entrada_doc'];
+                            input_no_tecnica.value = data['no_tecnica'];
                             input_titulo.value = data['titulo'];
-                            input_f_entrada.value = data['f_entrada'];
-                            input_dirigido.value = data['dirigido'];
+                            input_f_entrada_tecnica.value = data['f_entrada_tecnica'];
                             input_organismo.value = data['organismo'];
                             input_entidad.value = data['entidad'];
                             input_t_documento.value = data['tipo_documento'];
                             input_observaciones.value = data['observaciones'];
-                            input_f_entrada_doc.value = data['f_entrada_doc'];
-                            input_soporte_doc.value = data['soporte_doc'];
-                            input_provincia.value = data['provincia'];
-                            input_f_termino.value = data['f_termino'];
-                            input_f_dirigido.value = data['f_dirigido'];
+                           input_provincia.value = data['provincia'];
 
-                        })
+
+                           })
+
                         .catch((error) => {
                             console.log(error);
                         });
@@ -651,22 +550,19 @@
                     let fd_edit;
                     fd_edit = new FormData;
                     fd_edit.append('ccsrfmiddlewaretoken', getCookie("csrftoken"));
-                    fd_edit.append('action','editar');
                     fd_edit.append('titulo', input_titulo.value);
+                    fd_edit.append('no_tecnica_entrada', input_no_tecnica.value);
                     fd_edit.append('no_entrada_doc', input_no_entrada.value);
-                    fd_edit.append('f_entrada_doc', input_f_entrada.value);
-                    fd_edit.append('dirigido', input_dirigido.value);
+                    fd_edit.append('f_entrada_tecnica', input_f_entrada_tecnica.value);
                     fd_edit.append('organismo', input_organismo.value);
                     fd_edit.append('entidad', input_entidad.value);
                     fd_edit.append('tipo_documento', input_t_documento.value);
                     fd_edit.append('observaciones', input_observaciones.value);
-                    fd_edit.append('forma_entrada', input_f_entrada_doc.value);
-                    fd_edit.append('soporte_doc', input_soporte_doc.value);
                     fd_edit.append('provincia', input_provincia.value);
-                    fd_edit.append('f_termino', input_f_termino.value);
-                    fd_edit.append('f_dirigido', input_f_dirigido.value);
+
+
                     const request = new Request(
-                        {% url 'editar_entradas' %},
+                        {% url 'editar_entrada_tecnica' %},
                         {
                             headers: {'X-CSRFToken': getCookie("csrftoken")},
                             'Accept': 'application/json, application/xml, text/plain, text/html, *.*',
@@ -725,9 +621,9 @@
 
                            fd = new FormData;
                            fd.append('ccsrfmiddlewaretoken', getCookie("csrftoken"));
-                           fd.append('entrada', todos[0].innerText);
+                           fd.append('registro', todos[0].innerText);
                             const request = new Request(
-                                {% url 'eliminar_entradas' %},
+                                {% url 'eliminar_entradas_registro' %},
                                 {
                                     headers: {'X-CSRFToken': getCookie("csrftoken")},
                                     'Accept': 'application/json, application/xml, text/plain, text/html, *.*',
@@ -771,9 +667,6 @@
             handleSubmitEdit();
             handleDelete()
         });
-
-
     </script>
 {% endblock %}
 </body>
-</html>

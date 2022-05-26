@@ -1,13 +1,14 @@
 from django.views.generic import TemplateView, UpdateView, DeleteView, CreateView
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from .models import SalidasRegistro
 from .forms import SalidaRegistroForm
 from control.models import Direcciones, Entidad, Organismo, Provincia, TipoDocumentoSalida
 from django.http import JsonResponse
 
 
-class SalidaRegistroView(LoginRequiredMixin, TemplateView):
+class SalidaRegistroView(LoginRequiredMixin,PermissionRequiredMixin, TemplateView):
     template_name = "registro_salidas.html"
+    permission_required = 'registro.view_salidasregistro'
     login_url = '/entrar/'
 
     def get_context_data(self, **kwargs):
@@ -23,10 +24,11 @@ class SalidaRegistroView(LoginRequiredMixin, TemplateView):
         return context
 
 
-class NuevaSalidaRegistroView(LoginRequiredMixin, CreateView):
+class NuevaSalidaRegistroView(LoginRequiredMixin,PermissionRequiredMixin, CreateView):
     template_name = "registro_salidas.html"
     form_class = SalidaRegistroForm
     model = SalidasRegistro
+    permission_required = 'registro.add_salidasregistro'
     login_url = '/entrar/'
 
 
@@ -62,10 +64,11 @@ class NuevaSalidaRegistroView(LoginRequiredMixin, CreateView):
             return JsonResponse(info)
 
 
-class EditarSalidaRegistroView(LoginRequiredMixin, UpdateView):
+class EditarSalidaRegistroView(LoginRequiredMixin,PermissionRequiredMixin, UpdateView):
     template_name = "registro_salidas.html"
     form_class = SalidaRegistroForm
     model = SalidasRegistro
+    permission_required = 'registro.change_salidasregistro'
     login_url = '/entrar/'
 
     def post(self, request, *args, **kwargs):
@@ -119,8 +122,10 @@ class EditarSalidaRegistroView(LoginRequiredMixin, UpdateView):
             return JsonResponse(info)
 
 
-class EliminarSalidaRegistroView(LoginRequiredMixin,DeleteView):
+
+class EliminarSalidaRegistroView(LoginRequiredMixin,PermissionRequiredMixin, DeleteView):
     model = SalidasRegistro
+    permission_required = 'registro.delete_salidasregistro'
     login_url = '/entrar/'
 
     def post(self, request, *args, **kwargs):

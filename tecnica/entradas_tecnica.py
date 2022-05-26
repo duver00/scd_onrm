@@ -1,35 +1,36 @@
 from django.views.generic import TemplateView, UpdateView, DeleteView, CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
-from .models import DocumentosRegistro
-from .forms import DocumentoRegistroForm
+from .models import DocumentosTecnica
+from .forms import DocumentoTecnicaForm
 from control.models import TipoDocumento,Direcciones,Entidad,Organismo,Provincia
 from django.http import JsonResponse
+from django.views.defaults import ERROR_403_TEMPLATE_NAME
 
 
-
-class DocumentoRegistroView(LoginRequiredMixin,PermissionRequiredMixin, TemplateView):
-    template_name = "registro_entradas.html"
-    permission_required = 'registro.view_documentosregistro'
+class DocumentosTecnicaView(LoginRequiredMixin,PermissionRequiredMixin, TemplateView):
+    template_name = "tecnica_entradas.html"
+    permission_required = 'tecnica.view_documentostecnica'
     login_url = "/entrar/"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['form_entradas'] = DocumentoRegistroForm()
-        context['no_registro'] = DocumentosRegistro.objects.all().last()
+        context['form_entradas'] = DocumentoTecnicaForm()
+        context['no_tecnica'] = DocumentosTecnica.objects.all().last()
         context['list_tipos_documentos'] = TipoDocumento.objects.all()
         context['list_organismos'] = Organismo.objects.all()
         context['list_direcciones'] = Direcciones.objects.all()
         context['list_provincias'] = Provincia.objects.all()
         context['list_entidad'] = Entidad.objects.all()
-        context['list_entradas'] = DocumentosRegistro.objects.all()
+        context['list_entradas'] = DocumentosTecnica.objects.all()
         return context
 
 
-class NuevoDocumentoRegistroView(LoginRequiredMixin,PermissionRequiredMixin, CreateView):
-    template_name = "registro_entradas.html"
-    form_class = DocumentoRegistroForm
-    model = DocumentosRegistro
-    permission_required = 'registro.add_documentosregistro'
+
+class NuevoDocumentoTecnicaView(LoginRequiredMixin, CreateView):
+    template_name = "tecnica_entradas.html"
+    form_class = DocumentoTecnicaForm
+    model = DocumentosTecnica
+    permission_required = 'tecnica.add_documentostecnica'
     login_url = '/entrar/'
 
 
@@ -38,8 +39,9 @@ class NuevoDocumentoRegistroView(LoginRequiredMixin,PermissionRequiredMixin, Cre
         try:
             if request.method == 'POST':
                 data = request.POST
-                doc = DocumentosRegistro()
+                doc = DocumentosTecnica()
                 org = Organismo()
+                print('dadad')
                 ent = Entidad()
                 prov = Provincia()
                 tdoc = TipoDocumento()
@@ -48,9 +50,9 @@ class NuevoDocumentoRegistroView(LoginRequiredMixin,PermissionRequiredMixin, Cre
                 tdoc.pk = data['tipo_documento']
                 prov.pk = data['provincia']
                 doc.no_entrada = data['no_entrada_doc']
-                doc.no_registro = data['no_registro']
-                doc.titulo = request.POST['titulo']
-                doc.f_entrada_registro = data['f_entrada_registro']
+                doc.no_tecnica = data['no_tecnica_doc']
+                doc.titulo = ['titulo']
+                doc.f_entrada_tecnica = data['f_entrada_tecnica']
                 doc.organismo = org
                 doc.entidad = ent
                 doc.t_documento = tdoc
@@ -65,11 +67,11 @@ class NuevoDocumentoRegistroView(LoginRequiredMixin,PermissionRequiredMixin, Cre
             return JsonResponse(info)
 
 
-class EditarDocumentoRegistroView(LoginRequiredMixin,PermissionRequiredMixin, UpdateView):
-    template_name = "registro_entradas.html"
-    form_class = DocumentoRegistroForm
-    model = DocumentosRegistro
-    permission_required = 'registro.change_documentosregistro'
+class EditarDocumentoTecnicaView(LoginRequiredMixin,PermissionRequiredMixin, UpdateView):
+    template_name = "tecnica_entradas.html"
+    form_class = DocumentoTecnicaForm
+    model = DocumentosTecnica
+    permission_required = 'tecnica.change_documentostecnica'
     login_url = '/entrar/'
 
     def post(self, request, *args, **kwargs):
@@ -80,14 +82,14 @@ class EditarDocumentoRegistroView(LoginRequiredMixin,PermissionRequiredMixin, Up
             if request.method == "POST":
                 data = request.POST
                 if len(data) == 2:
-                    if DocumentosRegistro.objects.get_or_create(no_registro=data['registro']):
-                        doc = DocumentosRegistro.objects.filter(no_registro=data['registro'])
+                    if DocumentosTecnica.objects.get_or_create(no_tecnica=data['tecnica']):
+                        doc = DocumentosTecnica.objects.filter(no_tecnica=data['tecnica'])
                         for i in doc:
                             fn['pk'] = i.pk
                             fn['no_entrada_doc'] = i.no_entrada
-                            fn['no_registro'] = i.no_registro
+                            fn['no_tecnica'] = i.no_tecnica
                             fn['titulo'] = i.titulo
-                            fn['f_entrada_registro'] = i.f_entrada_registro
+                            fn['f_entrada_tecnica'] = i.f_entrada_tecnica
                             fn['entidad'] = i.entidad.pk
                             fn['organismo'] = i.organismo.pk
                             fn['tipo_documento'] = i.t_documento.pk
@@ -103,14 +105,14 @@ class EditarDocumentoRegistroView(LoginRequiredMixin,PermissionRequiredMixin, Up
                     org.pk = data['organismo']
                     tdoc.pk = data['tipo_documento']
                     prov.pk = data['provincia']
-                    doc = DocumentosRegistro.objects.filter(no_registro=data['no_registro_entrada'])
+                    doc = DocumentosTecnica.objects.filter(no_tecnica=data['no_tecnica_entrada'])
                     for i in doc:
                         id_doc = i.pk
                         break
-                    doc_editado = DocumentosRegistro.objects.get(pk=id_doc)
+                    doc_editado = DocumentosTecnica.objects.get(pk=id_doc)
                     doc_editado.no_entrada = data['no_entrada_doc']
-                    doc_editado.no_registro = data['no_registro_entrada']
-                    doc_editado.f_entrada_registro = data['f_entrada_doc']
+                    doc_editado.no_tecnica = data['no_tecnica_entrada']
+                    doc_editado.f_entrada_tecnica = data['f_entrada_tecnica']
                     doc_editado.titulo = data['titulo']
                     doc_editado.organismo = org
                     doc_editado.entidad = ent
@@ -125,9 +127,9 @@ class EditarDocumentoRegistroView(LoginRequiredMixin,PermissionRequiredMixin, Up
             return JsonResponse(info)
 
 
-class EliminarDocumentoRegistroView(LoginRequiredMixin,PermissionRequiredMixin,DeleteView):
-    model = DocumentosRegistro
-    permission_required = 'registro.delete_documentosregistro'
+class EliminarDocumentoTecnicaView(LoginRequiredMixin,PermissionRequiredMixin,DeleteView):
+    model = DocumentosTecnica
+    permission_required = 'tecnica.delete_documentostecnica'
     login_url = '/entrar/'
 
     def post(self, request, *args, **kwargs):
@@ -136,16 +138,15 @@ class EliminarDocumentoRegistroView(LoginRequiredMixin,PermissionRequiredMixin,D
         try:
             if request.method == "POST":
                 data = request.POST
-                documento = DocumentosRegistro.objects.filter(no_registro=data['registro'])
+                documento = DocumentosTecnica.objects.filter(no_registro=data['tecnica'])
                 for i in documento:
                     id_doc = i.pk
                     break
-                doc = DocumentosRegistro.objects.get(pk=id_doc)
-                dat['datos'] = doc
+                doc = DocumentosTecnica.objects.get(pk=id_doc)
+                dat['datos'] = 'Documento Eliminado'
                 doc.delete()
                 return JsonResponse(dat)
         except Exception as e:
             info['error'] = str(e)
             return JsonResponse(info)
-
 

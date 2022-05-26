@@ -1,13 +1,14 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 from django.views.generic import TemplateView, CreateView, UpdateView,DeleteView
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from .models import TipoDocumentoSalida, DocumentoSalida, Organismo, Entidad, Provincia, Direcciones
 from .forms import DocumentoSalidaForm
 
 
-class DocumentoSalidaTemplateView(LoginRequiredMixin, TemplateView):
+class DocumentoSalidaTemplateView(LoginRequiredMixin,PermissionRequiredMixin, TemplateView):
     template_name = "salidas.html"
+    permission_required = 'control.view_documentosalida'
     login_url = '/entrar/'
 
     def get_context_data(self, **kwargs):
@@ -24,10 +25,11 @@ class DocumentoSalidaTemplateView(LoginRequiredMixin, TemplateView):
         return context
 
 
-class NuevoDocumentoSalidaView(LoginRequiredMixin, CreateView):
+class NuevoDocumentoSalidaView(LoginRequiredMixin,PermissionRequiredMixin, CreateView):
     template_name = 'salidas.html'
     model = DocumentoSalida
     form_class = DocumentoSalidaForm
+    permission_required = 'control.add_documentossalida'
     login_url = '/entrar/'
 
     def post(self, request, *args, **kwargs):
@@ -66,9 +68,10 @@ class NuevoDocumentoSalidaView(LoginRequiredMixin, CreateView):
             return JsonResponse(info)
 
 
-class EditarDocumentoSalidasView(LoginRequiredMixin, UpdateView):
+class EditarDocumentoSalidasView(LoginRequiredMixin,PermissionRequiredMixin, UpdateView):
     form_class = DocumentoSalidaForm
     model = DocumentoSalida
+    permission_required = 'control.change_documentossalida'
     login_url = '/entrar/'
 
     def post(self, request, *args, **kwargs):
@@ -132,8 +135,9 @@ class EditarDocumentoSalidasView(LoginRequiredMixin, UpdateView):
 
 
 
-class EliminarDocumentoSalidasView(LoginRequiredMixin, DeleteView):
+class EliminarDocumentoSalidasView(LoginRequiredMixin,PermissionRequiredMixin, DeleteView):
     model = DocumentoSalida
+    permission_required = 'control.delete_documentossalida'
     login_url = '/entrar/'
 
     def post(self, request, *args, **kwargs):

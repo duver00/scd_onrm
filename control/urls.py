@@ -15,7 +15,7 @@ Including another URLconf
 """
 
 from django.urls import path
-from .views import inicio
+from .views import inicio,custom403
 from .entradas import DocumentosTemplateView, NuevoDocumentoView, EditarDocumento, EliminarDocumento
 from .salidas import DocumentoSalidaTemplateView, NuevoDocumentoSalidaView, EditarDocumentoSalidasView, EliminarDocumentoSalidasView
 
@@ -23,6 +23,7 @@ from .salidas import DocumentoSalidaTemplateView, NuevoDocumentoSalidaView, Edit
 
 urlpatterns = [
     path('', inicio, name="home"),
+    path('', custom403, name="403"),
     path('entradas/', DocumentosTemplateView.as_view(), name="entradas"),
     path('crear_entradas/', NuevoDocumentoView.as_view(), name="crear_entradas"),
     path('editar_entradas/', EditarDocumento.as_view(), name="editar_entradas"),

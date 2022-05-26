@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% load static %}
+<title>Error 403</title>
+ {% block body %}
+      <h2 class="d-flex justify-content-center" style="color: red">Error 403 Acceso Prohibido</h2>
+      <h3 class="d-flex justify-content-center">Esta intentando acceder a un recurso al cual no tiene permiso</h3>
+      <a class="d-flex justify-content-center" href="{% url 'home' %}">Regresar</a>
+
+{% endblock %}

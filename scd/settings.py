@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'autenticacion.apps.AutenticacionConfig',
     'widget_tweaks',
     'registro.apps.RegistroConfig',
+    'tecnica.apps.TecnicaConfig',
 ]
 
 MIDDLEWARE = [
@@ -127,4 +128,15 @@ STATIC_URL = '/static/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
-LOGIN_REDIRECT_URL= '/'
+
+# Redirección cuando use loqgua un usuario
+LOGIN_REDIRECT_URL = '/'
+
+# Envio de correo por los signals
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = "silevsoid89@gmail.com"
+EMAIL_PASSWORD = "liber*2022"

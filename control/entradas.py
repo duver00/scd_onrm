@@ -2,14 +2,16 @@ from django.http import JsonResponse
 from control.models import Documento, Direcciones, Organismo, Entidad, TipoDocumento, Provincia
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, TemplateView
 from control.forms import DocumentoForm
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+
 
 import datetime
 
 
 # Create your views here.
-class DocumentosTemplateView(LoginRequiredMixin, TemplateView):
+class DocumentosTemplateView(LoginRequiredMixin, PermissionRequiredMixin, TemplateView):
     template_name = "entradas.html"
+    permission_required = 'control.view_documento'
 
 
 
@@ -27,11 +29,12 @@ class DocumentosTemplateView(LoginRequiredMixin, TemplateView):
         return context
 
 
-class NuevoDocumentoView(LoginRequiredMixin, CreateView):
+class NuevoDocumentoView(LoginRequiredMixin,PermissionRequiredMixin, CreateView):
     template_name = 'entradas.html'
     model = Documento
     form_class = DocumentoForm
     context_object_name = "list_entradas"
+    permission_required = 'control.add_documento'
     login_url = '/entrar/'
 
     def post(self, request, *args, **kwargs):
@@ -72,10 +75,12 @@ class NuevoDocumentoView(LoginRequiredMixin, CreateView):
             return JsonResponse(info)
 
 
-class EditarDocumento(LoginRequiredMixin, UpdateView):
+class EditarDocumento(LoginRequiredMixin, PermissionRequiredMixin,UpdateView):
     form_class = DocumentoForm
     model = Documento
+    permission_required = 'control.change_documento'
     login_url = '/entrar/'
+
 
     def post(self, request, *args, **kwargs):
         info = {}
@@ -140,8 +145,9 @@ class EditarDocumento(LoginRequiredMixin, UpdateView):
             return JsonResponse(info)
 
 
-class EliminarDocumento(LoginRequiredMixin, DeleteView):
+class EliminarDocumento(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
     model = Documento
+    permission_required = 'control.delete_documento'
     login_url = '/entrar/'
 
     def post(self, request, *args, **kwargs):

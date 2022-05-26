@@ -47,7 +47,19 @@
   cursor: default;
 }
 
+
 #agregar:active {
   background-color: #298e46;
   box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;
+}
+
+.login-page {
+  background-image: url("background_login.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  ;
+}
+
+.login-box a {
+  color: white;
 }

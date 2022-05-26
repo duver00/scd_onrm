@@ -152,9 +152,10 @@
                     data-accordion="false">
                     <!-- Add icons to the links using the .nav-icon class
                          with font-awesome or any other icon font library -->
-                    <li class="nav-header">DIRECCIONES</li>
-                    <li class="nav-item menu-open">
-                        <a href="#" class="nav-link ">
+                  <li class="nav-header">DIRECCIONES</li>
+                                        <li class="nav-item menu-open">
+                     {% if request.user.is_superuser %}
+                            <a href="#" class="nav-link ">
                             <i class="fas fa-copy"></i>
                             <p>
                                 DOCUMENTACIÓN
@@ -169,7 +170,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{% url "salidas" %}" class="nav-link">
+                                <a href="{% url 'salidas' %}" class="nav-link">
                                      <i class="fa fa-arrow-left green"></i>
                                     <p>Salidas de documentos</p>
                                 </a>
@@ -180,7 +181,7 @@
                         <a href="#" class="nav-link ">
                             <i class="fas fa-copy"></i>
                             <p>
-                                FISCALIZACIÓN
+                                 FISCALIZACIÓN
                                 <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
@@ -193,7 +194,7 @@
                             </li>
                             <li class="nav-item">
                                 <a href="{% url 'registro_salidas' %}" class="nav-link">
-                                     <i class="fa fa-arrow-left green"></i>
+                                    <i class="fa fa-arrow-left green"></i>
                                     <p>Salidas de documentos</p>
                                 </a>
                             </li>
@@ -209,22 +210,96 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="./index.html" class="nav-link">
+                                <a href="{% url 'tecnica_entrada' %}" class="nav-link">
                                     <i class="fa-"></i>
                                     <i class="fa fa-arrow-right green"></i>
                                     <p>Entradas de documentos</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="./index2.html" class="nav-link">
+                                <a href="{% url 'tecnica_salida' %}" class="nav-link">
                                     <i class="fa fa-arrow-left green"></i>
                                     <p>Salidas de documentos</p>
                                 </a>
                             </li>
                         </ul>
                     </li>
-                </ul>
-                </ul>
+                        </ul>
+                         {% elif request.user.username == 'documentacion'%}
+                             <a href="#" class="nav-link ">
+                            <i class="fas fa-copy"></i>
+                            <p>
+                                DOCUMENTACIÓN
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{% url 'entradas' %}" class="nav-link">
+                                    <i class="fa fa-arrow-right green"></i>
+                                    <p>Entradas de documentos</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{% url 'salidas' %}" class="nav-link">
+                                     <i class="fa fa-arrow-left green"></i>
+                                    <p>Salidas de documentos</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                         {% elif request.user.username == 'registro' %}
+                                  <li class="nav-item menu-open">
+                        <a href="#" class="nav-link ">
+                            <i class="fas fa-copy"></i>
+                            <p>
+                                 FISCALIZACIÓN
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{% url 'registro_entrada' %}" class="nav-link">
+                                     <i class="fa fa-arrow-right green"></i>
+                                    <p>Entradas de documentos</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{% url 'registro_salidas' %}" class="nav-link">
+                                    <i class="fa fa-arrow-left green"></i>
+                                    <p>Salidas de documentos</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                         {% elif request.user.username == 'tecnica' %}
+                            <li class="nav-item menu-open">
+                        <a href="#" class="nav-link ">
+                            <i class="fas fa-copy"></i>
+                            <p>
+                                DIRECCIÓN TÉCNICA
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{% url 'tecnica_entrada' %}" class="nav-link">
+                                    <i class="fa-"></i>
+                                    <i class="fa fa-arrow-right green"></i>
+                                    <p>Entradas de documentos</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{% url 'tecnica_salida' %}" class="nav-link">
+                                    <i class="fa fa-arrow-left green"></i>
+                                    <p>Salidas de documentos</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                        {% endif %}
+
             </nav>
             <!-- /.sidebar-menu -->
         </div>
