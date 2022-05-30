@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'registro.apps.RegistroConfig',
     'tecnica.apps.TecnicaConfig',
+    'nomencladores.apps.NomencladoresConfig',
 ]
 
 MIDDLEWARE = [
@@ -132,11 +133,9 @@ STATIC_URL = '/static/'
 # Redirección cuando use loqgua un usuario
 LOGIN_REDIRECT_URL = '/'
 
-# Envio de correo por los signals
-
+# Envio de correo utilizando signals y send_mail
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = "smtp.gmail.com"
-EMAIL_USE_TLS = True
-EMAIL_PORT = 587
-EMAIL_HOST_USER = "silevsoid89@gmail.com"
-EMAIL_PASSWORD = "liber*2022"
+EMAIL_HOST = '192.168.10.8'
+EMAIL_HOST_USER = 'control@onrm.minem.cu'
+EMAIL_HOST_PASSWORD = 'control'
+EMAIL_PORT = '25'

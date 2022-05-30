@@ -13,19 +13,12 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
-from django.urls import path, include
-from django.conf.urls import handler403, handler404, handler500
+
+from django.urls import path
+from .views import NomencladoresView, NuevoNomencadorView
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('control.urls')),
-    path('', include('autenticacion.urls')),
-    path('', include('registro.urls')),
-    path('', include('tecnica.urls')),
-    path('', include('nomencladores.urls')),
+    path('nomencladores/', NomencladoresView.as_view(), name="nomencladores"),
+    path('agregar_nomencladores/', NuevoNomencadorView.as_view(), name="agregar_nomencladores"),
+
 ]
-# Manejo de las paginas de errores del sistema
-handler403 = 'control.views.custom403'
-handler404 = 'control.views.custom404'
-handler500 = 'control.views.custom500'

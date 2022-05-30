@@ -1,0 +1,552 @@
+{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% block style %}
+        <!-- Google Font: Source Sans Pro -->
+        <link rel="stylesheet"
+              href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="{% static 'css/fontawesome-free/css/all.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+
+        <!-- DataTables -->
+        <link rel="stylesheet" href="{% static 'css/datatables-bs4/css/dataTables.bootstrap4.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/datatables-responsive/css/responsive.bootstrap4.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/datatables-buttons/css/buttons.bootstrap4.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/datatable-searchpanes/css/searchPanes.bootstrap4.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/datatable-select/css/select.bootstrap4.min.css' %}">
+
+    {% endblock %}
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{% static 'css/adminlte.min.css' %}">
+</head>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+    <!-- Navbar -->
+
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+
+    <!-- /.sidebar -->
+    </aside>
+    <div class="content-wrapper" id="wrapper">
+        <!-- Content Header (Page header) -->
+        <!-- Main content -->
+        <section class="content">
+            {% block body %}
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+
+                                <!-- /.card -->
+
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h2 class="card-title">Entidades</h2>
+                                    </div>
+                                    <!-- /.card-header -->
+                                    <div class="card-body" id="cardbody">
+                                        <button class="button mb-2  " data-toggle="modal" data-target="#modal-default"
+                                                id="agregar">Agregar Entidad
+                                        </button>
+                                        <table id="tabla_salidas" class="table table-bordered table-striped">
+                                            <thead>
+                                            <tr>
+                                                <th>Nombre</th>
+                                                <th>Acciones</th>
+
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            {% for entidades in  list_entidad %}
+                                                <tr>
+                                                    <td>{{ entidades.nombre }}</td>
+                                                    <td>
+                                                        <div class="button btn-group d-flex justify-content-center">
+                                                            <button type="button" id="editar_button" data-toggle="modal"
+                                                                    data-target="#editar"
+                                                                    class="btn btn-outline-dark btn-floating"
+                                                                    data-bs-toggle="tooltip" data-bs-placement="top"
+                                                                    title="Editar documento">
+                                                                <i class="fa fa-edit"></i>
+                                                            </button>
+                                                            <button type="button" id="{{ salidas.pk }}"
+                                                                    class="btn btn-outline-danger btn-floating"
+                                                                    data-bs-toggle="tooltip" data-bs-placement="top"
+                                                                    title="Eliminar documento">
+                                                                <i class="fa fa-trash"></i>
+                                                            </button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <!-- /.modal-Detalles -->
+
+                                                <!-- /.modal-editar -->
+                                                <div class="modal fade" id="editar">
+                                                    <div id="alert-box"></div>
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <img src="{% static 'img/onrm.png' %}">
+                                                                <h4 class="modal-title mx-auto mt-4">Editar Entidad</h4>
+                                                                <button type="button" class="close" data-dismiss="modal"
+                                                                        aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <form method="post" name="editar_entidad" id="form_editar" action="entidad" >
+                                                                    {% csrf_token %}
+                                                                    <input type="hidden" name="action" value="edit">
+                                                                    <div class=" form-group" >
+                                                                <h6 class="font-weight-bold mt-3">Nombre entidad</h6>
+                                                                <input type="text" name="titulo"
+                                                                       class="form-control" label="Nombre entidad"
+                                                                       style="max-width: 500px;" maxlength="255"
+                                                                       required="True" id="id_edit_nombre">
+
+                                                            </div>
+                                                            <div class="modal-footer mx-auto">
+
+                                                                <button type="button" id="btnEditar"
+                                                                        class="btn btn-outline-success">Editar
+                                                                </button>
+                                                                <button type="button" class="btn btn-default"
+                                                                        data-dismiss="modal">Cerrar
+                                                                </button>
+                                                            </div>
+
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                    <!-- /.modal-content -->
+                                                </div>
+                                                <!-- /.modal-dialog -->
+                                                </div>
+                                            {% endfor %}
+                                    </tfoot>
+                                    </table>
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                            <!-- /.card -->
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.container-fluid -->
+                </section>
+                </div>
+                   <!-- Modal de agregar documentos junto son su alert -->
+                <div class="modal fade" id="modal-default">
+                    <div id="alert-box"></div>
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <img src="{% static 'img/onrm.png' %}">
+                                <h4 class="modal-title mx-auto mt-4">Agregar Entidad</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form method="post" name="agrega_documento" id="form_agregar">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="action" value="add_entidad">
+                                    <div class="form-group">
+                                       <h6 class="font-weight-bold mt-3">{{ form_entidad.nombre.label }}</h6>
+                                        {{ form_entidad.nombre }}
+                                    </div>
+                                    <div class="modal-footer mx-auto">
+                                        <button type="submit" id="btnAceptar" class="btn btn-outline-primary">Agregar
+                                        </button>
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar
+                                        </button>
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                 </div>
+
+
+                <!-- /.modal -->
+             <!-- Modal de detalles -->
+
+                <!-- /.content -->
+{% endblock body %}
+
+    <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+    </aside>
+
+</div>
+{% block script %}
+    <!-- jQuery -->
+   <script src="{% static 'js/jquery/jquery.min.js' %}"></script>
+    <!-- Bootstrap 4 -->
+    <script src="{% static 'js/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/entradas.js' %}"></script>
+    <!-- DataTables  & Plugins -->
+    <script src="{% static 'js/datatables/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'css/datatables-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+    <script src="{% static 'css/datatables-responsive/js/dataTables.responsive.min.js' %}"></script>
+    <script src="{% static 'css/datatables-responsive/js/responsive.bootstrap4.min.js' %}"></script>
+    <script src="{% static 'css/datatables-buttons/js/dataTables.buttons.min.js' %}"></script>
+    <script src="{% static 'css/datatables-buttons/js/buttons.bootstrap4.min.js' %}"></script>
+    <script src="{% static 'js/jszip/jszip.min.js' %}"></script>
+    <script src="{% static 'js/pdfmake/pdfmake.min.js' %}"></script>
+    <script src="{% static 'js/pdfmake/vfs_fonts.js' %}"></script>
+    <script src="{% static 'css/datatables-buttons/js/buttons.html5.min.js' %}"></script>
+    <script src="{% static 'css/datatables-buttons/js/buttons.print.min.js' %}"></script>
+    <script src="{% static 'css/datatables-buttons/js/buttons.colVis.min.js' %}"></script>
+    <script src="{% static 'js/sweetalert2/sweetalert2.all.min.js' %}"></script>
+    <script src="{% static 'js/datatables-searchpanes/js/searchPanes.bootstrap4.min.js' %}"></script>
+    <script src="{% static 'js/datatables-searchpanes/js/dataTables.searchPanes.js' %}"></script>
+    <script src="{% static 'js/datatables-select/js/dataTables.select.min.js' %}"></script>
+
+
+
+<script>
+        function getData (){
+        $(function () {
+            $("#tabla_salidas").DataTable({
+                dom: 'frtipP',
+                language: {
+                    url: '{% static "fonts/spanish.json" %}'
+                },
+                "order": [[ 2,"asc" ]],
+                "responsive": true, "lengthChange": true, "autoWidth": false,
+            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+         });
+        }
+        //Capturar el valor del csrf
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+      /****Capturando valores por el id para agregar Entidad****/
+        d = document;
+        const nombre = d.getElementById("id_nombre");
+     /****Capturando valores por el id para agregar Provincia****/
+        d = document;
+        const nombre_provincia = d.getElementById("id_nombre");
+        const entidad_action = d.getElementById('form_agregar');
+
+
+        /****Capturando id para pasarle valores para el form editar****/
+
+        const input_no_salida = d.getElementById("id_edit_no_salida_doc");
+        const input_titulo = d.getElementById("id_edit_titulo");
+        const input_f_salida = d.getElementById("id_edit_f_salida_doc");
+        const input_procedencia = d.getElementById("id_edit_procedencia");
+        const input_organismo = d.getElementById("id_edit_organismo");
+        const input_entidad = d.getElementById("id_edit_entidad");
+        const input_t_documento_salida = d.getElementById("id_edit_t_documento_salida");
+        const input_observaciones = d.getElementById("id_edit_observaciones");
+        const input_forma_salida_doc = d.getElementById("id_edit_forma_salida");
+        const input_soporte_doc_salida = d.getElementById("id_edit_soporte_salida");
+        const input_provincia = d.getElementById("id_edit_provincia");
+
+
+        /* d.addEventListener('click', ev => {
+             if (ev.target.matches(".btn-floating .fa-edit ")) {
+                 const $btn_edit = ev.target;
+                 const $alltr = $btn_edit.closest('tr');
+                 const todos = $alltr.querySelectorAll('td');
+                 console.log(todos);
+                 const input_no_entrada = d.getElementById("id_no_entrada_doc");
+                 const input_titulo = d.getElementById("id_titulo");
+                 const input_f_entrada = d.getElementById("id_f_entrada_doc");
+                 const input_dirigido = d.getElementById("id_dirigido");
+                 const input_organismo = d.getElementById("id_organismo");
+                 const input_entidad = d.getElementById("id_entidad");
+                 const input_t_documento = d.getElementById("id_t_documento");
+                 const input_observaciones = d.getElementById("id_observaciones");
+                 input_no_entrada.value = todos[0].innerText;
+                 input_titulo.value = todos[1].innerText;
+                 input_f_entrada.dataset = todos[2].innerHTML;
+                 input_dirigido.value = todos[5].innerHTML;
+                 input_organismo.value = 4;
+                 input_entidad.value = todos[4].innerText;
+                 input_t_documento.value = todos[6].innerText;
+                 input_observaciones.value = todos[7].innerText;
+                 console.log(input_no_entrada.value)
+             }
+         })*/
+
+        const EnviarForm = () => {
+            d.addEventListener("submit", ev => {
+                ev.preventDefault();
+                /****Capturando valores para el envio del formulario de agregar documento****/
+                var fd_add;
+                fd_add = new FormData;
+                fd_add.append('ccsrfmiddlewaretoken', getCookie("csrftoken"));
+                fd_add.append('nombre', nombre.value);
+                fd_add.append('action', entidad_action.value);
+
+                if (last >= no_salida_doc.value) {
+                    Swal.fire(
+                          'Error!',
+                          'Existe un error en el número de entrada',
+                          'error'
+                        )
+                } else if (last + 1 < no_salida_doc.value) {
+                     Swal.fire(
+                          'Error!',
+                          'Existe un error en el número de entrada',
+                          'error'
+                        )
+                } else {
+                    const request = new Request(
+                        {% url 'agregar_nomencladores' %},
+                        {
+                            headers: {'X-CSRFToken': getCookie("csrftoken")},
+                            'Accept': 'application/json, application/xml, text/plain, text/html, *.*',
+                            'Content-Type': 'x-www-form-urlencoded'
+                        }
+                    );
+                    fetch(request, {
+                        method: 'post',
+                        mode: 'same-origin',
+                        body: fd_add,
+
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            Swal.fire({
+                              icon: 'success',
+                              title: 'Documento guardado exitosamente',
+                              showConfirmButton: true,
+                        }).then(function () {
+                            location.reload()
+                            })
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                            Swal.fire({
+                              icon: 'error',
+                              title: 'Oops...',
+                              text: 'Algo salió mal!',
+                              footer: error
+                                })
+                        });
+                }
+            });
+        };
+
+
+        const handleEdit = () => {
+            d.addEventListener("click", ev => {
+                let fn;
+                if (ev.target.matches(".btn-floating .fa-edit ")) {
+                    const $btn_edit = ev.target,
+                        $alltr = $btn_edit.closest('tr'),
+                        todos = $alltr.querySelectorAll('td');
+                    fn = new FormData;
+                    fn.append('ccsrfmiddlewaretoken', getCookie("csrftoken"));
+                    fn.append('salida', todos[0].innerText);
+                    const request = new Request(
+                        {% url 'editar_salidas' %},
+                        {
+                            headers: {'X-CSRFToken': getCookie("csrftoken")},
+                            'Accept': 'application/json, application/xml, text/plain, text/html, *.*',
+                            'Content-Type': 'x-www-form-urlencoded'
+                        }
+                    );
+                    fetch(request, {
+                        method: 'POST',
+                        mode: 'same-origin',
+                        body: fn,
+
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            console.log(data);
+                            input_no_salida.value = data['no_salida_doc'];
+                            input_titulo.value = data['titulo'];
+                            input_f_salida.value = data['f_salida_doc'];
+                            input_provincia.value = data['provincia'];
+                            input_organismo.value = data['organismo'];
+                            input_entidad.value = data['entidad'];
+                            input_t_documento_salida.value = data['tipo_documento_salida'];
+                            input_observaciones.value = data['observaciones'];
+                            input_forma_salida_doc.value = data['forma_salida'];
+                            input_procedencia.value = data['procedencia'];
+                            input_soporte_doc_salida.value = data['soporte_salida'];
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                            swal.fire({
+                              icon: 'error',
+                              title: 'Oops...',
+                              text: 'Algo salió mal!',
+                              footer: error
+                                })
+
+                         })
+
+              }  });
+        };
+
+        const handleSubmitEdit = () => {
+            d.addEventListener("click", ev => {
+                if(ev.target.matches(".btn-outline-success")){
+                    let fd_edit;
+                    fd_edit = new FormData;
+                    fd_edit.append('ccsrfmiddlewaretoken', getCookie("csrftoken"));
+                    fd_edit.append('titulo', input_titulo.value);
+                    fd_edit.append('no_salida_doc', input_no_salida.value);
+                    fd_edit.append('f_salida_doc', input_f_salida.value);
+                    fd_edit.append('procedencia', input_procedencia.value);
+                    fd_edit.append('organismo', input_organismo.value);
+                    fd_edit.append('entidad', input_entidad.value);
+                    fd_edit.append('tipo_documento_salida', input_t_documento_salida.value);
+                    fd_edit.append('observaciones', input_observaciones.value);
+                    fd_edit.append('forma_salida', input_forma_salida_doc.value);
+                    fd_edit.append('soporte_salida', input_soporte_doc_salida.value);
+                    fd_edit.append('provincia', input_provincia.value);
+
+                    const request = new Request(
+                        {% url 'editar_salidas' %},
+                        {
+                            headers: {'X-CSRFToken': getCookie("csrftoken")},
+                            'Accept': 'application/json, application/xml, text/plain, text/html, *.*',
+                            'Content-Type': 'x-www-form-urlencoded'
+                        }
+                    );
+                    fetch(request, {
+                        method: 'post',
+                        mode: 'same-origin',
+                        body: fd_edit,
+
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            console.log(data);
+                            Swal.fire({
+                              icon: 'success',
+                              title: 'Documento editado exitosamente',
+                              showConfirmButton: true,
+                        }).then(function () {
+                            location.reload()
+                            });
+
+
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                            swal.fire({
+                              icon: 'error',
+                              title: 'Oops...',
+                              text: 'Algo salió mal!',
+                              footer: error
+                                })
+                        });
+                }
+
+            });
+
+        }
+
+
+
+        const handleDelete = () =>{
+            d.addEventListener("click", ev => {
+                let fd;
+                if(ev.target.matches(".btn-outline-danger ") || (ev.target.matches(".fa-trash"))){
+                    Swal.fire({
+                      title: 'Desea eliminar el documento?',
+                      text: "Si acepta no se podrá revertir el proceso",
+                      icon: 'warning',
+                      showCancelButton: true,
+                      confirmButtonColor: '#3085d6',
+                      cancelButtonColor: '#d33',
+                      confirmButtonText: 'Si, elimínalo!',
+                      cancelButtonText: "Cancelar",
+                    }).then((result) => {
+                      if (result.isConfirmed) {
+                          const $btn_delete = ev.target,
+                            $alltr = $btn_delete.closest('tr'),
+                            todos = $alltr.querySelectorAll('td');
+
+                           fd = new FormData;
+                           fd.append('ccsrfmiddlewaretoken', getCookie("csrftoken"));
+                           fd.append('salida', todos[0].innerText);
+                            const request = new Request(
+                                {% url 'eliminar_salidas' %},
+                                {
+                                    headers: {'X-CSRFToken': getCookie("csrftoken")},
+                                    'Accept': 'application/json, application/xml, text/plain, text/html, *.*',
+                                    'Content-Type': 'x-www-form-urlencoded'
+                                }
+                            );
+                            fetch(request, {
+                                method: 'POST',
+                                mode: 'same-origin',
+                                body: fd,
+
+                            })
+                                .then(response => response.json())
+                                .then(data => {
+                                    console.log(data);
+                                    Swal.fire({
+                                       icon: 'success',
+                                       title: 'Documento eliminado exitosamente',
+                                       showConfirmButton: true,
+                                        }).then(function () {
+                                         location.reload()
+                                        });
+
+                                })
+                                .catch((error) => {
+                                    console.log(error);
+                                    swal.fire({
+                                      icon: 'error',
+                                      title: 'Oops...',
+                                      text: 'Algo salió mal!',
+                                      footer: error
+                                })
+                                });
+
+                      }
+                    })
+
+                }
+            })
+        };
+
+
+        d.addEventListener("DOMContentLoaded", () => {
+            getData()
+            EnviarForm();
+            handleEdit();
+            handleSubmitEdit();
+            handleDelete()
+        });
+    </script>
+{% endblock %}
+</body>
+</html>

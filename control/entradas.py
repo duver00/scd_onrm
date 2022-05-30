@@ -67,7 +67,6 @@ class NuevoDocumentoView(LoginRequiredMixin,PermissionRequiredMixin, CreateView)
                 doc.soporte_doc = data['soporte']
                 doc.forma_entrada = data['forma_entrada']
                 doc.save()
-                return JsonResponse(data)
             else:
                 info['error'] = 'Existe un error '
         except Exception as e:
