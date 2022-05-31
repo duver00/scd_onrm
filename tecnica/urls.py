@@ -19,11 +19,11 @@ from .entradas_tecnica import DocumentosTecnicaView, NuevoDocumentoTecnicaView, 
 from .salidas_tecnica import SalidaTecnicaView, NuevoSalidaTecnicaView, EditarSalidaTecnicaView, EliminarSalidaTecnicaView
 
 urlpatterns = [
-    path('entradas tecnica/', DocumentosTecnicaView.as_view(), name="tecnica_entrada"),
+    path('entradas_tecnica/', DocumentosTecnicaView.as_view(), name="tecnica_entrada"),
     path('crear_tecnica/', NuevoDocumentoTecnicaView.as_view(), name="nuevo_entrada_tecnica"),
     path('editar_tecnica/', EditarDocumentoTecnicaView.as_view(), name="editar_entrada_tecnica"),
     path('eliminar_tecnica/', EliminarDocumentoTecnicaView.as_view(), name="eliminar_entrada_tecnica"),
-    path('salidas tecnica/', SalidaTecnicaView.as_view(), name="tecnica_salida"),
+    path('salidas_tecnica/', SalidaTecnicaView.as_view(), name="tecnica_salida"),
     path('crear_salidas_tecnica/', NuevoSalidaTecnicaView.as_view(), name="nuevo_tecnica_salida"),
     path('editar_salidas_tecnica/', EditarSalidaTecnicaView.as_view(), name="editar_tecnica_salida"),
     path('eliminar_salidas_tecnica/', EliminarSalidaTecnicaView.as_view(), name="eliminar_tecnica_salida"),

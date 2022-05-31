@@ -13,12 +13,9 @@
         <link rel="stylesheet" href="{% static 'css/fontawesome-free/css/all.min.css' %}">
         <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
 
-        <!-- DataTables -->
-        <link rel="stylesheet" href="{% static 'css/datatables-bs4/css/dataTables.bootstrap4.min.css' %}">
-        <link rel="stylesheet" href="{% static 'css/datatables-responsive/css/responsive.bootstrap4.min.css' %}">
-        <link rel="stylesheet" href="{% static 'css/datatables-buttons/css/buttons.bootstrap4.min.css' %}">
-        <link rel="stylesheet" href="{% static 'css/datatable-searchpanes/css/searchPanes.bootstrap4.min.css' %}">
-        <link rel="stylesheet" href="{% static 'css/datatable-select/css/select.bootstrap4.min.css' %}">
+        <!-- Select -->
+        <link rel="stylesheet" href="{% static 'select2/css/select2.min.css' %}">
+        <link rel="stylesheet" href="{% static 'select2-bootstrap4-theme/select2-bootstrap4.min.css' %}">
 
     {% endblock %}
     <!-- Theme style -->
@@ -39,158 +36,157 @@
         <!-- Main content -->
         <section class="content">
             {% block body %}
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="card">
+            <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
 
-                                <!-- /.card -->
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
 
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h2 class="card-title">Entidades</h2>
-                                    </div>
-                                    <!-- /.card-header -->
-                                    <div class="card-body" id="cardbody">
-                                        <button class="button mb-2  " data-toggle="modal" data-target="#modal-default"
-                                                id="agregar">Agregar Entidad
-                                        </button>
-                                        <table id="tabla_salidas" class="table table-bordered table-striped">
-                                            <thead>
-                                            <tr>
-                                                <th>Nombre</th>
-                                                <th>Acciones</th>
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <!-- SELECT2 EXAMPLE -->
+        <div class="card card-default">
+          <div class="card-header">
+            <h3 class="card-title">Configurar Nomencladores</h3>
 
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            {% for entidades in  list_entidad %}
-                                                <tr>
-                                                    <td>{{ entidades.nombre }}</td>
-                                                    <td>
-                                                        <div class="button btn-group d-flex justify-content-center">
-                                                            <button type="button" id="editar_button" data-toggle="modal"
-                                                                    data-target="#editar"
-                                                                    class="btn btn-outline-dark btn-floating"
-                                                                    data-bs-toggle="tooltip" data-bs-placement="top"
-                                                                    title="Editar documento">
-                                                                <i class="fa fa-edit"></i>
-                                                            </button>
-                                                            <button type="button" id="{{ salidas.pk }}"
-                                                                    class="btn btn-outline-danger btn-floating"
-                                                                    data-bs-toggle="tooltip" data-bs-placement="top"
-                                                                    title="Eliminar documento">
-                                                                <i class="fa fa-trash"></i>
-                                                            </button>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <!-- /.modal-Detalles -->
-
-                                                <!-- /.modal-editar -->
-                                                <div class="modal fade" id="editar">
-                                                    <div id="alert-box"></div>
-                                                    <div class="modal-dialog">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <img src="{% static 'img/onrm.png' %}">
-                                                                <h4 class="modal-title mx-auto mt-4">Editar Entidad</h4>
-                                                                <button type="button" class="close" data-dismiss="modal"
-                                                                        aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <form method="post" name="editar_entidad" id="form_editar" action="entidad" >
-                                                                    {% csrf_token %}
-                                                                    <input type="hidden" name="action" value="edit">
-                                                                    <div class=" form-group" >
-                                                                <h6 class="font-weight-bold mt-3">Nombre entidad</h6>
-                                                                <input type="text" name="titulo"
-                                                                       class="form-control" label="Nombre entidad"
-                                                                       style="max-width: 500px;" maxlength="255"
-                                                                       required="True" id="id_edit_nombre">
-
-                                                            </div>
-                                                            <div class="modal-footer mx-auto">
-
-                                                                <button type="button" id="btnEditar"
-                                                                        class="btn btn-outline-success">Editar
-                                                                </button>
-                                                                <button type="button" class="btn btn-default"
-                                                                        data-dismiss="modal">Cerrar
-                                                                </button>
-                                                            </div>
-
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                    <!-- /.modal-content -->
-                                                </div>
-                                                <!-- /.modal-dialog -->
-                                                </div>
-                                            {% endfor %}
-                                    </tfoot>
-                                    </table>
-                                </div>
-                                <!-- /.card-body -->
-                            </div>
-                            <!-- /.card -->
-                        </div>
-                        <!-- /.col -->
+            <div class="card-tools">
+              <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                <i class="fas fa-minus"></i>
+              </button>
+              <button type="button" class="btn btn-tool" data-card-widget="remove">
+                <i class="fas fa-times"></i>
+              </button>
+            </div>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                <form method="post" name="action" id="add_direcciones">{% csrf_token %}
+                  <label>Direcciones</label>
+                  <select class="form-control select2" style="width: 100%;" id="direcciones">
+                    {% for direcciones in list_direcciones %}
+                    <option value="{{ direcciones.pk }}"{% if direcciones.id == id %} selected="selected"{% endif %}>{{ direcciones }}
+                    </option>
+                   {% endfor %}
+                  </select>
+                    <div class="d-flex justify-content-end">
+                        <button class="mt-2 btn-outline-success" type="submit">Agregar</button>
+                        <button class="mt-2 ml-2 btn-outline-dark">Editar</button>
+                        <button class="mt-2 ml-2 btn-outline-danger">Eliminar</button>
                     </div>
-                    <!-- /.row -->
-                </div>
-                <!-- /.container-fluid -->
-                </section>
-                </div>
-                   <!-- Modal de agregar documentos junto son su alert -->
-                <div class="modal fade" id="modal-default">
-                    <div id="alert-box"></div>
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <img src="{% static 'img/onrm.png' %}">
-                                <h4 class="modal-title mx-auto mt-4">Agregar Entidad</h4>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <form method="post" name="agrega_documento" id="form_agregar">
-                                    {% csrf_token %}
-                                    <input type="hidden" name="action" value="add_entidad">
-                                    <div class="form-group">
-                                       <h6 class="font-weight-bold mt-3">{{ form_entidad.nombre.label }}</h6>
-                                        {{ form_entidad.nombre }}
-                                    </div>
-                                    <div class="modal-footer mx-auto">
-                                        <button type="submit" id="btnAceptar" class="btn btn-outline-primary">Agregar
-                                        </button>
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar
-                                        </button>
-                                    </div>
+                </form>
 
-                                </form>
-                            </div>
-                        </div>
-                        <!-- /.modal-content -->
+                </div>
+                <!-- /.form-group -->
+                  <div class="form-group">
+                  <form method="post" name="action" id="add_provincias">
+                  <label>Provincias</label>
+                  <select class="form-control select2" style="width: 100%;" id="provincia">
+                       {% for provincia in list_provincia %}
+                    <option value="{{ provincia.pk }}"{% if provincia.id == id %} selected="selected"{% endif %}>{{ provincia }}
+                    </option>
+                   {% endfor %}
+                  </select>
+                    <div class="d-flex justify-content-end">
+                        <button class="mt-2 btn-outline-success">Agregar</button>
+                        <button class="mt-2 ml-2 btn-outline-dark">Editar</button>
+                        <button class="mt-2 ml-2 btn-outline-danger">Eliminar</button>
                     </div>
-                    <!-- /.modal-dialog -->
-                 </div>
 
+                </div>
+                  <div class="form-group">
+                  <label>Tipo de documento de entrada</label>
+                  <select class="form-control select2" style="width: 100%;">
+                   {% for tdoc in list_t_documento %}
+                       <option value="{{ tdoc.pk }}"{% if tdoc.id == id %} selected="selected"{% endif %}>{{ tdoc }}
+                       </option>
+                   {% endfor %}
+                  </select>
+                    <div class="d-flex justify-content-end">
+                        <button class="mt-2 btn-outline-success">Agregar</button>
+                        <button class="mt-2 ml-2 btn-outline-dark">Editar</button>
+                        <button class="mt-2 ml-2 btn-outline-danger">Eliminar</button>
+                    </div>
 
-                <!-- /.modal -->
-             <!-- Modal de detalles -->
+                </div>
 
-                <!-- /.content -->
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-6">
+                <div class="form-group">
+
+                  <label>Organismo</label>
+                  <select class="form-control select2" style="width: 100%;">
+                    {% for organismo in list_organismo %}
+                      <option value="{{ organismo.pk }}"{% if organismo.id == id %} selected="selected"{% endif %}>{{ organismo }}
+                      </option>
+                   {% endfor %}
+                  </select>
+                    <div class="d-flex justify-content-end">
+                        <button class="mt-2 btn-outline-success">Agregar</button>
+                        <button class="mt-2 ml-2 btn-outline-dark">Editar</button>
+                        <button class="mt-2 ml-2 btn-outline-danger">Eliminar</button>
+                    </div>
+
+                </div>
+                <!-- /.form-group -->
+                <div class="form-group">
+                  <label>Entidad</label>
+                  <select class="form-control select2" style="width: 100%;">
+                     {% for entidades in list_entidad %}
+                       <option value="{{ entidades.pk }}"{% if entidades.id == id %} selected="selected"{% endif %}>{{ entidades }}
+                       </option>
+                     {% endfor %}
+                  </select>
+                    <div class="d-flex justify-content-end">
+                        <button class="mt-2 btn-outline-success">Agregar</button>
+                        <button class="mt-2 ml-2 btn-outline-dark">Editar</button>
+                        <button class="mt-2 ml-2 btn-outline-danger">Eliminar</button>
+                    </div>
+
+                </div>
+              <div class="form-group">
+                  <label>Tipo de documento de salida</label>
+                  <select class="form-control select2" style="width: 100%;">
+                    {% for tdoc_sal in list_t_documento_salida %}
+                       <option value="{{ tdoc_sal.pk }}"{% if tdoc_sal.id == id %} selected="selected"{% endif %}>{{ tdoc_sal }}
+                       </option>
+                    {% endfor %}
+                  </select>
+                    <div class="d-flex justify-content-end">
+                        <button class="mt-2 btn-outline-success">Agregar</button>
+                        <button class="mt-2 ml-2 btn-outline-dark">Editar</button>
+                        <button class="mt-2 ml-2 btn-outline-danger">Eliminar</button>
+                    </div>
+
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+            <!-- /.row -->
+
 {% endblock body %}
 
     <aside class="control-sidebar control-sidebar-dark">
         <!-- Control sidebar content goes here -->
     </aside>
 
-</div>
+</div>11
 {% block script %}
     <!-- jQuery -->
    <script src="{% static 'js/jquery/jquery.min.js' %}"></script>
@@ -198,38 +194,11 @@
     <script src="{% static 'js/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
     <script src="{% static 'js/entradas.js' %}"></script>
     <!-- DataTables  & Plugins -->
-    <script src="{% static 'js/datatables/jquery.dataTables.min.js' %}"></script>
-    <script src="{% static 'css/datatables-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
-    <script src="{% static 'css/datatables-responsive/js/dataTables.responsive.min.js' %}"></script>
-    <script src="{% static 'css/datatables-responsive/js/responsive.bootstrap4.min.js' %}"></script>
-    <script src="{% static 'css/datatables-buttons/js/dataTables.buttons.min.js' %}"></script>
-    <script src="{% static 'css/datatables-buttons/js/buttons.bootstrap4.min.js' %}"></script>
-    <script src="{% static 'js/jszip/jszip.min.js' %}"></script>
-    <script src="{% static 'js/pdfmake/pdfmake.min.js' %}"></script>
-    <script src="{% static 'js/pdfmake/vfs_fonts.js' %}"></script>
-    <script src="{% static 'css/datatables-buttons/js/buttons.html5.min.js' %}"></script>
-    <script src="{% static 'css/datatables-buttons/js/buttons.print.min.js' %}"></script>
-    <script src="{% static 'css/datatables-buttons/js/buttons.colVis.min.js' %}"></script>
-    <script src="{% static 'js/sweetalert2/sweetalert2.all.min.js' %}"></script>
-    <script src="{% static 'js/datatables-searchpanes/js/searchPanes.bootstrap4.min.js' %}"></script>
-    <script src="{% static 'js/datatables-searchpanes/js/dataTables.searchPanes.js' %}"></script>
-    <script src="{% static 'js/datatables-select/js/dataTables.select.min.js' %}"></script>
 
 
 
 <script>
-        function getData (){
-        $(function () {
-            $("#tabla_salidas").DataTable({
-                dom: 'frtipP',
-                language: {
-                    url: '{% static "fonts/spanish.json" %}'
-                },
-                "order": [[ 2,"asc" ]],
-                "responsive": true, "lengthChange": true, "autoWidth": false,
-            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-         });
-        }
+
         //Capturar el valor del csrf
         function getCookie(name) {
             let cookieValue = null;
@@ -252,8 +221,13 @@
         const nombre = d.getElementById("id_nombre");
      /****Capturando valores por el id para agregar Provincia****/
         d = document;
-        const nombre_provincia = d.getElementById("id_nombre");
-        const entidad_action = d.getElementById('form_agregar');
+        const direcciones = d.getElementById("direcciones");
+        const provincias = d.getElementById("provincias");
+        const organismo = d.getElementById("direcciones");
+        const entidad = d.getElementById("direcciones");
+        const tipo_doc_salida = d.getElementById("direcciones");
+        const tipo_doc = d.getElementById("direcciones");
+        console.log(direcciones);
 
 
         /****Capturando id para pasarle valores para el form editar****/
@@ -270,32 +244,6 @@
         const input_soporte_doc_salida = d.getElementById("id_edit_soporte_salida");
         const input_provincia = d.getElementById("id_edit_provincia");
 
-
-        /* d.addEventListener('click', ev => {
-             if (ev.target.matches(".btn-floating .fa-edit ")) {
-                 const $btn_edit = ev.target;
-                 const $alltr = $btn_edit.closest('tr');
-                 const todos = $alltr.querySelectorAll('td');
-                 console.log(todos);
-                 const input_no_entrada = d.getElementById("id_no_entrada_doc");
-                 const input_titulo = d.getElementById("id_titulo");
-                 const input_f_entrada = d.getElementById("id_f_entrada_doc");
-                 const input_dirigido = d.getElementById("id_dirigido");
-                 const input_organismo = d.getElementById("id_organismo");
-                 const input_entidad = d.getElementById("id_entidad");
-                 const input_t_documento = d.getElementById("id_t_documento");
-                 const input_observaciones = d.getElementById("id_observaciones");
-                 input_no_entrada.value = todos[0].innerText;
-                 input_titulo.value = todos[1].innerText;
-                 input_f_entrada.dataset = todos[2].innerHTML;
-                 input_dirigido.value = todos[5].innerHTML;
-                 input_organismo.value = 4;
-                 input_entidad.value = todos[4].innerText;
-                 input_t_documento.value = todos[6].innerText;
-                 input_observaciones.value = todos[7].innerText;
-                 console.log(input_no_entrada.value)
-             }
-         })*/
 
         const EnviarForm = () => {
             d.addEventListener("submit", ev => {
@@ -540,7 +488,7 @@
 
 
         d.addEventListener("DOMContentLoaded", () => {
-            getData()
+
             EnviarForm();
             handleEdit();
             handleSubmitEdit();
