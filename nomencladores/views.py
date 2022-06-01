@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views.generic import TemplateView, UpdateView, DeleteView, CreateView
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from control.models import Entidad, Provincia, Organismo, TipoDocumentoSalida, TipoDocumento, Direcciones
-from .forms import EntidadForm, ProvinciaForm, OrganismoForm, DireccionesForm, TipoDocumentoForm, TipoDocumentoSalidaForm
+from .forms import EntidadForm, ProvinciaForm, OrganismoForm, DireccionesForm, TipoDocumentoForm,  TipoDocumentoSalidaForm
 from django.http import JsonResponse
 
 
@@ -31,8 +31,8 @@ class NomencladoresView(PermissionRequiredMixin, TemplateView):
         return context
 
 
-class NuevoNomencadorView(PermissionRequiredMixin, CreateView):
-    template_name = "nomencladores.html"
+class NuevoNomencladorView(PermissionRequiredMixin, CreateView):
+    template_name = "modals/direcciones.html"
     permission_required = 'nomencladores.add_entidad'
     login_url = '/entrar/'
 
@@ -41,17 +41,40 @@ class NuevoNomencadorView(PermissionRequiredMixin, CreateView):
         try:
             if request.method == 'POST':
                 data = request.POST
-                if data['action'] =='entidad':
+                if data['action'] == 'direcciones':
+                    dir = Direcciones()
+                    dir.nombre = data['nombre']
+                    dir.correo = data['correo']
+                    dir.save()
+                    return JsonResponse(data)
+                elif data['action'] == 'provincia':
+                    prov = Provincia()
+                    prov.nombre = data['nombre']
+                    prov.save()
+                    return JsonResponse(data)
+                elif data['action'] == 'organismo':
+                    org = Organismo()
+                    org.nombre = data['nombre']
+                    org.save()
+                    return JsonResponse(data)
+                elif data['action'] == 'entidad':
                     ent = Entidad()
-                    ent.pk = data['nombre']
+                    ent.nombre = data['nombre']
                     ent.save()
                     return JsonResponse(data)
-            else:
-                info['error'] = 'Existe un error '
+                elif data['action'] == 'tdoc':
+                    tdoc = TipoDocumento()
+                    tdoc.tipo = data['nombre']
+                    tdoc.save()
+                    return JsonResponse(data)
+                elif data['action'] == 'tdoc_salida':
+                    tdoc_salida = TipoDocumentoSalida()
+                    tdoc_salida.tipo = data['nombre']
+                    tdoc_salida.save()
+                    return JsonResponse(data)
         except Exception as e:
             info['error'] = str(e)
             return JsonResponse(info)
-
 
 
 class EditarNomencladoresVire(PermissionRequiredMixin, UpdateView):

@@ -68,7 +68,6 @@
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
-                <form method="post" name="action" id="add_direcciones">{% csrf_token %}
                   <label>Direcciones</label>
                   <select class="form-control select2" style="width: 100%;" id="direcciones">
                     {% for direcciones in list_direcciones %}
@@ -77,16 +76,15 @@
                    {% endfor %}
                   </select>
                     <div class="d-flex justify-content-end">
-                        <button class="mt-2 btn-outline-success" type="submit">Agregar</button>
+                        <button class="mt-2 btn-outline-success" data-toggle="modal" data-target="#m_add_direcciones">Nuevo</button>
                         <button class="mt-2 ml-2 btn-outline-dark">Editar</button>
                         <button class="mt-2 ml-2 btn-outline-danger">Eliminar</button>
                     </div>
-                </form>
+
 
                 </div>
                 <!-- /.form-group -->
                   <div class="form-group">
-                  <form method="post" name="action" id="add_provincias">
                   <label>Provincias</label>
                   <select class="form-control select2" style="width: 100%;" id="provincia">
                        {% for provincia in list_provincia %}
@@ -95,7 +93,7 @@
                    {% endfor %}
                   </select>
                     <div class="d-flex justify-content-end">
-                        <button class="mt-2 btn-outline-success">Agregar</button>
+                        <button class="mt-2 btn-outline-success" data-toggle="modal" data-target="#m_add_provincia">Nuevo</button>
                         <button class="mt-2 ml-2 btn-outline-dark">Editar</button>
                         <button class="mt-2 ml-2 btn-outline-danger">Eliminar</button>
                     </div>
@@ -103,14 +101,14 @@
                 </div>
                   <div class="form-group">
                   <label>Tipo de documento de entrada</label>
-                  <select class="form-control select2" style="width: 100%;">
+                  <select class="form-control select2" style="width: 100%;" id="tdoc">
                    {% for tdoc in list_t_documento %}
                        <option value="{{ tdoc.pk }}"{% if tdoc.id == id %} selected="selected"{% endif %}>{{ tdoc }}
                        </option>
                    {% endfor %}
                   </select>
                     <div class="d-flex justify-content-end">
-                        <button class="mt-2 btn-outline-success">Agregar</button>
+                        <button class="mt-2 btn-outline-success" data-toggle="modal" data-target="#m_add_tdoc">Agregar</button>
                         <button class="mt-2 ml-2 btn-outline-dark">Editar</button>
                         <button class="mt-2 ml-2 btn-outline-danger">Eliminar</button>
                     </div>
@@ -122,64 +120,64 @@
               <!-- /.col -->
               <div class="col-md-6">
                 <div class="form-group">
-
                   <label>Organismo</label>
-                  <select class="form-control select2" style="width: 100%;">
+                  <select class="form-control select2" style="width: 100%;" id="organismo">
                     {% for organismo in list_organismo %}
                       <option value="{{ organismo.pk }}"{% if organismo.id == id %} selected="selected"{% endif %}>{{ organismo }}
                       </option>
                    {% endfor %}
                   </select>
                     <div class="d-flex justify-content-end">
-                        <button class="mt-2 btn-outline-success">Agregar</button>
+                        <button class="mt-2 btn-outline-success" data-toggle="modal" data-target="#m_add_organismo">Nuevo</button>
                         <button class="mt-2 ml-2 btn-outline-dark">Editar</button>
                         <button class="mt-2 ml-2 btn-outline-danger">Eliminar</button>
                     </div>
-
                 </div>
                 <!-- /.form-group -->
                 <div class="form-group">
                   <label>Entidad</label>
-                  <select class="form-control select2" style="width: 100%;">
+                  <select class="form-control select2" style="width: 100%;" id="entidad">
                      {% for entidades in list_entidad %}
                        <option value="{{ entidades.pk }}"{% if entidades.id == id %} selected="selected"{% endif %}>{{ entidades }}
                        </option>
                      {% endfor %}
                   </select>
                     <div class="d-flex justify-content-end">
-                        <button class="mt-2 btn-outline-success">Agregar</button>
+                        <button class="mt-2 btn-outline-success 1" data-toggle="modal" data-target="#m_add_entidad">Agregar</button>
                         <button class="mt-2 ml-2 btn-outline-dark">Editar</button>
                         <button class="mt-2 ml-2 btn-outline-danger">Eliminar</button>
                     </div>
-
+                </form>
                 </div>
               <div class="form-group">
                   <label>Tipo de documento de salida</label>
-                  <select class="form-control select2" style="width: 100%;">
+                  <select class="form-control select2" style="width: 100%;" id="tdoc_salida">
                     {% for tdoc_sal in list_t_documento_salida %}
                        <option value="{{ tdoc_sal.pk }}"{% if tdoc_sal.id == id %} selected="selected"{% endif %}>{{ tdoc_sal }}
                        </option>
                     {% endfor %}
                   </select>
                     <div class="d-flex justify-content-end">
-                        <button class="mt-2 btn-outline-success">Agregar</button>
+                        <button class="mt-2 btn-outline-success" data-toggle="modal" data-target="#m_add_tdoc_salida">Agregar</button>
                         <button class="mt-2 ml-2 btn-outline-dark">Editar</button>
                         <button class="mt-2 ml-2 btn-outline-danger">Eliminar</button>
                     </div>
-
-                </div>
                 <!-- /.form-group -->
               </div>
               <!-- /.col -->
-
             </div>
+
           </div>
         </div>
+        {% include 'modals/direcciones.html' %}
+        {% include 'modals/provincias.html' %}
+        {% include 'modals/organismo.html' %}
+        {% include 'modals/entidad.html' %}
+        {% include 'modals/tipo_documento.html' %}
+        {% include 'modals/tipo_documento_salida.html' %}
       </div>
     </section>
-
-            <!-- /.row -->
-
+                <!-- /.row -->
 {% endblock body %}
 
     <aside class="control-sidebar control-sidebar-dark">
@@ -193,11 +191,33 @@
     <!-- Bootstrap 4 -->
     <script src="{% static 'js/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
     <script src="{% static 'js/entradas.js' %}"></script>
+    <script src="{% static 'js/sweetalert2/sweetalert2.all.min.js' %}"></script>
     <!-- DataTables  & Plugins -->
 
 
 
 <script>
+         d = document;
+         /***Direcciones**/
+         const direcciones = d.getElementById("id_nombre");
+         const action_direcciones = d.getElementById('add_direcciones');
+         const correo = d.getElementById("id_correo");
+          /***Provincias**/
+          const provincia = d.getElementById("id_provincia");
+          const action_provincia = d.getElementById('add_provincia');
+          /***Organismo**/
+          const organismo = d.getElementById("id_organismo");
+          const action_organismo = d.getElementById('add_organismo');
+           /***Entidad**/
+          const entidad = d.getElementById("id_entidad");
+          const action_entidad = d.getElementById('add_entidad');
+           /***Tipo documento de entrada**/
+          const tdoc = d.getElementById("id_tdoc_entrada");
+          const action_tdoc = d.getElementById('add_tdoc');
+           /***Tipo documento de salida**/
+          const tdoc_salida = d.getElementById("id_tdoc_salida");
+          const action_tdoc_salida = d.getElementById('add_tdoc_salida');
+
 
         //Capturar el valor del csrf
         function getCookie(name) {
@@ -216,284 +236,7 @@
             return cookieValue;
         }
 
-      /****Capturando valores por el id para agregar Entidad****/
-        d = document;
-        const nombre = d.getElementById("id_nombre");
-     /****Capturando valores por el id para agregar Provincia****/
-        d = document;
-        const direcciones = d.getElementById("direcciones");
-        const provincias = d.getElementById("provincias");
-        const organismo = d.getElementById("direcciones");
-        const entidad = d.getElementById("direcciones");
-        const tipo_doc_salida = d.getElementById("direcciones");
-        const tipo_doc = d.getElementById("direcciones");
-        console.log(direcciones);
 
-
-        /****Capturando id para pasarle valores para el form editar****/
-
-        const input_no_salida = d.getElementById("id_edit_no_salida_doc");
-        const input_titulo = d.getElementById("id_edit_titulo");
-        const input_f_salida = d.getElementById("id_edit_f_salida_doc");
-        const input_procedencia = d.getElementById("id_edit_procedencia");
-        const input_organismo = d.getElementById("id_edit_organismo");
-        const input_entidad = d.getElementById("id_edit_entidad");
-        const input_t_documento_salida = d.getElementById("id_edit_t_documento_salida");
-        const input_observaciones = d.getElementById("id_edit_observaciones");
-        const input_forma_salida_doc = d.getElementById("id_edit_forma_salida");
-        const input_soporte_doc_salida = d.getElementById("id_edit_soporte_salida");
-        const input_provincia = d.getElementById("id_edit_provincia");
-
-
-        const EnviarForm = () => {
-            d.addEventListener("submit", ev => {
-                ev.preventDefault();
-                /****Capturando valores para el envio del formulario de agregar documento****/
-                var fd_add;
-                fd_add = new FormData;
-                fd_add.append('ccsrfmiddlewaretoken', getCookie("csrftoken"));
-                fd_add.append('nombre', nombre.value);
-                fd_add.append('action', entidad_action.value);
-
-                if (last >= no_salida_doc.value) {
-                    Swal.fire(
-                          'Error!',
-                          'Existe un error en el número de entrada',
-                          'error'
-                        )
-                } else if (last + 1 < no_salida_doc.value) {
-                     Swal.fire(
-                          'Error!',
-                          'Existe un error en el número de entrada',
-                          'error'
-                        )
-                } else {
-                    const request = new Request(
-                        {% url 'agregar_nomencladores' %},
-                        {
-                            headers: {'X-CSRFToken': getCookie("csrftoken")},
-                            'Accept': 'application/json, application/xml, text/plain, text/html, *.*',
-                            'Content-Type': 'x-www-form-urlencoded'
-                        }
-                    );
-                    fetch(request, {
-                        method: 'post',
-                        mode: 'same-origin',
-                        body: fd_add,
-
-                    })
-                        .then(response => response.json())
-                        .then(data => {
-                            Swal.fire({
-                              icon: 'success',
-                              title: 'Documento guardado exitosamente',
-                              showConfirmButton: true,
-                        }).then(function () {
-                            location.reload()
-                            })
-                        })
-                        .catch((error) => {
-                            console.log(error);
-                            Swal.fire({
-                              icon: 'error',
-                              title: 'Oops...',
-                              text: 'Algo salió mal!',
-                              footer: error
-                                })
-                        });
-                }
-            });
-        };
-
-
-        const handleEdit = () => {
-            d.addEventListener("click", ev => {
-                let fn;
-                if (ev.target.matches(".btn-floating .fa-edit ")) {
-                    const $btn_edit = ev.target,
-                        $alltr = $btn_edit.closest('tr'),
-                        todos = $alltr.querySelectorAll('td');
-                    fn = new FormData;
-                    fn.append('ccsrfmiddlewaretoken', getCookie("csrftoken"));
-                    fn.append('salida', todos[0].innerText);
-                    const request = new Request(
-                        {% url 'editar_salidas' %},
-                        {
-                            headers: {'X-CSRFToken': getCookie("csrftoken")},
-                            'Accept': 'application/json, application/xml, text/plain, text/html, *.*',
-                            'Content-Type': 'x-www-form-urlencoded'
-                        }
-                    );
-                    fetch(request, {
-                        method: 'POST',
-                        mode: 'same-origin',
-                        body: fn,
-
-                    })
-                        .then(response => response.json())
-                        .then(data => {
-                            console.log(data);
-                            input_no_salida.value = data['no_salida_doc'];
-                            input_titulo.value = data['titulo'];
-                            input_f_salida.value = data['f_salida_doc'];
-                            input_provincia.value = data['provincia'];
-                            input_organismo.value = data['organismo'];
-                            input_entidad.value = data['entidad'];
-                            input_t_documento_salida.value = data['tipo_documento_salida'];
-                            input_observaciones.value = data['observaciones'];
-                            input_forma_salida_doc.value = data['forma_salida'];
-                            input_procedencia.value = data['procedencia'];
-                            input_soporte_doc_salida.value = data['soporte_salida'];
-                        })
-                        .catch((error) => {
-                            console.log(error);
-                            swal.fire({
-                              icon: 'error',
-                              title: 'Oops...',
-                              text: 'Algo salió mal!',
-                              footer: error
-                                })
-
-                         })
-
-              }  });
-        };
-
-        const handleSubmitEdit = () => {
-            d.addEventListener("click", ev => {
-                if(ev.target.matches(".btn-outline-success")){
-                    let fd_edit;
-                    fd_edit = new FormData;
-                    fd_edit.append('ccsrfmiddlewaretoken', getCookie("csrftoken"));
-                    fd_edit.append('titulo', input_titulo.value);
-                    fd_edit.append('no_salida_doc', input_no_salida.value);
-                    fd_edit.append('f_salida_doc', input_f_salida.value);
-                    fd_edit.append('procedencia', input_procedencia.value);
-                    fd_edit.append('organismo', input_organismo.value);
-                    fd_edit.append('entidad', input_entidad.value);
-                    fd_edit.append('tipo_documento_salida', input_t_documento_salida.value);
-                    fd_edit.append('observaciones', input_observaciones.value);
-                    fd_edit.append('forma_salida', input_forma_salida_doc.value);
-                    fd_edit.append('soporte_salida', input_soporte_doc_salida.value);
-                    fd_edit.append('provincia', input_provincia.value);
-
-                    const request = new Request(
-                        {% url 'editar_salidas' %},
-                        {
-                            headers: {'X-CSRFToken': getCookie("csrftoken")},
-                            'Accept': 'application/json, application/xml, text/plain, text/html, *.*',
-                            'Content-Type': 'x-www-form-urlencoded'
-                        }
-                    );
-                    fetch(request, {
-                        method: 'post',
-                        mode: 'same-origin',
-                        body: fd_edit,
-
-                    })
-                        .then(response => response.json())
-                        .then(data => {
-                            console.log(data);
-                            Swal.fire({
-                              icon: 'success',
-                              title: 'Documento editado exitosamente',
-                              showConfirmButton: true,
-                        }).then(function () {
-                            location.reload()
-                            });
-
-
-                        })
-                        .catch((error) => {
-                            console.log(error);
-                            swal.fire({
-                              icon: 'error',
-                              title: 'Oops...',
-                              text: 'Algo salió mal!',
-                              footer: error
-                                })
-                        });
-                }
-
-            });
-
-        }
-
-
-
-        const handleDelete = () =>{
-            d.addEventListener("click", ev => {
-                let fd;
-                if(ev.target.matches(".btn-outline-danger ") || (ev.target.matches(".fa-trash"))){
-                    Swal.fire({
-                      title: 'Desea eliminar el documento?',
-                      text: "Si acepta no se podrá revertir el proceso",
-                      icon: 'warning',
-                      showCancelButton: true,
-                      confirmButtonColor: '#3085d6',
-                      cancelButtonColor: '#d33',
-                      confirmButtonText: 'Si, elimínalo!',
-                      cancelButtonText: "Cancelar",
-                    }).then((result) => {
-                      if (result.isConfirmed) {
-                          const $btn_delete = ev.target,
-                            $alltr = $btn_delete.closest('tr'),
-                            todos = $alltr.querySelectorAll('td');
-
-                           fd = new FormData;
-                           fd.append('ccsrfmiddlewaretoken', getCookie("csrftoken"));
-                           fd.append('salida', todos[0].innerText);
-                            const request = new Request(
-                                {% url 'eliminar_salidas' %},
-                                {
-                                    headers: {'X-CSRFToken': getCookie("csrftoken")},
-                                    'Accept': 'application/json, application/xml, text/plain, text/html, *.*',
-                                    'Content-Type': 'x-www-form-urlencoded'
-                                }
-                            );
-                            fetch(request, {
-                                method: 'POST',
-                                mode: 'same-origin',
-                                body: fd,
-
-                            })
-                                .then(response => response.json())
-                                .then(data => {
-                                    console.log(data);
-                                    Swal.fire({
-                                       icon: 'success',
-                                       title: 'Documento eliminado exitosamente',
-                                       showConfirmButton: true,
-                                        }).then(function () {
-                                         location.reload()
-                                        });
-
-                                })
-                                .catch((error) => {
-                                    console.log(error);
-                                    swal.fire({
-                                      icon: 'error',
-                                      title: 'Oops...',
-                                      text: 'Algo salió mal!',
-                                      footer: error
-                                })
-                                });
-
-                      }
-                    })
-
-                }
-            })
-        };
-
-
-        d.addEventListener("DOMContentLoaded", () => {
-
-            EnviarForm();
-            handleEdit();
-            handleSubmitEdit();
-            handleDelete()
-        });
     </script>
 {% endblock %}
 </body>
