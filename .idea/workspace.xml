@@ -2,27 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e2c777aa-d78f-4306-b5f2-6039cf1414a5" name="Default Changelist" comment="lap dev 17/05">
-      <change afterPath="$PROJECT_DIR$/consultas/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/consultas/admin.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/consultas/apps.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/consultas/migrations/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/consultas/models.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/consultas/tests.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/consultas/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/consultas/views.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/control/migrations/0004_salidadocumento_tipodocumentosalida_and_more.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/control/migrations/0005_documentosalida_delete_salidadocumento.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/control/migrations/0006_alter_documento_options_and_more.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/nomencladores/static/js/crud/delete_nomenclador.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/nomencladores/static/js/crud/edit_nomenclador.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/nomencladores/static/js/crud/edit_submit.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/nomencladores/static/js/crud/nomenclador.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/nomencladores/static/js/fetch/fetch_adicionar.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/nomencladores/static/js/fetch/fetch_delete.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/nomencladores/static/js/fetch/fetch_editar.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/nomencladores/static/js/validaciones/csrf.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/nomencladores/static/js/validaciones/validar_direcciones.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/nomencladores/static/js/validaciones/validar_otros.js" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/tecnica/migrations/0001_initial.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/tecnica/migrations/0002_salidastecnica.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/tecnica/migrations/__init__.py" afterDir="false" />
@@ -515,29 +498,7 @@
       <change beforePath="$PROJECT_DIR$/Scripts/pip3.8-script.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Scripts/pip3.8.exe" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/pip3.8.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Scripts/pip3.exe" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/pip3.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/Templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Templates/inicio.html" beforeDir="false" afterPath="$PROJECT_DIR$/Templates/inicio.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/control/entradas.py" beforeDir="false" afterPath="$PROJECT_DIR$/control/entradas.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/control/templates/entradas.html" beforeDir="false" afterPath="$PROJECT_DIR$/control/templates/entradas.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/control/templates/salidas.html" beforeDir="false" afterPath="$PROJECT_DIR$/control/templates/salidas.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/control/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/control/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nomencladores/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/nomencladores/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nomencladores/templates/modals/direcciones.html" beforeDir="false" afterPath="$PROJECT_DIR$/nomencladores/templates/modals/direcciones.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nomencladores/templates/modals/entidad.html" beforeDir="false" afterPath="$PROJECT_DIR$/nomencladores/templates/modals/entidad.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nomencladores/templates/modals/organismo.html" beforeDir="false" afterPath="$PROJECT_DIR$/nomencladores/templates/modals/organismo.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nomencladores/templates/modals/provincias.html" beforeDir="false" afterPath="$PROJECT_DIR$/nomencladores/templates/modals/provincias.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nomencladores/templates/modals/tipo_documento.html" beforeDir="false" afterPath="$PROJECT_DIR$/nomencladores/templates/modals/tipo_documento.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nomencladores/templates/modals/tipo_documento_salida.html" beforeDir="false" afterPath="$PROJECT_DIR$/nomencladores/templates/modals/tipo_documento_salida.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nomencladores/templates/nomencladores.html" beforeDir="false" afterPath="$PROJECT_DIR$/nomencladores/templates/nomencladores.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nomencladores/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/nomencladores/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nomencladores/view_nomencladores.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/nomencladores/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/nomencladores/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/registro/templates/registro_entradas.html" beforeDir="false" afterPath="$PROJECT_DIR$/registro/templates/registro_entradas.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/registro/templates/registro_salidas.html" beforeDir="false" afterPath="$PROJECT_DIR$/registro/templates/registro_salidas.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scd/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/scd/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scd/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/scd/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tecnica/templates/tecnica_entradas.html" beforeDir="false" afterPath="$PROJECT_DIR$/tecnica/templates/tecnica_entradas.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tecnica/templates/tecnica_salidas.html" beforeDir="false" afterPath="$PROJECT_DIR$/tecnica/templates/tecnica_salidas.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/autenticacion/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/autenticacion/templates/login.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -819,7 +780,7 @@
       <workItem from="1654713296132" duration="5179000" />
       <workItem from="1654801081456" duration="12178000" />
       <workItem from="1655418527139" duration="14231000" />
-      <workItem from="1655728380945" duration="5127000" />
+      <workItem from="1655728380945" duration="6415000" />
     </task>
     <task id="LOCAL-00001" summary="all files">
       <created>1645634960889</created>
@@ -982,7 +943,14 @@
       <option name="project" value="LOCAL" />
       <updated>1654097703147</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="lap dev 20/06">
+      <created>1655734866563</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1655734866563</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1012,7 +980,8 @@
     <MESSAGE value="lap dev 30/05" />
     <MESSAGE value="lap dev 31/05" />
     <MESSAGE value="lap dev 1/06" />
-    <option name="LAST_COMMIT_MESSAGE" value="lap dev 1/06" />
+    <MESSAGE value="lap dev 20/06" />
+    <option name="LAST_COMMIT_MESSAGE" value="lap dev 20/06" />
   </component>
   <component name="WindowStateProjectService">
     <state x="86" y="39" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1655418651306">
@@ -1024,13 +993,14 @@
       <screen x="0" y="0" width="1303" height="768" />
     </state>
     <state x="421" y="187" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1303.768@0.0.1303.768" timestamp="1652799073669" />
-    <state x="264" y="0" key="CommitChangelistDialog2" timestamp="1654097695779">
-      <screen x="0" y="0" width="1303" height="768" />
+    <state x="277" y="0" key="CommitChangelistDialog2" timestamp="1655734851624">
+      <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="254" y="0" key="CommitChangelistDialog2/0.0.1255.768@0.0.1255.768" timestamp="1651784105545" />
     <state x="255" y="0" key="CommitChangelistDialog2/0.0.1260.768@0.0.1260.768" timestamp="1650655925639" />
     <state x="262" y="0" key="CommitChangelistDialog2/0.0.1292.768@0.0.1292.768" timestamp="1653333396531" />
     <state x="264" y="0" key="CommitChangelistDialog2/0.0.1303.768@0.0.1303.768" timestamp="1654097695779" />
+    <state x="277" y="0" key="CommitChangelistDialog2/0.0.1366.738@0.0.1366.738" timestamp="1655734851624" />
     <state x="90" y="6" key="DiffContextDialog" timestamp="1654097689813">
       <screen x="0" y="0" width="1303" height="768" />
     </state>
@@ -1114,12 +1084,13 @@
       <screen x="0" y="0" width="1303" height="768" />
     </state>
     <state width="498" height="446" key="SwitcherDM/0.0.1303.768@0.0.1303.768" timestamp="1654526545095" />
-    <state x="229" y="117" key="Vcs.Push.Dialog.v2" timestamp="1654097751845">
-      <screen x="0" y="0" width="1303" height="768" />
+    <state x="240" y="112" key="Vcs.Push.Dialog.v2" timestamp="1655734921517">
+      <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="221" y="117" key="Vcs.Push.Dialog.v2/0.0.1255.768@0.0.1255.768" timestamp="1651784302663" />
     <state x="222" y="117" key="Vcs.Push.Dialog.v2/0.0.1260.768@0.0.1260.768" timestamp="1650655965999" />
     <state x="229" y="117" key="Vcs.Push.Dialog.v2/0.0.1303.768@0.0.1303.768" timestamp="1654097751845" />
+    <state x="240" y="112" key="Vcs.Push.Dialog.v2/0.0.1366.738@0.0.1366.738" timestamp="1655734921517" />
     <state x="357" y="189" key="com.intellij.database.dbimport.ImportUtil.MyDialog" timestamp="1651594526583">
       <screen x="0" y="0" width="1255" height="768" />
     </state>
