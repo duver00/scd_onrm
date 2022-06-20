@@ -1,89 +1,142 @@
-             {% load static %}
-               <div class="modal fade" id="m_add_direcciones">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <img src="{% static 'img/onrm.png' %}">
-                                <h4 class="modal-title mx-auto mt-4">Agregar Dirección</h4>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <form method="post" name="agrega_direccion" id="form_agregar">
-                                    {% csrf_token %}
-                                    <input type="hidden" name="action" value="direcciones" id="add_direcciones">
-                                    <div class="form-group">
-                                        <h6 class="font-weight-bold mt-3">{{ form_direcciones.nombre.label }}</h6>
-                                        {{ form_direcciones.nombre }}
-                                        <h6 class="font-weight-bold mt-3">{{ form_direcciones.correo.label }}</h6>
-                                        {{ form_direcciones.correo }}
-                                    </div>
-                                    <div class="modal-footer mx-auto">
-                                        <button type="submit" id="btnAceptar" class="btn btn-outline-primary dir">Agregar
-                                        </button>
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar
-                                        </button>
-                                    </div>
+{% load static %}
+<div class="modal fade" id="m_add_direcciones">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <img src="{% static 'img/onrm.png' %}" />
+        <h4 class="modal-title mx-auto mt-4">Agregar dirección</h4>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="post" name="agrega_direccion" action="" id="form_agregar_dir">
+          {% csrf_token %}
+          <div class="form-group">
+            <input
+              type="hidden"
+              value="direcciones"
+              id="add_direcciones"
+              name="direcciones"
+            />
+            <h6 class="font-weight-bold mt-3">
+              {{ form_direcciones.nombre.label }}
+            </h6>
+            {{ form_direcciones.nombre }}
+            <h6 class="font-weight-bold mt-3">
+              {{ form_direcciones.correo.label }}
+            </h6>
+            {{ form_direcciones.correo }}
+          </div>
+          <div class="d-flex justify-content-end">
+            <button type="button" class="btn btn-outline-success dir">
+              Agregar
+            </button>
+            <button type="reset" class="btn btn-default" data-dismiss="modal">
+              Cerrar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<div class="modal fade" id="m_edit_direccion">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <img src="{% static 'img/onrm.png' %}" />
+        <h4 class="modal-title mx-auto mt-4">Editar dirección</h4>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="post" name="direccion" id="fomr_editar_direccion">
+          {% csrf_token %}
+          <h6 class="font-weight-bold mt-3">Nombre</h6>
+          <input
+            type="text"
+            name="nombre"
+            class="form-control"
+            label="Nombre"
+            style="max-width: 500px"
+            maxlength="255"
+            required="True"
+            id="id_edit_direccion"
+          />
+          <h6 class="font-weight-bold mt-3">Correo</h6>
+          <input
+            type="email"
+            name="correo"
+            class="form-control"
+            label="Correo"
+            style="max-width: 300px"
+            maxlength="255"
+            required="True"
+            id="id_edit_correo"
+          />
+          <div class="modal-footer mx-auto">
+            <button type="button" class="btn btn-outline-dark editado-enviar-direccion">Editar</button>
+            <button type="reset" class="btn btn-default" data-dismiss="modal">
+              Cancelar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
 
-                                </form>
-                            </div>
-                        </div>
-                        <!-- /.modal-content -->
-                    </div>
-                    <!-- /.modal-dialog -->
-                </div>
-             <script>
+<script src="{% static 'js/jquery/jquery.min.js' %}"></script>
+<!-- Bootstrap 4 -->
+<script src="{% static 'js/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'js/sweetalert2/sweetalert2.all.min.js' %}"></script>
+<script src="{% static 'js/crud/nomenclador.js' %}"></script>
+<script src="{% static 'js/crud/edit_nomenclador.js' %}"></script>
+<script src="{% static 'js/crud/edit_submit.js' %}"></script>
+<script src="{% static 'js/crud/delete_nomenclador.js' %}"></script>
+<script src="{% static 'js/validaciones/validar_direcciones.js' %}"></script>
+<script src="{% static 'js/validaciones/validar_otros.js' %}"></script>
+<script src="{% static 'js/fetch/fetch_adicionar.js' %}"></script>
+<script src="{% static 'js/fetch/fetch_editar.js' %}"></script>
+<script src="{% static 'js/fetch/fetch_delete.js' %}"></script>
+<script src="{% static 'js/validaciones/csrf.js' %}"></script>
 
-                d = document;
-                const AddDireccion = () => {
-                    d.addEventListener("submit", ev => {
-                        ev.preventDefault();
-                        /****Capturando valores para el envio del formulario de agregar documento****/
-                        var fd_add;
-                        fd_add = new FormData;
-                        fd_add.append('ccsrfmiddlewaretoken', getCookie("csrftoken"));
-                        fd_add.append('nombre', direcciones.value);
-                        fd_add.append('correo', correo.value);
-                        fd_add.append('action', action_direcciones.value);
-                        const request = new Request(
-                                {% url 'agregar_nomenclador' %},
-                                {
-                                    headers: {'X-CSRFToken': getCookie("csrftoken")},
-                                    'Accept': 'application/json, application/xml, text/plain, text/html, *.*',
-                                    'Content-Type': 'x-www-form-urlencoded'
-                                }
-                            );
-                            fetch (request, {
-                                method: 'post',
-                                mode: 'same-origin',
-                                body: fd_add,
+<script>
+   d = document;
+   /***Direcciones**/
+   const direcciones = d.getElementById("id_direccion");
+   const action_direcciones = d.getElementById("add_direcciones");
+   const correo = d.getElementById("id_correo");
 
-                            })
-                                .then(response => response.json())
-                                .then(data => {
-                                    Swal.fire({
-                                      icon: 'success',
-                                      title: 'Documento guardado exitosamente',
-                                      showConfirmButton: true,
-                                }).then(function () {
-                                    location.reload()
-                                    })
-                                })
-                                .catch((error) => {
-                                    console.log(error);
-                                    Swal.fire({
-                                      icon: 'error',
-                                      title: 'Oops...',
-                                      text: 'Algo salió mal!',
-                                      footer: error
-                                        })
-                                });
+   /***Editar direcciones**/
+   const select_direccion = d.getElementById("direcciones");
+   const select_editar_direccion = d.getElementById("fomr_editar_direccion")   
+   const edit_direccion = d.getElementById("id_edit_direccion");
+   const edit_correo = d.getElementById("id_edit_correo");
 
-                      });
-                 };
-            d.addEventListener("DOMContentLoaded", () => {
-             AddDireccion();
-        });
-             </script>
+   d.addEventListener("DOMContentLoaded", (e) => {
+    NomencladorAdd(".dir",action_direcciones,direcciones,correo,{% url 'agregar_nomenclador' %});
+    NomencladorEdit(".edit-dir",select_direccion,edit_direccion, edit_correo,{% url 'editar_nomenclador' %});
+    NomencladorDelete(".borrar-dir", select_direccion,{% url 'eliminar_nomenclador' %});
+    NomencladorEditedSubmit(".editado-enviar-direccion",select_editar_direccion, select_direccion, edit_direccion, edit_correo, {% url 'editar_nomenclador' %});
+    e.stopPropagation();  
+});
+  
 
+</script>

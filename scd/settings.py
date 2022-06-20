@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'registro.apps.RegistroConfig',
     'tecnica.apps.TecnicaConfig',
     'nomencladores.apps.NomencladoresConfig',
+    'consultas.apps.ConsultasConfig',
 ]
 
 INSTALLED_APPS += [
@@ -132,7 +133,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
-
 
 # Redirección cuando use loqgua un usuario
 LOGIN_REDIRECT_URL = '/'

@@ -4,13 +4,13 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <img src="{% static 'img/onrm.png' %}">
-                                <h4 class="modal-title mx-auto mt-4">Agregar Tipo Documento de Salida</h4>
+                                <h4 class="modal-title mx-auto mt-4">Agregar tipo documento salida</h4>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form method="post" name="agrega_tdoc_salida" id="form_agregar">
+                                <form method="post" name="agrega_tdoc_salida" id="form_agregar_tdoc_salida">
                                     {% csrf_token %}
                                     <input type="hidden" name="action" value="tdoc_salida" id="add_tdoc_salida">
                                     <div class="form-group">
@@ -18,7 +18,7 @@
                                         {{ form_t_documento_salida.tipo }}
                                     </div>
                                     <div class="modal-footer mx-auto">
-                                        <button type="submit" id="btnAceptar" class="btn btn-outline-primary">Agregar
+                                        <button type="button" class="btn btn-outline-primary agregar-tdoc_salida">Agregar
                                         </button>
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar
                                         </button>
@@ -31,55 +31,60 @@
                     <!-- /.modal-dialog -->
                 </div>
 
-             <script>
-                d = document;
-                const AddTipoDocumentoSalida = () => {
-                    d.addEventListener("submit", ev => {
-                        ev.preventDefault();
-                        /****Capturando valores para el envio del formulario de agregar documento****/
-                        var fd_add;
-                        fd_add = new FormData;
-                        fd_add.append('ccsrfmiddlewaretoken', getCookie("csrftoken"));
-                        fd_add.append('nombre', tdoc_salida.value);
-                        fd_add.append('action', action_tdoc_salida.value);
-                        const request = new Request(
-                                {% url 'agregar_nomenclador' %},
-                                {
-                                    headers: {'X-CSRFToken': getCookie("csrftoken")},
-                                    'Accept': 'application/json, application/xml, text/plain, text/html, *.*',
-                                    'Content-Type': 'x-www-form-urlencoded'
-                                }
-                            );
-                            fetch (request, {
-                                method: 'post',
-                                mode: 'same-origin',
-                                body: fd_add,
+                <div class="modal fade" id="m_edit_tdoc_salida">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <img src="{% static 'img/onrm.png' %}" />
+                          <h4 class="modal-title mx-auto mt-4">Editar tipo documento salida</h4>
+                          <button
+                            type="button"
+                            class="close"
+                            data-dismiss="modal"
+                            aria-label="Close"
+                          >
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <form method="post" name="tdoc_salida" id="form_editar_tdoc_salida">
+                            {% csrf_token %}
+                            <h6 class="font-weight-bold mt-3">Nombre</h6>
+                            <input
+                              type="text"
+                              name="nombre"
+                              class="form-control"
+                              label="Nombre"
+                              style="max-width: 500px"
+                              maxlength="255"
+                              required="True"
+                              id="id_edit_tdoc_salida"
+                            />
+                              <div class="modal-footer mx-auto">
+                              <button type="button" class="btn btn-outline-dark enviar-tdoc_salida">Editar</button>
+                              <button type="reset" class="btn btn-default" data-dismiss="modal">
+                                Cancelar
+                              </button>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                    </div>
+<script>
+/***Tipo documento de salida**/
+const tdoc_salida = d.getElementById("id_tdoc_salida");
+const action_tdoc_salida = d.getElementById('add_tdoc_salida');
+/***Editar entidad**/
+const select_tdoc_salida = d.getElementById("tdoc_salida");
+const select_editar_tdoc_salida = d.getElementById("form_editar_tdoc_salida");
+const edit_tdoc_salida = d.getElementById("id_edit_tdoc_salida");
 
-                            })
-                                .then(response => response.json())
-                                .then(data => {
-                                    Swal.fire({
-                                      icon: 'success',
-                                      title: 'Documento guardado exitosamente',
-                                      showConfirmButton: true,
-                                }).then(function () {
-                                    location.reload()
-                                    })
-                                })
-                                .catch((error) => {
-                                    console.log(error);
-                                    Swal.fire({
-                                      icon: 'error',
-                                      title: 'Oops...',
-                                      text: 'Algo salió mal!',
-                                      footer: error
-                                        })
-                                });
-
-                      });
-                 };
-                    d.addEventListener("DOMContentLoaded", () => {
-                     AddTipoDocumentoSalida();
-                });
-             </script>
+d.addEventListener("DOMContentLoaded", evt => {
+    NomencladorAdd(".agregar-tdoc_salida",action_tdoc_salida,tdoc_salida,undefined,{% url 'agregar_nomenclador' %});
+    NomencladorEdit(".editar-tdoc_salida",select_tdoc_salida, edit_tdoc_salida, undefined,{% url 'editar_nomenclador' %});
+    NomencladorEditedSubmit(".enviar-tdoc_salida",select_editar_tdoc_salida, select_tdoc_salida, edit_tdoc_salida,undefined,{% url 'editar_nomenclador' %}); 
+    NomencladorDelete(".delete-tdoc_salida", select_tdoc_salida,{% url 'eliminar_nomenclador' %});
+});
+</script>
 

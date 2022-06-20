@@ -15,12 +15,12 @@ Including another URLconf
 """
 
 from django.urls import path
-from .views import NomencladoresView, NuevoNomencladorView
+from .views import NomencladoresView, NuevoNomencladorView, EditarNomencladorView, EliminarNomencladorView
 
 
 urlpatterns = [
     path('nomencladores/', NomencladoresView.as_view(), name="nomencladores"),
     path('agregar_nomencladores/', NuevoNomencladorView.as_view(), name="agregar_nomenclador"),
-
-
+    path('editar_nomencladores/', EditarNomencladorView.as_view(), name="editar_nomenclador"),
+    path('eliminar_nomencladores/', EliminarNomencladorView.as_view(), name="eliminar_nomenclador"),
 ]

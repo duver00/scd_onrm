@@ -44,13 +44,17 @@ class DireccionesForm(forms.ModelForm):
         widgets = {
             'nombre': TextInput(attrs={
                 'class': "form-control",
+                'type':'text',
+                'required': True,
                 'label': 'Nombre de la dirección',
+                'id':'id_direccion',
                 'placeholder': 'Introduzca el nombre de la dirección',
                 'style': 'max-width: 500px;'
             }),
             'correo': EmailInput(attrs={
                 'class': "form-control",
                 'type':'email',
+                'required':True,
                 'label': 'Nombre de la provincia',
                 'placeholder': 'Introduzca  el correo',
                 'style': 'max-width:300px;'

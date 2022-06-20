@@ -124,9 +124,9 @@
         <!-- Sidebar -->
         <div class="sidebar">
             <!-- Sidebar user panel (optional) -->
-            <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                <div class="image">
-                    <img src="{% static 'img/user2-160x160.jpg' %}">
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                <div class="avatar">
+                    <i class="fa fa-user fa-3x" style="color: gray"></i>
                 </div>
                 <div class="info">
                     <a href="{% url 'home' %}" class="d-block">{{ request.user }}</a>
@@ -147,12 +147,12 @@
             </div>
 
             <!-- Sidebar Menu -->
-            <nav class="mt-2">
+                       <nav class="mt-2">
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                     data-accordion="false">
                     <!-- Add icons to the links using the .nav-icon class
                          with font-awesome or any other icon font library -->
-                  <li class="nav-header">DIRECCIONES</li>
+                    <li class="nav-header">DIRECCIONES</li>
                                         <li class="nav-item menu-open">
                      {% if request.user.is_superuser %}
                             <a href="#" class="nav-link ">
@@ -165,13 +165,13 @@
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
                                 <a href="{% url 'entradas' %}" class="nav-link">
-                                    <i class="fa fa-arrow-right green"></i>
+                                    <i class="fa fa-file-import" style="color: #00f169"></i>
                                     <p>Entradas de documentos</p>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="{% url 'salidas' %}" class="nav-link">
-                                     <i class="fa fa-arrow-left green"></i>
+                                     <i class="fa fa-file-export" style="color: indianred"></i>
                                     <p>Salidas de documentos</p>
                                 </a>
                             </li>
@@ -188,13 +188,13 @@
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
                                 <a href="{% url 'registro_entrada' %}" class="nav-link">
-                                     <i class="fa fa-arrow-right green"></i>
+                                     <i class="fa fa-file-import" style="color: #00f169"></i>
                                     <p>Entradas de documentos</p>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="{% url 'registro_salidas' %}" class="nav-link">
-                                    <i class="fa fa-arrow-left green"></i>
+                                    <i class="fa fa-file-export" style="color: indianred"></i>
                                     <p>Salidas de documentos</p>
                                 </a>
                             </li>
@@ -212,13 +212,13 @@
                             <li class="nav-item">
                                 <a href="{% url 'tecnica_entrada' %}" class="nav-link">
                                     <i class="fa-"></i>
-                                    <i class="fa fa-arrow-right green"></i>
+                                    <i class="fa fa-file-import" style="color: #00f169"></i>
                                     <p>Entradas de documentos</p>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="{% url 'tecnica_salida' %}" class="nav-link">
-                                    <i class="fa fa-arrow-left green"></i>
+                                    <i class="fa fa-file-export" style="color: indianred"></i>
                                     <p>Salidas de documentos</p>
                                 </a>
                             </li>
@@ -236,13 +236,13 @@
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
                                 <a href="{% url 'entradas' %}" class="nav-link">
-                                    <i class="fa fa-arrow-right green"></i>
+                                    <i class="fa fa fa-file-import" style="color: #00f169"></i>
                                     <p>Entradas de documentos</p>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="{% url 'salidas' %}" class="nav-link">
-                                     <i class="fa fa-arrow-left green"></i>
+                                     <i class="fa fa-file-export" style="color: indianred"></i>
                                     <p>Salidas de documentos</p>
                                 </a>
                             </li>
@@ -260,13 +260,13 @@
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
                                 <a href="{% url 'registro_entrada' %}" class="nav-link">
-                                     <i class="fa fa-arrow-right green"></i>
+                                     <i class="fa fa-file-import" style="color:#00f169 "></i>
                                     <p>Entradas de documentos</p>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="{% url 'registro_salidas' %}" class="nav-link">
-                                    <i class="fa fa-arrow-left green"></i>
+                                    <i class= "fa fa-file-export" style="color: indianred "></i>
                                     <p>Salidas de documentos</p>
                                 </a>
                             </li>
@@ -285,13 +285,13 @@
                             <li class="nav-item">
                                 <a href="{% url 'tecnica_entrada' %}" class="nav-link">
                                     <i class="fa-"></i>
-                                    <i class="fa fa-arrow-right green"></i>
+                                    <i class="fa fa-file-import" style="color:#00f169 "></i>
                                     <p>Entradas de documentos</p>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="{% url 'tecnica_salida' %}" class="nav-link">
-                                    <i class="fa fa-arrow-left green"></i>
+                                    <i class="fa fa-file-export" style="color:indianred "></i>
                                     <p>Salidas de documentos</p>
                                 </a>
                             </li>
@@ -299,7 +299,6 @@
                     </li>
 
                         {% endif %}
-
             </nav>
             <!-- /.sidebar-menu -->
         </div>
@@ -317,7 +316,7 @@
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+                            <li class="breadcrumb-item"><a href="{% url 'home' %}">Inicio</a></li>
                             <li class="breadcrumb-item active">{{ request.path|cut:"/" }}</li>
                         </ol>
                     </div><!-- /.col -->

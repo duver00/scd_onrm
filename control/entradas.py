@@ -67,6 +67,7 @@ class NuevoDocumentoView(LoginRequiredMixin,PermissionRequiredMixin, CreateView)
                 doc.soporte_doc = data['soporte']
                 doc.forma_entrada = data['forma_entrada']
                 doc.save()
+                return JsonResponse(data)
             else:
                 info['error'] = 'Existe un error '
         except Exception as e:
@@ -88,17 +89,17 @@ class EditarDocumento(LoginRequiredMixin, PermissionRequiredMixin,UpdateView):
         try:
             if request.method == "POST":
                 data = request.POST
-                if len(data) == 2:
+                if len(data) == 2:                    
                     no_entrada = data['entrada']
                     if Documento.objects.get_or_create(no_entrada_doc=int(no_entrada)):
-                        doc = Documento.objects.filter(no_entrada_doc=no_entrada)
+                        doc = Documento.objects.filter(no_entrada_doc=no_entrada)                       
                         for i in doc:
-                            fn['pk'] = i.pk
+                            fn['pk'] = i.pk                            
                             fn['no_entrada_doc'] = i.no_entrada_doc
                             fn['titulo'] = i.titulo
                             fn['f_entrada'] = i.f_entrada_doc
                             fn['dirigido'] = i.dirigido.pk
-                            fn['entidad'] = i.entidad.pks
+                            fn['entidad'] = i.entidad.pk
                             fn['organismo'] = i.organismo.pk
                             fn['tipo_documento'] = i.t_documento.pk
                             fn['observaciones'] = i.observaciones
@@ -106,8 +107,8 @@ class EditarDocumento(LoginRequiredMixin, PermissionRequiredMixin,UpdateView):
                             fn['soporte_doc'] = i.soporte_doc
                             fn['provincia'] = i.provincia.pk
                             fn['f_termino'] = i.f_termino
-                            fn['f_dirigido'] = i.f_entrega_dirigido
-                    return JsonResponse(fn)
+                            fn['f_dirigido'] = i.f_entrega_dirigido                            
+                            return JsonResponse(fn)
                 elif len(data) > 2:
                     org = Organismo()
                     ent = Entidad()

@@ -398,8 +398,7 @@
 <script>
         function getData (){
         $(function () {
-            $("#tabla_salidas").DataTable({
-                dom: 'frtipP',
+            $("#tabla_salidas").DataTable({               
                 language: {
                     url: '{% static "fonts/spanish.json" %}'
                 },
@@ -458,33 +457,6 @@
         const input_forma_salida_doc = d.getElementById("id_edit_forma_salida");
         const input_soporte_doc_salida = d.getElementById("id_edit_soporte_salida");
         const input_provincia = d.getElementById("id_edit_provincia");
-
-
-        /* d.addEventListener('click', ev => {
-             if (ev.target.matches(".btn-floating .fa-edit ")) {
-                 const $btn_edit = ev.target;
-                 const $alltr = $btn_edit.closest('tr');
-                 const todos = $alltr.querySelectorAll('td');
-                 console.log(todos);
-                 const input_no_entrada = d.getElementById("id_no_entrada_doc");
-                 const input_titulo = d.getElementById("id_titulo");
-                 const input_f_entrada = d.getElementById("id_f_entrada_doc");
-                 const input_dirigido = d.getElementById("id_dirigido");
-                 const input_organismo = d.getElementById("id_organismo");
-                 const input_entidad = d.getElementById("id_entidad");
-                 const input_t_documento = d.getElementById("id_t_documento");
-                 const input_observaciones = d.getElementById("id_observaciones");
-                 input_no_entrada.value = todos[0].innerText;
-                 input_titulo.value = todos[1].innerText;
-                 input_f_entrada.dataset = todos[2].innerHTML;
-                 input_dirigido.value = todos[5].innerHTML;
-                 input_organismo.value = 4;
-                 input_entidad.value = todos[4].innerText;
-                 input_t_documento.value = todos[6].innerText;
-                 input_observaciones.value = todos[7].innerText;
-                 console.log(input_no_entrada.value)
-             }
-         })*/
 
         const EnviarForm = () => {
             d.addEventListener("submit", ev => {
@@ -576,6 +548,7 @@
                     );
                     fetch(request, {
                         method: 'POST',
+                        cache: 'no-cache',
                         mode: 'same-origin',
                         body: fn,
 

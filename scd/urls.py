@@ -24,6 +24,7 @@ urlpatterns = [
     path('', include('registro.urls')),
     path('', include('tecnica.urls')),
     path('', include('nomencladores.urls')),
+    path('', include('consultas.urls')),
 ]
 # Manejo de las paginas de errores del sistema
 handler403 = 'control.views.custom403'

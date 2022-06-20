@@ -18,6 +18,7 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="{% static 'css/adminlte.min.css' %}">
     <link rel="stylesheet" href="{% static 'js/chart.js/Chart.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
 </head>
 <!--
 `body` tag options:
@@ -134,18 +135,18 @@
         <a href="#" class="brand-link">
             <img src="{% static 'img/onrm.png' %}" class="brand-image img-circle elevation-4"
                  style="opacity: .8">
-            <span class="brand-text font-weight-light">SCD ONRM</span>
+            <span class="brand-text font-weight-light">SCD</span>
         </a>
 
         <!-- Sidebar -->
         <div class="sidebar">
             <!-- Sidebar user panel (optional) -->
             <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                <div class="image">
-                    <img src="{% static 'img/user2-160x160.jpg' %}">
+                <div class="avatar">
+                    <i class="fa fa-user fa-3x" style="color: gray"></i>
                 </div>
                 <div class="info">
-                    <a href="#" class="d-block">{{ request.user.username }}</a>
+                    <a href="{% url 'home' %}" class="d-block">{{ request.user }}</a>
                 </div>
             </div>
 
@@ -156,7 +157,7 @@
                            aria-label="Buscar">
                     <div class="input-group-append">
                         <button class="btn btn-sidebar">
-                            <i class="fas fa-search fa-fw"></i>
+                            <i class="fa fa-search fa-fw"></i>
                         </button>
                     </div>
                 </div>
@@ -181,13 +182,13 @@
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
                                 <a href="{% url 'entradas' %}" class="nav-link">
-                                    <i class="fa fa-arrow-right green"></i>
+                                    <i class="fa fa-file-import" style="color: #00f169"></i>
                                     <p>Entradas de documentos</p>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="{% url 'salidas' %}" class="nav-link">
-                                     <i class="fa fa-arrow-left green"></i>
+                                     <i class="fa fa-file-export" style="color: indianred"></i>
                                     <p>Salidas de documentos</p>
                                 </a>
                             </li>
@@ -204,13 +205,13 @@
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
                                 <a href="{% url 'registro_entrada' %}" class="nav-link">
-                                     <i class="fa fa-arrow-right green"></i>
+                                     <i class="fa fa-file-import" style="color: #00f169"></i>
                                     <p>Entradas de documentos</p>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="{% url 'registro_salidas' %}" class="nav-link">
-                                    <i class="fa fa-arrow-left green"></i>
+                                    <i class="fa fa-file-export" style="color: indianred"></i>
                                     <p>Salidas de documentos</p>
                                 </a>
                             </li>
@@ -228,13 +229,13 @@
                             <li class="nav-item">
                                 <a href="{% url 'tecnica_entrada' %}" class="nav-link">
                                     <i class="fa-"></i>
-                                    <i class="fa fa-arrow-right green"></i>
+                                    <i class="fa fa-file-import" style="color: #00f169"></i>
                                     <p>Entradas de documentos</p>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="{% url 'tecnica_salida' %}" class="nav-link">
-                                    <i class="fa fa-arrow-left green"></i>
+                                    <i class="fa fa-file-export" style="color: indianred"></i>
                                     <p>Salidas de documentos</p>
                                 </a>
                             </li>
@@ -252,13 +253,13 @@
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
                                 <a href="{% url 'entradas' %}" class="nav-link">
-                                    <i class="fa fa-arrow-right green"></i>
+                                    <i class="fa fa fa-file-import" style="color: #00f169"></i>
                                     <p>Entradas de documentos</p>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="{% url 'salidas' %}" class="nav-link">
-                                     <i class="fa fa-arrow-left green"></i>
+                                     <i class="fa fa-file-export" style="color: indianred"></i>
                                     <p>Salidas de documentos</p>
                                 </a>
                             </li>
@@ -276,13 +277,13 @@
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
                                 <a href="{% url 'registro_entrada' %}" class="nav-link">
-                                     <i class="fa fa-arrow-right green"></i>
+                                     <i class="fa fa-file-import" style="color:#00f169 "></i>
                                     <p>Entradas de documentos</p>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="{% url 'registro_salidas' %}" class="nav-link">
-                                    <i class="fa fa-arrow-left green"></i>
+                                    <i class= "fa fa-file-export" style="color: indianred "></i>
                                     <p>Salidas de documentos</p>
                                 </a>
                             </li>
@@ -301,13 +302,13 @@
                             <li class="nav-item">
                                 <a href="{% url 'tecnica_entrada' %}" class="nav-link">
                                     <i class="fa-"></i>
-                                    <i class="fa fa-arrow-right green"></i>
+                                    <i class="fa fa-file-import" style="color:#00f169 "></i>
                                     <p>Entradas de documentos</p>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="{% url 'tecnica_salida' %}" class="nav-link">
-                                    <i class="fa fa-arrow-left green"></i>
+                                    <i class="fa fa-file-export" style="color:indianred "></i>
                                     <p>Salidas de documentos</p>
                                 </a>
                             </li>
@@ -315,9 +316,6 @@
                     </li>
 
                         {% endif %}
-
-
-
             </nav>
             <!-- /.sidebar-menu -->
         </div>
@@ -325,9 +323,9 @@
     </aside>
 
     <!-- Content Wrapper. Contains page content -->
+           <!-- Content Header (Page header) -->
     <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
-        <div class="content-header">
+    <div class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
@@ -342,161 +340,131 @@
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
         </div>
-       <section class="content">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-md-6">
-            <!-- AREA CHART -->
-            <div class="card card-primary">
-              <div class="card-header">
-                <h3 class="card-title">Area Chart</h3>
-
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-minus"></i>
-                  </button>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove">
-                    <i class="fas fa-times"></i>
-                  </button>
+        <section class="content">
+          <div class="container-fluid">
+            <!-- Small boxes (Stat box) -->
+            <div class="row">
+              <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-info">
+                  <div class="inner">
+                    <h3>{{ total}}</h3>
+                    <p>Total de documentos</p>
+                  </div>
+                  <div class="icon">
+                    <i class="ion ion-bag"></i>
+                  </div>
+                  <a href="#" class="small-box-footer"> <i class="fas fa-chart-bar"></i></a>
                 </div>
               </div>
-              <div class="card-body">
-                <div class="chart">
-                  <canvas id="areaChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+              <!-- ./col -->
+              <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-success">
+                  <div class="inner">
+                    <h3>{{total_entradas}}</h3>
+                    <p>Entradas</p>
+                  </div>
+                  <div class="icon">
+                    <i class="ion ion-stats-bars"></i>
+                  </div>
+                  <a href="{%url 'entradas'%}" class="small-box-footer">Detalles   <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
               </div>
-              <!-- /.card-body -->
+              <!-- ./col -->
+              <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-danger">
+                  <div class="inner">
+                    <h3>{{ total_salidas }}</h3>
+                    <p>Salidas</p>
+                  </div>
+                  <div class="icon">
+                    <i class="ion ion-person-add"></i>
+                  </div>
+                  <a href="{%url 'salidas'%}" class="small-box-footer">Detalles <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+              </div>
+              <!-- ./col -->
+              <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-gradient-indigo">
+                  <div class="inner">
+                    <h3>{{ anno_curso }}</h3>
+                    <p>Año en curso</p>
+                  </div>
+                  <div class="icon">
+                    <i class="ion ion-pie-graph"></i>
+                  </div>
+                  <a href="#" class="small-box-footer">Detalles <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+              </div>
+        <h3 class=" col-6 ml-2">Registro y Control</h3>
+                <h3>Técnica</h3>
+          <div class="container-fluid">
+            <!-- Small boxes (Stat box) -->
+          <div class="row">
+           <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box mb-3">
+              <span class="info-box-icon bg-success elevation-1"><i class="fas fa-file-import"></i></span>
+              <div class="info-box-content">
+                <span class="info-box-text">Entradas</span>
+                <span class="info-box-number">{{ total_reg_entradas }}</span>
+              </div>
+              <!-- /.info-box-content -->
             </div>
-            <!-- /.card -->
+              <!-- ./col -->
+           </div>
+         <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box mb-3">
+              <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-file-export"></i></span>
 
-            <!-- DONUT CHART -->
-            <div class="card card-danger">
-              <div class="card-header">
-                <h3 class="card-title">Donut Chart</h3>
-
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-minus"></i>
-                  </button>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove">
-                    <i class="fas fa-times"></i>
-                  </button>
-                </div>
+              <div class="info-box-content">
+                <span class="info-box-text">Salidas</span>
+                <span class="info-box-number">{{ total_reg_salidas }}</span>
               </div>
-              <div class="card-body">
-                <canvas id="donutChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-              </div>
-              <!-- /.card-body -->
+              <!-- /.info-box-content -->
             </div>
-            <!-- /.card -->
-
-            <!-- PIE CHART -->
-            <div class="card card-danger">
-              <div class="card-header">
-                <h3 class="card-title">Pie Chart</h3>
-
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-minus"></i>
-                  </button>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove">
-                    <i class="fas fa-times"></i>
-                  </button>
-                </div>
-              </div>
-              <div class="card-body">
-                <canvas id="pieChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-              </div>
-              <!-- /.card-body -->
+            <!-- /.info-box -->
             </div>
-            <!-- /.card -->
-
+                    <!-- Small boxes (Stat box) -->
+          <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box mb-3">
+              <span class="info-box-icon bg-success elevation-1"><i class="fas fa-file-import"></i></span>
+              <div class="info-box-content">
+                <span class="info-box-text">Entradas</span>
+                <span class="info-box-number">{{ total_tec_entradas }}</span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
           </div>
-          <!-- /.col (LEFT) -->
-          <div class="col-md-6">
-            <!-- LINE CHART -->
-            <div class="card card-info">
-              <div class="card-header">
-                <h3 class="card-title">Line Chart</h3>
+                            <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box mb-3">
+              <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-file-export"></i></span>
 
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-minus"></i>
-                  </button>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove">
-                    <i class="fas fa-times"></i>
-                  </button>
-                </div>
+              <div class="info-box-content">
+                <span class="info-box-text">Salidas</span>
+                <span class="info-box-number">{{ total_tec_salidas }}</span>
               </div>
-              <div class="card-body">
-                <div class="chart">
-                  <canvas id="lineChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-                </div>
-              </div>
-              <!-- /.card-body -->
+              <!-- /.info-box-content -->
             </div>
-            <!-- /.card -->
-
-            <!-- BAR CHART -->
-            <div class="card card-success">
-              <div class="card-header">
-                <h3 class="card-title">Bar Chart</h3>
-
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-minus"></i>
-                  </button>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove">
-                    <i class="fas fa-times"></i>
-                  </button>
-                </div>
-              </div>
-              <div class="card-body">
-                <div class="chart">
-                  <canvas id="barChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-                </div>
-              </div>
-              <!-- /.card-body -->
+            <!-- /.info-box -->
             </div>
-            <!-- /.card -->
-
-            <!-- STACKED BAR CHART -->
-            <div class="card card-success">
-              <div class="card-header">
-                <h3 class="card-title">Stacked Bar Chart</h3>
-
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-minus"></i>
-                  </button>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove">
-                    <i class="fas fa-times"></i>
-                  </button>
-                </div>
-              </div>
-              <div class="card-body">
-                <div class="chart">
-                  <canvas id="stackedBarChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-                </div>
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-
           </div>
-          <!-- /.col (RIGHT) -->
-        </div>
-        <!-- /.row -->
-      </div><!-- /.container-fluid -->
-    </section>
+            <!-- /.info-box -->
+            </div>
+         </div>
+      </div>
+   </section>
     <!-- /.content -->
-  </div>
+
     <!-- Control Sidebar -->
     <aside class="control-sidebar control-sidebar-dark">
         <!-- Control sidebar content goes here -->
     </aside>
     <!-- /.control-sidebar -->
-
+    </div>
     <!-- Main Footer -->
     <footer class="main-footer">
         <strong>Desarrollado por Revud &copy;<a href="https://intranet.onrm.minem.cu">ONRM</a>.</strong>
@@ -505,7 +473,6 @@
             <b>Actualizado</b> 2022
         </div>
     </footer>
-</div>
 <!-- ./wrapper -->
 
 <!-- REQUIRED SCRIPTS -->

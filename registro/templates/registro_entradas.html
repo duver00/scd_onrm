@@ -362,15 +362,13 @@
     <script src="{% static 'js/datatables-searchpanes/js/dataTables.searchPanes.js' %}"></script>
     <script src="{% static 'js/datatables-select/js/dataTables.select.min.js' %}"></script>
 
-    <!-- AdminLTE App -->
 
 
     <!-- Page specific script -->
     <script>
         function getData (){
         $(function () {
-            $("#tabla_entradas_registro").DataTable({
-                dom: 'frtipP',
+            $("#tabla_entradas_registro").DataTable({               
                 language: {
                     url: '{% static "fonts/spanish.json" %}'
                 },
@@ -520,6 +518,7 @@
                     );
                     fetch(request, {
                         method: 'POST',
+                        cache: 'no-cache',
                         mode: 'same-origin',
                         body: fn,
 

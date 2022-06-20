@@ -4,13 +4,13 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <img src="{% static 'img/onrm.png' %}">
-                                <h4 class="modal-title mx-auto mt-4">Agregar Entidad</h4>
+                                <h4 class="modal-title mx-auto mt-4">Agregar entidad</h4>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form method="post" name="agrega_entidad" id="form_agregar">
+                                <form method="post" name="agrega_entidad" id="form_agregar_ent">
                                     {% csrf_token %}
                                     <input type="hidden" name="action" value="entidad" id="add_entidad">
                                     <div class="form-group">
@@ -18,7 +18,7 @@
                                         {{ form_entidad.nombre }}
                                     </div>
                                     <div class="modal-footer mx-auto">
-                                        <button type="submit" id="btnAceptar" class="btn btn-outline-primary">Agregar
+                                        <button type="button" class="btn btn-outline-success entidad">Agregar
                                         </button>
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar
                                         </button>
@@ -30,56 +30,60 @@
                     </div>
                     <!-- /.modal-dialog -->
                 </div>
+  <div class="modal fade" id="m_edit_entidad">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <img src="{% static 'img/onrm.png' %}" />
+        <h4 class="modal-title mx-auto mt-4">Editar entidad</h4>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="post" name="entidad" id="form_editar_entidad">
+          {% csrf_token %}
+          <h6 class="font-weight-bold mt-3">Nombre</h6>
+          <input
+            type="text"
+            name="nombre"
+            class="form-control"
+            label="Nombre"
+            style="max-width: 500px"
+            maxlength="255"
+            required="True"
+            id="id_edit_entidad"
+          />
+            <div class="modal-footer mx-auto">
+            <button type="button" class="btn btn-outline-dark editado-enviar-entidad">Editar</button>
+            <button type="reset" class="btn btn-default" data-dismiss="modal">
+              Cancelar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  </div>
+<script>
+         /***Entidad**/
+          const entidad = d.getElementById("id_entidad");
+          const action_entidad = d.getElementById('add_entidad');
+         /***Editar entidad**/
+           const select_entidad = d.getElementById("entidad");
+           const select_editar_entidad = d.getElementById("form_editar_entidad");
+           const edit_entidad = d.getElementById("id_edit_entidad");
 
-             <script>
-                d = document;
-                const AddEntidad = () => {
-                    d.addEventListener("submit", ev => {
-                        ev.preventDefault();
-                        /****Capturando valores para el envio del formulario de agregar documento****/
-                        var fd_add;
-                        fd_add = new FormData;
-                        fd_add.append('ccsrfmiddlewaretoken', getCookie("csrftoken"));
-                        fd_add.append('nombre', entidad.value);
-                        fd_add.append('action', action_entidad.value);
-                        const request = new Request(
-                                {% url 'agregar_nomenclador' %},
-                                {
-                                    headers: {'X-CSRFToken': getCookie("csrftoken")},
-                                    'Accept': 'application/json, application/xml, text/plain, text/html, *.*',
-                                    'Content-Type': 'x-www-form-urlencoded'
-                                }
-                            );
-                            fetch (request, {
-                                method: 'post',
-                                mode: 'same-origin',
-                                body: fd_add,
 
-                            })
-                                .then(response => response.json())
-                                .then(data => {
-                                    Swal.fire({
-                                      icon: 'success',
-                                      title: 'Documento guardado exitosamente',
-                                      showConfirmButton: true,
-                                }).then(function () {
-                                    location.reload()
-                                    })
-                                })
-                                .catch((error) => {
-                                    console.log(error);
-                                    Swal.fire({
-                                      icon: 'error',
-                                      title: 'Oops...',
-                                      text: 'Algo salió mal!',
-                                      footer: error
-                                        })
-                                });
-
-                      });
-                 };
-                    d.addEventListener("DOMContentLoaded", () => {
-                     AddEntidad();
-                });
-             </script>
-
+        d.addEventListener("DOMContentLoaded", evt => {
+         NomencladorAdd(".entidad",action_entidad,entidad,undefined,{% url 'agregar_nomenclador' %});
+         NomencladorEdit(".edit-ent",select_entidad, edit_entidad, undefined,{% url 'editar_nomenclador' %});
+         NomencladorEditedSubmit(".editado-enviar-entidad",select_editar_entidad, select_entidad, edit_entidad, undefined,{% url 'editar_nomenclador' %});
+         NomencladorDelete(".del-ent", select_entidad,{% url 'eliminar_nomenclador' %});
+        });
+</script>
