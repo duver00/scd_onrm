@@ -8,6 +8,7 @@
       await fetch(request, {
         method: "post",
         mode: "same-origin",
+          cache: 'no-cache',
         body: form,
       })
         .then((response) => response.json())

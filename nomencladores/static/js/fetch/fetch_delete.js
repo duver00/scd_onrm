@@ -10,6 +10,7 @@ async function api_delete(url,form) {
     await fetch(request, {
         method: 'POST',
         mode: 'same-origin',
+        cache: 'no-cache',
         body: form,
     })
     .then(response => response.json())

@@ -10,8 +10,8 @@ import datetime
 @login_required(login_url='/entrar/')
 def inicio(request):
     total = DocumentoSalida.objects.all().count() + Documento.objects.all().count()
-    total_entradas = DocumentoSalida.objects.all().count()
-    total_salidas = Documento.objects.all().count()
+    total_entradas = Documento.objects.all().count()
+    total_salidas = DocumentoSalida.objects.all().count()
     anno_curso = Documento.objects.filter(f_entrada_doc__year=datetime.date.today().year).count() + \
                  DocumentoSalida.objects.filter(f_salida_doc__year=datetime.date.today().year).count()
     total_tec_entradas = DocumentosTecnica.objects.all().count()

@@ -154,7 +154,7 @@
                          with font-awesome or any other icon font library -->
                     <li class="nav-header">DIRECCIONES</li>
                                         <li class="nav-item menu-open">
-                     {% if request.user.is_superuser %}
+                     {% if request.user.is_superuser  or request.user.username == 'invitado' %}
                             <a href="#" class="nav-link ">
                             <i class="fas fa-copy"></i>
                             <p>
@@ -371,7 +371,8 @@
 <script>
 $(function () {
   $('[data-toggle="tooltip"]').tooltip()
-})
+});
+    console.log(getCookie)
 </script>
 {% block script %}
 {% endblock %}

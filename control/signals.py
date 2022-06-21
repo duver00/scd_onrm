@@ -4,8 +4,6 @@ from django.dispatch import receiver
 from control.models import Documento
 from django.core.mail import send_mail
 
-
-
 def envio_correo(recibe, dirigido):
     last = Documento.objects.all().last()
     titulo = last.titulo

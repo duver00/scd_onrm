@@ -89,7 +89,7 @@
                                 <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
                             </div>
                         </div>
-                        <!-- Message End -->
+                        <!-- Message End -->f
                     </a>
                     <div class="dropdown-divider"></div>
                     <a href="#" class="dropdown-item">
@@ -116,16 +116,14 @@
         </ul>
             <!-- Notifications Dropdown Menu -->
 
-                <a class="nav-link" href="{% url 'logout' %}">
+                <a class="nav-link" href="{% url 'logout' %}" data-bs-placement="bottom"title="Salir">
                     <i class="fas fa-power-off"></i>
                   </a>
-                <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+                <a class="nav-link" data-widget="fullscreen" href="#" role="button"data-bs-placement="bottom"title="Pantall completa">
                     <i class="fas fa-expand-arrows-alt"></i>
                 </a>
 
-                <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
-                    <i class="fas fa-th-large"></i>
-                </a>
+
     </nav>
     <!-- /.navbar -->
 
@@ -171,7 +169,7 @@
                          with font-awesome or any other icon font library -->
                     <li class="nav-header">DIRECCIONES</li>
                                         <li class="nav-item menu-open">
-                     {% if request.user.is_superuser %}
+                     {% if request.user.is_superuser or request.user.username == 'invitado' %}
                             <a href="#" class="nav-link ">
                             <i class="fas fa-copy"></i>
                             <p>
@@ -196,7 +194,7 @@
                     </li>
                     <li class="nav-item menu-open">
                         <a href="#" class="nav-link ">
-                            <i class="fas fa-copy"></i>
+                            <i class="fas fa-folder-open"></i>
                             <p>
                                  FISCALIZACIÓN
                                 <i class="right fas fa-angle-left"></i>
@@ -219,7 +217,7 @@
                     </li>
                     <li class="nav-item menu-open">
                         <a href="#" class="nav-link ">
-                            <i class="fas fa-copy"></i>
+                            <i class="fas fa-folder-open"></i>
                             <p>
                                 DIRECCIÓN TÉCNICA
                                 <i class="right fas fa-angle-left"></i>
@@ -268,7 +266,7 @@
                          {% elif request.user.username == 'registro' %}
                                   <li class="nav-item menu-open">
                         <a href="#" class="nav-link ">
-                            <i class="fas fa-copy"></i>
+                            <i class="fas fa-folder-open"></i>
                             <p>
                                  FISCALIZACIÓN
                                 <i class="right fas fa-angle-left"></i>
@@ -292,7 +290,7 @@
                          {% elif request.user.username == 'tecnica' %}
                             <li class="nav-item menu-open">
                         <a href="#" class="nav-link ">
-                            <i class="fas fa-copy"></i>
+                            <i class="fas fa-folder-open"</i>
                             <p>
                                 DIRECCIÓN TÉCNICA
                                 <i class="right fas fa-angle-left"></i>
@@ -314,6 +312,9 @@
                             </li>
                         </ul>
                     </li>
+
+                        {% elif request.user.username == 'invitado' %}
+
 
                         {% endif %}
             </nav>
@@ -352,7 +353,7 @@
                     <p>Total de documentos</p>
                   </div>
                   <div class="icon">
-                    <i class="ion ion-bag"></i>
+                    <i class="ion ion-stats-bars"></i>
                   </div>
                   <a href="#" class="small-box-footer"> <i class="fas fa-chart-bar"></i></a>
                 </div>
@@ -366,7 +367,7 @@
                     <p>Entradas</p>
                   </div>
                   <div class="icon">
-                    <i class="ion ion-stats-bars"></i>
+                    <i class="ion ion-arrow-down-a"></i>
                   </div>
                   <a href="{%url 'entradas'%}" class="small-box-footer">Detalles   <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
@@ -380,7 +381,7 @@
                     <p>Salidas</p>
                   </div>
                   <div class="icon">
-                    <i class="ion ion-person-add"></i>
+                    <i class="ion ion-arrow-up-a"></i>
                   </div>
                   <a href="{%url 'salidas'%}" class="small-box-footer">Detalles <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
@@ -394,7 +395,7 @@
                     <p>Año en curso</p>
                   </div>
                   <div class="icon">
-                    <i class="ion ion-pie-graph"></i>
+                    <i class="ion ion-calendar"></i>
                   </div>
                   <a href="#" class="small-box-footer">Detalles <i class="fas fa-arrow-circle-right"></i></a>
                 </div>

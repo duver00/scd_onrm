@@ -11,7 +11,8 @@ from django.http import JsonResponse
 
 class NomencladoresView(PermissionRequiredMixin, TemplateView):
     template_name = "nomencladores.html"
-    permission_required = 'nomencladores.view_entidad'
+    permission_required =('control.view_entidad','control.view_provincia','control.view_direcciones',
+                          'control.view_organismo','control.view_tipodocumento','control.view_tipodocumentosalida')
     login_url = '/entrar/'
 
     def get_context_data(self, **kwargs):
@@ -33,7 +34,8 @@ class NomencladoresView(PermissionRequiredMixin, TemplateView):
 
 class NuevoNomencladorView(PermissionRequiredMixin, CreateView):
     template_name = "nomencladores.html"
-    permission_required = 'nomencladores.add_all'
+    permission_required = ('control.add_entidad','control.add_provincia','control.add_direcciones',
+                           'control.add_organismo','control.add_tipodocumento','control.add_tipodocumentosalida')
     login_url = '/entrar/'
 
     def post(self, request, *args, **kwargs):
@@ -79,7 +81,8 @@ class NuevoNomencladorView(PermissionRequiredMixin, CreateView):
 
 class EditarNomencladorView(PermissionRequiredMixin, UpdateView):
     template_name = "nomencladores.html"
-    permission_required = 'nomencladores.update_all'
+    permission_required = ('control.change_entidad','control.change_provincia','control.change_direcciones',
+                           'control.change_organismo','control.change_tipodocumento','control.change_tipodocumentosalida')
     login_url = '/entrar/'
 
 
@@ -178,7 +181,8 @@ class EditarNomencladorView(PermissionRequiredMixin, UpdateView):
 
 class EliminarNomencladorView(PermissionRequiredMixin, DeleteView):
     template_name = "nomencladores.html"
-    permission_required = 'nomencladores.delete_all'
+    permission_required = ('control.delete_entidad','control.delete_provincia','control.delete_direcciones',
+                           'control.delete_organismo','control.delete_tipodocumento', 'control.delete_tipodocumentosalida')
     login_url = '/entrar/'
     model = Direcciones
 

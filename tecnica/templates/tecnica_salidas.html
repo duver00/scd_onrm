@@ -55,9 +55,16 @@
                                     </div>
                                     <!-- /.card-header -->
                                     <div class="card-body mb-4" id="cardbody">
-                                        <button class="button mb-2  " data-toggle="modal" data-target="#modal-default"
-                                                id="agregar">Agregar Documento
+                                        {% if request.user.username == 'invitado' %}
+                                        <button class="button mb-2" data-toggle="modal" data-target="#modal-default"
+                                                 hidden id="agregar">Agregar Documento
                                         </button>
+                                         {% else %}
+                                         <button class="button mb-2" data-toggle="modal" data-target="#modal-default"
+                                                 id="agregar">Agregar Documento
+                                        </button>
+                                        {% endif %}
+
                                         <table id="tabla_salidas_tecnica" class="table table-bordered table-striped">
                                             <thead>
                                             <tr>
@@ -78,7 +85,8 @@
                                                     <td> {{ salidas.organismo }}</td>
                                                     <td> {{ salidas.entidad }}</td>
                                                     <td>
-                                                        <div class="button btn-group inline-group">
+                                                        {% if request.user.username == 'invitado' %}
+                                                        <div class="d-flex justify-content-center">
                                                             <button type="button" data-toggle="modal"
                                                                     data-target="#detalles{{ salidas.pk }}"
                                                                     id="{{ salidas.pk }}"
@@ -87,20 +95,30 @@
                                                                     title="Mostrar documento">
                                                                 <i class="fa fa-eye"></i>
                                                             </button>
+                                                            {% else %}
+                                                            <div class="d-flex justify-content-center">
+                                                             <button type="button" data-toggle="modal"
+                                                                    data-target="#detalles{{ salidas.pk }}"
+                                                                    id="{{ salidas.pk }}"
+                                                                    class="btn-sm btn-outline-info btn-floating "
+                                                                    data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                                                    title="Mostrar documento">
+                                                                <i class="fa fa-eye"></i>
                                                             <button type="button" id="editar_button" data-toggle="modal"
                                                                     data-target="#editar"
-                                                                    class="btn btn-outline-dark btn-floating"
+                                                                    class="btn-sm btn-outline-dark btn-floating"
                                                                     data-bs-toggle="tooltip" data-bs-placement="top"
                                                                     title="Editar documento">
                                                                 <i class="fa fa-edit"></i>
                                                             </button>
                                                             <button type="button" id="{{ salidas.pk }}"
-                                                                    class="btn btn-outline-danger btn-floating"
+                                                                    class="btn-sm btn-outline-danger btn-floating"
                                                                     data-bs-toggle="tooltip" data-bs-placement="top"
                                                                     title="Eliminar documento">
                                                                 <i class="fa fa-trash"></i>
                                                             </button>
                                                         </div>
+                                                        {% endif %}
                                                     </td>
                                                 </tr>
                                                 <!-- /.modal-Detalles -->
