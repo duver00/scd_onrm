@@ -25,7 +25,6 @@ class DocumentosTecnica(models.Model):
 
 
 
-
 class SalidasTecnica(models.Model):
     no_salida_tecnica = models.IntegerField(verbose_name="Número de salida", null=False, blank=False, unique=True)
     f_salida_tecnica = models.DateField(verbose_name="fecha de salida   ", null=False, blank=False)

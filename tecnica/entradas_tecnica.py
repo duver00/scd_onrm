@@ -138,11 +138,11 @@ class EliminarDocumentoTecnicaView(LoginRequiredMixin,PermissionRequiredMixin,De
         try:
             if request.method == "POST":
                 data = request.POST
-                documento = DocumentosTecnica.objects.filter(no_registro=data['tecnica'])
+                documento = DocumentosTecnica.objects.filter(no_tecnica=data['tecnica'])
                 for i in documento:
-                    id_doc = i.pk
+                    id_doc_tec = i.pk
                     break
-                doc = DocumentosTecnica.objects.get(pk=id_doc)
+                doc = DocumentosTecnica.objects.get(pk=id_doc_tec)
                 dat['datos'] = 'Documento Eliminado'
                 doc.delete()
                 return JsonResponse(dat)

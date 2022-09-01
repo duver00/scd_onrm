@@ -376,8 +376,6 @@
     <script src="{% static 'css/datatables-buttons/js/buttons.print.min.js' %}"></script>
     <script src="{% static 'css/datatables-buttons/js/buttons.colVis.min.js' %}"></script>
     <script src="{% static 'js/sweetalert2/sweetalert2.all.min.js' %}"></script>
-    <script src="{% static 'js/datatables-searchpanes/js/searchPanes.bootstrap4.min.js' %}"></script>
-    <script src="{% static 'js/datatables-searchpanes/js/dataTables.searchPanes.js' %}"></script>
     <script src="{% static 'js/datatables-select/js/dataTables.select.min.js' %}"></script>
 
 
@@ -429,7 +427,6 @@
                 {% else %}
             let last = 0;
         {% endif %}
-        console.log(last);
         const form = d.getElementById("myFormId");
         const $form = d.getElementById('form_agregar');
         const tabla = d.getElementById('#tabla_entradas');
@@ -502,7 +499,6 @@
                             })
                         })
                         .catch((error) => {
-                            console.log(error);
                             Swal.fire({
                               icon: 'error',
                               title: 'Oops...',
@@ -525,7 +521,6 @@
                     fn = new FormData;
                     fn.append('ccsrfmiddlewaretoken', getCookie("csrftoken"));
                     fn.append('registro', todos[0].innerText);
-                       console.log(todos[0].innerText);
                     const request = new Request(
                         {% url 'editar_entradas_registro' %},
                         {
@@ -543,7 +538,6 @@
                     })
                         .then(response => response.json())
                         .then(data => {
-                            console.log(data);
                             input_no_entrada.value = data['no_entrada_doc'];
                             input_no_registro.value = data['no_registro'];
                             input_titulo.value = data['titulo'];
@@ -599,7 +593,6 @@
                     })
                         .then(response => response.json())
                         .then(data => {
-                            console.log(data);
                             Swal.fire({
                               icon: 'success',
                               title: 'Documento editado exitosamente',
@@ -622,7 +615,6 @@
 
 
         const handleDelete = () =>{
-            console.log("dentroo")
             d.addEventListener("click", ev => {
                 let fd;
                 if(ev.target.matches(".btn-outline-danger ") || (ev.target.matches(".fa-trash"))){
@@ -640,7 +632,6 @@
                           const $btn_delete = ev.target,
                             $alltr = $btn_delete.closest('tr'),
                             todos = $alltr.querySelectorAll('td');
-
                            fd = new FormData;
                            fd.append('ccsrfmiddlewaretoken', getCookie("csrftoken"));
                            fd.append('registro', todos[0].innerText);
@@ -661,7 +652,6 @@
                             })
                                 .then(response => response.json())
                                 .then(data => {
-                                    console.log(data);
                                     Swal.fire({
                                        icon: 'success',
                                        title: 'Documento eliminado exitosamente',

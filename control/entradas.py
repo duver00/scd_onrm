@@ -89,10 +89,9 @@ class EditarDocumento(LoginRequiredMixin, PermissionRequiredMixin,UpdateView):
         try:
             if request.method == "POST":
                 data = request.POST
-                if len(data) == 2:                    
-                    no_entrada = data['entrada']
-                    if Documento.objects.get_or_create(no_entrada_doc=int(no_entrada)):
-                        doc = Documento.objects.filter(no_entrada_doc=no_entrada)                       
+                if len(data) == 2:
+                    if Documento.objects.get_or_create(no_entrada_doc=data['entrada']):
+                        doc = Documento.objects.filter(no_entrada_doc=data['entrada'])
                         for i in doc:
                             fn['pk'] = i.pk                            
                             fn['no_entrada_doc'] = i.no_entrada_doc

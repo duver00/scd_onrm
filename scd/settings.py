@@ -12,20 +12,29 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
+import environ
+
+
+env = environ.Env(DEBUG=(bool, False))
+environ.Env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-bk%7c11df21ohcc7fdu*shzk8#cg#89!b8yf=4=#3wn!a5%868'
+# Leyendo el archivo .env!
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# Segun el valor de DEBUG se cargará el  dev o el prod!
+DEBUG = env('DEBUG')
+if env('DEBUG'):
+    from scd.dev_prod.development import *
+else:
+    from scd.dev_prod.production import *
 
-ALLOWED_HOSTS = []
+
 
 # Application definition
 
@@ -82,17 +91,6 @@ WSGI_APPLICATION = 'scd.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'scd',
-        'USER': 'postgres',
-        'PASSWORD': 'cu4tr0',
-        'HOST': '127.0.0.1',
-        'DATABASE_PORT': '5433',
-
-    }
-}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators

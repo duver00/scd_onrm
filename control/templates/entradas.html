@@ -432,8 +432,6 @@
     <script src="{% static 'css/datatables-buttons/js/buttons.print.min.js' %}"></script>
     <script src="{% static 'css/datatables-buttons/js/buttons.colVis.min.js' %}"></script>
     <script src="{% static 'js/sweetalert2/sweetalert2.all.min.js' %}"></script>
-    <script src="{% static 'js/datatables-searchpanes/js/searchPanes.bootstrap4.min.js' %}"></script>
-    <script src="{% static 'js/datatables-searchpanes/js/dataTables.searchPanes.js' %}"></script>
     <script src="{% static 'js/datatables-select/js/dataTables.select.min.js' %}"></script>
 
     <!-- AdminLTE App -->
@@ -494,7 +492,6 @@
                 {% else %}
             let last = 0;
         {% endif %}
-        console.log(last);
         const $btn_agregar = d.getElementById("btnAceptar");
         const form = d.getElementById("myFormId");
         const $form = d.getElementById('form_agregar');
@@ -597,7 +594,7 @@
                     const $btn_edit = ev.target,
                         $alltr = $btn_edit.closest('tr'),
                         todos = $alltr.querySelectorAll('td');
-                    console.log(todos[0].innerText)
+                    console.log(todos[0].innerText);
                     fn = new FormData;
                     fn.append('ccsrfmiddlewaretoken', getCookie("csrftoken"));
                     fn.append('entrada', todos[0].innerText);
@@ -679,7 +676,6 @@
                     })
                         .then(response => response.json())
                         .then(data => {
-                            console.log(data);
                             Swal.fire({
                               icon: 'success',
                               title: 'Documento editado exitosamente',
@@ -699,7 +695,6 @@
 
         }
        const handleDelete = ()=> {
-            console.log("dentroo")
             d.addEventListener("click", ev => {
                 let fd;
                 if(ev.target.matches(".btn-outline-danger ") || (ev.target.matches(".fa-trash"))){

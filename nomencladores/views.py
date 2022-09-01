@@ -100,17 +100,14 @@ class EditarNomencladorView(PermissionRequiredMixin, UpdateView):
                         fn['nombre'] = direccion.nombre
                         fn['correo'] = direccion.correo
                         return JsonResponse(fn)
-                elif len(data) == 5 and data['action'] == 'edited_direccion':                
-                    print('mas adentro')
+                elif len(data) == 5 and data['action'] == 'edited_direccion':
                     direccion = Direcciones.objects.get(pk=data['pk'])
                     direccion.nombre = data['nombre']
                     direccion.correo = data['correo']
                     direccion.save()
                     info['ok'] = 'editado'
-                    print('asdas')
                     return JsonResponse(data)
                 if len(data) == 3 and data['nombre'] == 'entidad':
-                    print('dentro entidad')
                     if Entidad.objects.get_or_create(pk=data['pk']):
                         entidad = Entidad.objects.get(pk=data['pk'])
                         fn['pk'] = entidad.pk
@@ -123,7 +120,6 @@ class EditarNomencladorView(PermissionRequiredMixin, UpdateView):
                         info['ok'] = 'Entidad Editada'              
                         return JsonResponse(data)  
                 if len(data) == 3 and data['nombre'] == 'organismo':
-                    print('dentro organismo')
                     if Organismo.objects.get_or_create(pk=data['pk']):
                         organismo = Organismo.objects.get(pk=data['pk'])
                         fn['pk'] = organismo.pk
@@ -136,7 +132,6 @@ class EditarNomencladorView(PermissionRequiredMixin, UpdateView):
                         info['ok'] = 'Organismo Editado'              
                         return JsonResponse(data)
                 if len(data) == 3 and data['nombre'] == 'provincia':
-                    print('dentro provincia')
                     if Provincia.objects.get_or_create(pk=data['pk']):
                         provincia = Provincia.objects.get(pk=data['pk'])
                         fn['pk'] = provincia.pk
@@ -149,7 +144,6 @@ class EditarNomencladorView(PermissionRequiredMixin, UpdateView):
                         info['ok'] = 'Provincia Editada'              
                         return JsonResponse(data)
                 if len(data) == 3 and data['nombre'] == 'tdoc_salida':
-                    print('dentro salida')
                     if TipoDocumentoSalida.objects.get_or_create(pk=data['pk']):
                         tdoc_salida = TipoDocumentoSalida.objects.get(pk=data['pk'])
                         fn['pk'] = tdoc_salida.pk
@@ -162,7 +156,6 @@ class EditarNomencladorView(PermissionRequiredMixin, UpdateView):
                         info['ok'] = 'Tipo de salida Editada'              
                         return JsonResponse(data)
                 if len(data) == 3 and data['nombre'] == 'tdoc':
-                    print('dentro entrada')
                     if TipoDocumento.objects.get_or_create(pk=data['pk']):
                         tdoc = TipoDocumento.objects.get(pk=data['pk'])
                         fn['pk'] = tdoc.pk

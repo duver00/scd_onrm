@@ -365,8 +365,6 @@
     <script src="{% static 'css/datatables-buttons/js/buttons.print.min.js' %}"></script>
     <script src="{% static 'css/datatables-buttons/js/buttons.colVis.min.js' %}"></script>
     <script src="{% static 'js/sweetalert2/sweetalert2.all.min.js' %}"></script>
-    <script src="{% static 'js/datatables-searchpanes/js/searchPanes.bootstrap4.min.js' %}"></script>
-    <script src="{% static 'js/datatables-searchpanes/js/dataTables.searchPanes.js' %}"></script>
     <script src="{% static 'js/datatables-select/js/dataTables.select.min.js' %}"></script>
 
     <!-- AdminLTE App -->
@@ -421,7 +419,6 @@
                 {% else %}
             let last = 0;
         {% endif %}
-        console.log(last);
 
         const tabla = d.getElementById('#tabla_entradas');
 
@@ -534,7 +531,6 @@
                     })
                         .then(response => response.json())
                         .then(data => {
-                            console.log(data);
                             input_no_registro.value = data['no_salida_registro'];
                             input_titulo.value = data['titulo'];
                             input_f_salida_registro.value = data['f_salida_registro'];
@@ -586,7 +582,6 @@
                     })
                         .then(response => response.json())
                         .then(data => {
-                            console.log(data);
                             Swal.fire({
                               icon: 'success',
                               title: 'Documento editado exitosamente',
@@ -607,9 +602,7 @@
         }
 
 
-
         const handleDelete = () =>{
-            console.log("dentroo")
             d.addEventListener("click", ev => {
                 let fd;
                 if(ev.target.matches(".btn-outline-danger ") || (ev.target.matches(".fa-trash"))){
@@ -631,6 +624,7 @@
                            fd = new FormData;
                            fd.append('ccsrfmiddlewaretoken', getCookie("csrftoken"));
                            fd.append('registro', todos[0].innerText);
+
                             const request = new Request(
                                 {% url 'eliminar_registro_salidas' %},
                                 {
@@ -648,7 +642,6 @@
                             })
                                 .then(response => response.json())
                                 .then(data => {
-                                    console.log(data);
                                     Swal.fire({
                                        icon: 'success',
                                        title: 'Documento eliminado exitosamente',

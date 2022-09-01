@@ -365,8 +365,6 @@
     <script src="{% static 'css/datatables-buttons/js/buttons.print.min.js' %}"></script>
     <script src="{% static 'css/datatables-buttons/js/buttons.colVis.min.js' %}"></script>
     <script src="{% static 'js/sweetalert2/sweetalert2.all.min.js' %}"></script>
-    <script src="{% static 'js/datatables-searchpanes/js/searchPanes.bootstrap4.min.js' %}"></script>
-    <script src="{% static 'js/datatables-searchpanes/js/dataTables.searchPanes.js' %}"></script>
     <script src="{% static 'js/datatables-select/js/dataTables.select.min.js' %}"></script>
 
     <!-- AdminLTE App -->
@@ -421,7 +419,6 @@
         {% else %}
             let last = 0;
         {% endif %}
-        console.log(last);
         const tabla = d.getElementById('#tabla_entradas');
         /****Capturando id para pasarle valores para el form editar****/
         const input_no_salida_tecnica = d.getElementById("id_edit_no_salida_tecnica");
@@ -513,7 +510,6 @@
                     fn = new FormData;
                     fn.append('ccsrfmiddlewaretoken', getCookie("csrftoken"));
                     fn.append('tecnica', todos[0].innerText);
-                       console.log(todos[0].innerText);
                     const request = new Request(
                         {% url 'editar_tecnica_salida' %},
                         {
@@ -531,7 +527,6 @@
                     })
                         .then(response => response.json())
                         .then(data => {
-                            console.log(data);
                             input_no_salida_tecnica.value = data['no_salida_tecnica'];
                             input_titulo.value = data['titulo'];
                             input_f_salida_tecnica.value = data['f_salida_tecnica'];
@@ -540,7 +535,6 @@
                             input_t_documento.value = data['tipo_documento'];
                             input_observaciones.value = data['observaciones'];
                            input_provincia.value = data['provincia'];
-
 
                            })
 
@@ -582,7 +576,6 @@
                     })
                         .then(response => response.json())
                         .then(data => {
-                            console.log(data);
                             Swal.fire({
                               icon: 'success',
                               title: 'Documento editado exitosamente',
@@ -605,7 +598,6 @@
 
 
         const handleDelete = () =>{
-            console.log("dentroo");
             d.addEventListener("click", ev => {
                 let fd;
                 if(ev.target.matches(".btn-outline-danger ") || (ev.target.matches(".fa-trash"))){

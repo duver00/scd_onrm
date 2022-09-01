@@ -134,7 +134,7 @@ class EliminarSalidaRegistroView(LoginRequiredMixin,PermissionRequiredMixin, Del
         try:
             if request.method == "POST":
                 data = request.POST
-                documento = SalidasRegistro.objects.filter(no_registro=data['registro'])
+                documento = SalidasRegistro.objects.filter(no_salida_registro=data['registro'])
                 for i in documento:
                     id_doc = i.pk
                     break

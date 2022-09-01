@@ -376,8 +376,6 @@
     <script src="{% static 'css/datatables-buttons/js/buttons.print.min.js' %}"></script>
     <script src="{% static 'css/datatables-buttons/js/buttons.colVis.min.js' %}"></script>
     <script src="{% static 'js/sweetalert2/sweetalert2.all.min.js' %}"></script>
-    <script src="{% static 'js/datatables-searchpanes/js/searchPanes.bootstrap4.min.js' %}"></script>
-    <script src="{% static 'js/datatables-searchpanes/js/dataTables.searchPanes.js' %}"></script>
     <script src="{% static 'js/datatables-select/js/dataTables.select.min.js' %}"></script>
 
     <!-- AdminLTE App -->
@@ -429,7 +427,6 @@
                 {% else %}
             let last = 0;
         {% endif %}
-        console.log(last);
         const tabla = d.getElementById('#tabla_entradas');
 
         /****Capturando id para pasarle valores para el form editar****/
@@ -524,7 +521,6 @@
                     fn = new FormData;
                     fn.append('ccsrfmiddlewaretoken', getCookie("csrftoken"));
                     fn.append('tecnica', todos[0].innerText);
-                       console.log(todos[0].innerText);
                     const request = new Request(
                         {% url 'editar_entrada_tecnica' %},
                         {
@@ -542,7 +538,6 @@
                     })
                         .then(response => response.json())
                         .then(data => {
-                            console.log(data);
                             input_no_entrada.value = data['no_entrada_doc'];
                             input_no_tecnica.value = data['no_tecnica'];
                             input_titulo.value = data['titulo'];
@@ -579,8 +574,6 @@
                     fd_edit.append('tipo_documento', input_t_documento.value);
                     fd_edit.append('observaciones', input_observaciones.value);
                     fd_edit.append('provincia', input_provincia.value);
-
-
                     const request = new Request(
                         {% url 'editar_entrada_tecnica' %},
                         {
@@ -598,8 +591,7 @@
                     })
                         .then(response => response.json())
                         .then(data => {
-                            console.log(data);
-                            Swal.fire({
+                             Swal.fire({
                               icon: 'success',
                               title: 'Documento editado exitosamente',
                               showConfirmButton: true,
@@ -621,7 +613,6 @@
 
 
         const handleDelete = () =>{
-            console.log("dentroo")
             d.addEventListener("click", ev => {
                 let fd;
                 if(ev.target.matches(".btn-outline-danger ") || (ev.target.matches(".fa-trash"))){
@@ -642,9 +633,9 @@
 
                            fd = new FormData;
                            fd.append('ccsrfmiddlewaretoken', getCookie("csrftoken"));
-                           fd.append('registro', todos[0].innerText);
+                           fd.append('tecnica', todos[0].innerText);
                             const request = new Request(
-                                {% url 'eliminar_entradas_registro' %},
+                                {% url 'eliminar_entrada_tecnica' %},
                                 {
                                     headers: {'X-CSRFToken': getCookie("csrftoken")},
                                     'Accept': 'application/json, application/xml, text/plain, text/html, *.*',
@@ -660,7 +651,6 @@
                             })
                                 .then(response => response.json())
                                 .then(data => {
-                                    console.log(data);
                                     Swal.fire({
                                        icon: 'success',
                                        title: 'Documento eliminado exitosamente',
